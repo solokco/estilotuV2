@@ -148,92 +148,6 @@ class Estilotu_Servicio {
 	/* ************************************************************************ */
 	/* LISTA LOS SERVICIOS DEL USUARIO QUE SE MUESTRA EN BUDDYPRESS 			*/
 	/* ************************************************************************ */
-	public function editar_servicio () {
-		
-		global $bp;	
-		global $wp_query;
-		
-		$this->post_id  	= get_query_var( "id_servicio" );		
-		$post_author_id 	= get_post_field( 'post_author', $this->post_id  );
-		
-		// valido que el id del servicio sea del autor
-		if ( $post_author_id == bp_displayed_user_id() ):
-						
-			// valido que no venga la funcion de guardar
-			if ( !isset( $_POST['publicar_servicio_nonce'] ) || !wp_verify_nonce( $_POST['publicar_servicio_nonce'] , 'publicar_servicio' ) ): 
-				
-					$this->en_edicion 			= true;
-					$this->servicio 			= get_post($this->post_id); 
-					$this->servicio_meta 		= get_post_meta($this->post_id); 				
-					$this->servicios_categoria	= get_the_terms($this->post_id, 'servicios-categoria');
-					$this->token_id 			= md5( uniqid( "", true ) );
-					//$disponible 				= unserialize($this->servicio_meta["disponibilidad_servicio"][0]) ;			
-					
-					$moneda 					= isset($this->servicio_meta['et_meta_precio_moneda'][0]) ? $this->servicio_meta['et_meta_precio_moneda'][0] : '' ;
-					$moneda_visibilidad 		= isset($this->servicio_meta['et_meta_precio_visibilidad'][0]) ? $this->servicio_meta['et_meta_precio_visibilidad'][0] : '' ;
-					$max_time 					= isset($this->servicio_meta['et_meta_max_time'][0]) ? $this->servicio_meta['et_meta_max_time'][0] : '' ;
-					$et_meta_close_time 		= isset($this->servicio_meta['et_meta_close_time'][0]) ? $this->servicio_meta['et_meta_close_time'][0] : '' ; 
-					
-					$horarios_servicio = $this->horarios_servicio( $this->post_id );
-					
-					wp_enqueue_script('estilotu_duplicar_servicios');
-					
-					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/servicios/cupos/add.php' ;	
-				
-			// si viene con la funcion de guardar
-			else:			
-
-				$this->token_id = stripslashes( $_POST['et_token'] );
-				
-				// si ya existe un token que indica que se guardo el post
-				if ( get_transient( 'token_' . $this->token_id ) ) { ?>
-
-				    <h2 class='warning'> <?php _e("Usted ya guardo este post</h2>" , "estilotu" ); ?> </h2>
-					
-					<?php
-				    return;
-				
-				} 
-				
-				// si el post es nuevo
-				else {
-					
-					if ($this->guardar_servicio( "editar" ) ): ?>
-						
-						<h2 class='success'> <?php _e( "Su servicio se ha editado con éxito" , "estilotu" ); ?> </h2>
-						
-						<?php
-						set_transient( 'token_' . $this->token_id , 'servicio-editar', 3600 );
-						
-					else: ?>
-						
-						<h2 class='error'> <?php _e( "Ocurrió un error al editar su servicio" , "estilotu" ) ; ?> </h2>
-					
-					<?php	
-					endif;	
-				}
-
-			endif;	
-		
-		// si no hay un servicio para editar	
-		elseif ( empty($this->post_id) ):
-			
-			_e("Debe seleccionar un servicio a editar" , "estilotu");
-		
-		// si el usuario no es dueno de ese servicio	
-		else:
-			
-			_e("No estás autorizado para editar este servicio" , "estilotu");
-			
-		endif; 
-		
-		
-			
-	}
-	
-	/* ************************************************************************ */
-	/* LISTA LOS SERVICIOS DEL USUARIO QUE SE MUESTRA EN BUDDYPRESS 			*/
-	/* ************************************************************************ */
 	public function agregar_servicio () {
 		global $bp;	
 		global $wp_query;
@@ -296,7 +210,7 @@ class Estilotu_Servicio {
 			// si ya existe un token que indica que se guardo el post
 			if ( get_transient( 'token_' . $this->token_id ) ) { ?>
 
-			    <h2 class='warning'> <?php _e( "Usted ya guardo este servicio" , "estilotu" ); ?> </h2>
+			    <h2 class='alert alert-warning'> <?php _e( "Usted ya guardo este servicio" , "estilotu" ); ?> </h2>
 			    
 			    <?php 
 			    return;
@@ -306,9 +220,12 @@ class Estilotu_Servicio {
 			// si el post es nuevo
 			else {
 				
-				if ($this->guardar_servicio( ) ): ?>
+				$post_id = $this->guardar_servicio( );
+				
+				if ( $post_id ): ?>
 					
-					<h2 class='success'> <?php _e("Su servicio se ha guardado con éxito" , "estilotu") ?> </h2>;
+					<h2 class='alert alert-success'> <?php _e("Su servicio se ha guardado con éxito" , "estilotu") ?> </h2>;
+					<a class="et_button" href="<?php echo get_permalink( $post_id ); ?>" title="">Ver publicación</a>
 					
 					<?php _e("<h2 class=''>Ver servicio</h2>" , "estilotu");
 					
@@ -317,7 +234,7 @@ class Estilotu_Servicio {
 					
 				else: ?>
 					
-					<h2 class='error'> <?php _e("Ocurrió un error al guardar su servicio" , "estilotu"); ?> </h2>
+					<h2 class='alert alert-danger'> <?php _e("Ocurrió un error al guardar su servicio" , "estilotu"); ?> </h2>
 				
 				<?php	
 				endif;	
@@ -328,7 +245,94 @@ class Estilotu_Servicio {
 	}
 	/* ************************************************************************ */
 	
-	
+	/* ************************************************************************ */
+	/* LISTA LOS SERVICIOS DEL USUARIO QUE SE MUESTRA EN BUDDYPRESS 			*/
+	/* ************************************************************************ */
+	public function editar_servicio () {
+		
+		global $bp;	
+		global $wp_query;
+		
+		$this->post_id  	= get_query_var( "id_servicio" );		
+		$post_author_id 	= get_post_field( 'post_author', $this->post_id  );
+		
+		// valido que el id del servicio sea del autor
+		if ( $post_author_id == bp_displayed_user_id() ):
+						
+			// valido que no venga la funcion de guardar
+			if ( !isset( $_POST['publicar_servicio_nonce'] ) || !wp_verify_nonce( $_POST['publicar_servicio_nonce'] , 'publicar_servicio' ) ): 
+				
+					$this->en_edicion 			= true;
+					$this->servicio 			= get_post($this->post_id); 
+					$this->servicio_meta 		= get_post_meta($this->post_id); 				
+					$this->servicios_categoria	= get_the_terms($this->post_id, 'servicios-categoria');
+					$this->token_id 			= md5( uniqid( "", true ) );
+					//$disponible 				= unserialize($this->servicio_meta["disponibilidad_servicio"][0]) ;			
+					
+					$moneda 					= isset($this->servicio_meta['et_meta_precio_moneda'][0]) ? $this->servicio_meta['et_meta_precio_moneda'][0] : '' ;
+					$moneda_visibilidad 		= isset($this->servicio_meta['et_meta_precio_visibilidad'][0]) ? $this->servicio_meta['et_meta_precio_visibilidad'][0] : '' ;
+					$max_time 					= isset($this->servicio_meta['et_meta_max_time'][0]) ? $this->servicio_meta['et_meta_max_time'][0] : '' ;
+					$et_meta_close_time 		= isset($this->servicio_meta['et_meta_close_time'][0]) ? $this->servicio_meta['et_meta_close_time'][0] : '' ; 
+					
+					$horarios_servicio = $this->horarios_servicio( $this->post_id );
+					
+					wp_enqueue_script('estilotu_duplicar_servicios');
+					
+					require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/servicios/cupos/add.php' ;	
+				
+			// si viene con la funcion de guardar
+			else:			
+
+				$this->token_id = stripslashes( $_POST['et_token'] );
+				
+				// si ya existe un token que indica que se guardo el post
+				if ( get_transient( 'token_' . $this->token_id ) ) { ?>
+
+				    <h2 class='alert alert-warning'> <?php _e("Usted ya guardo este post</h2>" , "estilotu" ); ?> </h2>
+					
+					<?php
+				    return;
+				
+				} 
+				
+				// si el post es nuevo
+				else {
+					
+					$post_id = $this->guardar_servicio( "editar" );
+										
+					if ( $post_id ): ?>
+						
+						<h2 class='alert alert-success'> <?php _e( "Su servicio se ha editado con éxito" , "estilotu" ); ?> </h2>
+
+						<a class="et_button" href="<?php echo get_permalink( $post_id ); ?>" title="">Ver publicación</a>
+						
+						<?php
+							
+						
+						set_transient( 'token_' . $this->token_id , 'servicio-editar', 3600 );
+						
+					else: ?>
+						
+						<h2 class='alert alert-danger'> <?php _e( "Ocurrió un error al editar su servicio" , "estilotu" ) ; ?> </h2>
+					
+					<?php	
+					endif;	
+				}
+
+			endif;	
+		
+		// si no hay un servicio para editar	
+		elseif ( empty($this->post_id) ):
+			
+			_e("Debe seleccionar un servicio a editar" , "estilotu");
+		
+		// si el usuario no es dueno de ese servicio	
+		else:
+			
+			_e("No estás autorizado para editar este servicio" , "estilotu");
+			
+		endif; 	
+	}
 	
 	
 	
