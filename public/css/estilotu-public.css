@@ -1,0 +1,607 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+ 
+ .social-header {display:none;}
+	
+.row.fullw>.column, .row.fullw>.columns {
+    padding-left: 0;
+	padding-right: 0;
+}
+
+#map {
+	height: 500px;
+	width: 100%;
+	height: -moz-calc(100vh - 87px);
+	height: -webkit-calc(100vh - 87px);
+	height: calc(100vh - 87px);
+}
+
+#lista_servicios_geolocation {
+    overflow: scroll;
+    height: 500px;
+	width: 100%;
+	height: -moz-calc(100vh - 150px);
+	height: -webkit-calc(100vh - 150px);
+	height: calc(100vh - 150px);
+}
+
+#lista_servicios_geolocation > .columns {margin-bottom:20px;}
+
+.nombre_servicio {
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+#lista_servicios_geolocation .heading {
+	/* 	    background-color: #f7f7f8; */
+}
+
+#lista_servicios_geolocation .button {
+    display: inline-block;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -webkit-transition: background-color .25s ease-out,color .25s ease-out;
+    transition: background-color .25s ease-out,color .25s ease-out;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 0;
+    padding: .85em 1em;
+    margin: 0 0 1rem;
+    font-size: .9rem;
+    background-color: #2199e8;
+    color: #fefefe;
+}
+
+#lista_servicios_geolocation .price {
+    background-color: #FFF;
+    color: #703090;
+    font-size: 1.57143em;
+    padding: 8px;
+    display: inline-block;
+    margin-right: 10px;
+    min-width: 70px;
+    vertical-align: middle;
+}
+
+#lista_servicios_geolocation .servicio-image {
+	height: 300px;
+	/*
+    float: left;
+    margin: -38px 10px 0 0;
+    width: 120px;
+    height: 120px;
+	*/
+}
+
+#lista_servicios_geolocation .button.with-price {
+    background-color: #703090;
+    color: #FFF;
+    font-size: 1em;
+    font-family: "MuseoSans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 1px 10px 1px 1px;
+    border: 0;
+	display: inline-block;
+	text-align: center;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    top: -70px;
+}
+
+#lista_servicios_geolocation .button.with-price .price sup {
+    font-size: 12px;
+    font-weight: 500;
+}
+   
+.text-truncate, .truncate {
+    overflow: hidden;
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+
+.row .listing-card-wrapper:nth-child(odd) {
+	clear: both;
+}
+
+.space-2 {
+	margin-bottom: 12px;
+}
+
+#lista_servicios_geolocation .listing-img {
+    overflow: hidden;
+    padding-bottom: 43%;
+}
+
+.media-photo {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    background-color: #bbb;
+}
+
+.panel-image {
+	position: relative;
+}
+
+.media-cover, .media-cover-dark:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.media-photo.media-cover {
+    z-index: 0;
+    -webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible;
+    backface-visibility: visible;
+}
+
+.img-responsive-height {
+width: auto;
+height: 100%;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.panel-card-section {
+    padding: 10px;
+}
+
+.panel-body {
+    position: relative;
+}
+.panel-header, .panel-body, ul.panel-body>li, ol.panel-body>li, .panel-footer {
+    position: relative;
+    margin: 0;
+    padding: 20px;
+    border-top: 1px solid #dce0e0;
+}
+
+.panel-overlay-top-left, .panel-overlay-top-right, .panel-overlay-bottom-left, .panel-overlay-bottom-right {
+    position: absolute;
+}
+
+.panel-body>*:last-child {
+    margin-bottom: 0;
+}
+.panel-body>*:first-child {
+    margin-top: 0;
+}
+
+h3.listing-name {
+	margin: 6.25px 0 0;
+}
+
+.listing-name {
+    padding-bottom: 4px;
+    color: #48484F;
+    font-weight: normal;
+}
+
+.listing-name a {
+	color: #000;
+}
+
+.panel-overlay-listing-label {
+    bottom: 30px;
+    left: 0;
+    padding: 7px 10px;
+}
+
+.panel-overlay-label {
+    background-color: #2d2d2d;
+    background-color: rgba(45,45,45,0.9);
+    padding: 10px;
+    color: #fff;
+}
+
+.panel-overlay-listing-label .price-label {
+    font-size: 24px;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.panel-overlay-listing-label .price-label sup {
+    font-weight: bold;
+}
+.panel-overlay-listing-label .price-label sup, .panel-overlay-listing-label .price-label .price-label--unit-label {
+    font-size: .58333em;
+}
+.panel-overlay-listing-label .price-label sup {
+    font-weight: bold;
+}
+
+.panel-overlay-listing-label .price-label {
+    font-size: 24px;
+    font-weight: normal;
+    display: inline-block;
+}
+
+.h5 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.screen-reader-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.listing-map-popover .listing-name {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.media-photo-badge {
+    display: inline-block;
+    position: relative;
+}
+.card-profile-picture {
+    height: 60px;
+    width: 60px;
+}
+.card-profile-picture-offset {
+    position: absolute;
+    top: -30px;
+	right: 10px;
+}
+
+.img-round, .media-round {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.card-profile-picture img {
+    height: 56px;
+    width: 56px;
+}
+
+.media:before, .media:after {
+    content: " ";
+    display: table;
+}
+
+/* 	SEARCH BOX */
+.flexsearch--wrapper {
+	height: auto;
+	width: auto;
+	max-width: 100%;
+	overflow: hidden;
+	background: transparent;
+	margin: 0;
+	position: static;
+}
+	
+.flexsearch--form {
+	overflow: hidden;
+	position: relative;
+}
+	
+.flexsearch--input-wrapper {
+	padding: 0; /* Right padding for submit button width */
+	overflow: hidden;
+}
+
+.flexsearch--input {
+  width: 100%;
+}
+
+/***********************
+ * Configurable Styles *
+ ***********************/
+.flexsearch {
+  padding: 15px 25px 0px; /* Padding for other horizontal elements */
+}
+
+.flexsearch--input {
+  -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+ 	height: 60px;
+  padding: 0 46px 0 10px;
+	border-color: #888;
+  border-radius: 35px; /* (height/2) + border-width */
+  border-style: solid;
+	border-width: 5px;
+  margin-top: 15px;
+  color: #333;
+  font-family: 'Helvetica', sans-serif;
+	font-size: 18px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+	
+.flexsearch--submit {
+  position: absolute;
+	right: 0px;
+	top: -18px;
+	display: block;
+	width: 60px;
+	height: 60px;
+  padding: 0;
+  border: none;
+	margin-top: 20px; /* margin-top + border-width */
+  margin-right: 5px; /* border-width */
+	background: transparent;
+  color: #888;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.flexsearch--input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.flexsearch--input:focus.flexsearch--submit {
+ 	color: #333; 
+}
+
+.flexsearch--submit:hover {
+  color: #333;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+	color: #888;  
+}
+
+.flexsearch input:-moz-placeholder {
+  color: #888
+}
+
+#map {
+				/* height: 500px; */
+}
+
+#legend_categories {
+	font-family: Arial, sans-serif;
+	background: #fff;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid #000;
+}
+
+#legend_categories h3 {
+	margin-top: 0;
+}
+
+#legend_categories img {
+	vertical-align: middle;
+}
+
+#legend_distancia {
+	font-family: Arial, sans-serif;
+	background: #fff;
+	padding: 10px;
+	margin: 10px;
+	border: none;
+}
+
+#legend_distancia h3 {
+	margin-top: 0;
+}
+
+#legend_distancia img {
+	vertical-align: middle;
+}
+
+#legend_distancia span, #legend_distancia .distance {
+    color: #202020;
+    margin-left: 7px;
+    padding: 4px 5px;
+    display: inline-block;
+}
+
+#legend_distancia span.green, #legend_distancia .distance.green {
+    background-color: rgba(152,194,37,0.3);
+    border: 1px solid #98c225;
+}
+
+#legend_distancia span.yellow, #legend_distancia .distance.yellow {
+    background-color: rgba(254,238,0,0.4);
+    border: 1px solid #feee00;
+}
+
+#legend_distancia span.red, #legend_distancia .distance.red {
+    background-color: rgba(206,107,0,0.3);
+    border: 1px solid #ce6b00;
+}
+
+.visible {display:block;}
+.invisible {display:none;}
+
+
+.smart-forms .radio  {padding-left:0px !important;}
+.smart-forms .frm-row {
+	margin: 0px; 
+    padding: 0px 20px;
+}
+.smart-steps .wizard > .steps {z-index:1;}
+
+#map-canvas img {max-width: none;}
+
+#description_ifr {border-left:1px solid #EEE; border-right:1px solid #EEE;height:300px !important;}
+
+#editar-personal-li {display:none;}
+
+
+/* CHECKBOX */
+
+.turn_switch {
+	box-sizing: content-box;
+}
+
+.turn_switch .ext-cross:before, 
+.turn_switch .checkbox__checker:before, 
+.turn_switch .checkbox__cross:before, 
+.turn_switch .checkbox__ok:before, 
+.turn_switch .ext-cross:after, 
+.turn_switch .checkbox__checker:after, 
+.turn_switch .checkbox__cross:after, 
+.turn_switch .checkbox__ok:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  margin: 0 auto;
+  top: 20px;
+  left: 0;
+  right: 0;
+  background-color: #bf1e1e;
+  border-radius: 5px;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+}
+
+.turn_switch .ext-cross:before, 
+.turn_switch .checkbox__checker:before, 
+.turn_switch .checkbox__cross:before, 
+.turn_switch .checkbox__ok:before {
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+}
+
+.turn_switch .ext-cross:after, 
+.turn_switch .checkbox__checker:after, 
+.turn_switch .checkbox__cross:after, 
+.turn_switch .checkbox__ok:after {
+  -webkit-transform: rotateZ(-45deg);
+          transform: rotateZ(-45deg);
+}
+
+.turn_switch .ext-ok:before, 
+.turn_switch .checkbox__toggle:checked + .checkbox__checker:before,
+.turn_switch .checkbox__ok:before, .ext-ok:after, 
+.turn_switch .checkbox__toggle:checked + .checkbox__checker:after, 
+.turn_switch .checkbox__ok:after {
+  background-color: #0cb018;
+}
+
+.turn_switch .ext-ok:before, 
+.turn_switch .checkbox__toggle:checked + .checkbox__checker:before, 
+.turn_switch .checkbox__ok:before {
+  width: 6px;
+  top: 23px;
+  left: -7px;
+}
+
+.turn_switch .ext-ok:after, 
+.turn_switch .checkbox__toggle:checked + .checkbox__checker:after, 
+.turn_switch .checkbox__ok:after {
+  width: 12px;
+  left: 5px;
+}
+
+.turn_switch.checkbox {
+  width: 100px;
+  margin: 0 auto 30px auto;
+}
+
+.turn_switch .checkbox__container {
+  display: block;
+  position: relative;
+  height: 42px;
+  cursor: pointer;
+  -webkit-box-sizing: content-box;
+}
+
+.turn_switch .checkbox__toggle {
+  display: none;
+}
+
+.turn_switch .checkbox__toggle:checked + .checkbox__checker {
+  left: calc(100% - 43px);
+  -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+}
+
+.turn_switch .checkbox__checker, 
+.turn_switch .checkbox__cross, 
+.turn_switch .checkbox__ok {
+  display: block;
+  position: absolute;
+  height: 43px;
+  width: 43px;
+  top: -1px;
+  left: 0px;
+  z-index: 1;
+}
+
+.turn_switch .checkbox__checker {
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+  -webkit-transition: .3s;
+  transition: .3s;
+  z-index: 2;
+}
+
+.turn_switch .checkbox__checker:before, 
+.turn_switch .checkbox__checker:after {
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+}
+
+.turn_switch .checkbox__cross:before, 
+.turn_switch .checkbox__cross:after, 
+.turn_switch .checkbox__ok:before, 
+.turn_switch .checkbox__ok:after {
+  background-color: #ddd;
+}
+
+.turn_switch .checkbox__ok {
+  left: calc(100% - 43px);
+}
+
+.turn_switch .checkbox__txt-left, 
+.turn_switch .checkbox__txt-right {
+  display: block;
+  position: absolute;
+  width: 42px;
+  top: 15px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  z-index: 1;
+}
+
+.turn_switch .checkbox__txt-right {
+  right: 0px;
+}
+
+.turn_switch .checkbox__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: #aaa;
+  width: 100%;
+  height: 100%;
+}

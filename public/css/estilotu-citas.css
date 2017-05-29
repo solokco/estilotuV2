@@ -1,0 +1,22 @@
+/* ************************ */
+/* LISTADO DE CITAS */
+/* ************************ */
+#Lista_Citas {position:relative;}
+/* #Lista_Citas .Citas {float: left;width: 60%;} */
+#Lista_Citas .Calendario {text-align:center;}
+
+#Lista_Citas .usuario {display:flex;align-items: center;padding:20px 0px; border-bottom: 1px solid #CCC;}
+#Lista_Citas .usuario div {flex-grow:1;}
+
+#Lista_Citas .Bloque {background:#F4F4F4;margin-bottom:20px;border-bottom:1px solid #333;}
+#Lista_Citas .Bloque .header_dia {text-align:center;background:#703090;padding:5px;color:#FFF;}
+	#Lista_Citas .Bloque .header_dia h2 {color:#FFF;}
+#Lista_Citas .Bloque .header_hora {text-align:center;padding:3px;border-bottom:1px solid #666;background-color:#a4a4a4;}
+#Lista_Citas .Bloque .Hora .citas {padding:20px;}
+#Lista_Citas .Bloque .Hora .citas .usuario_avatar {display:inline-block;width:12%;}
+	#Lista_Citas .Bloque .Hora .citas .usuario_avatar img {border-radius:100%;}
+
+#Lista_Citas .Bloque .Hora .citas .section {margin:0px;}
+#Lista_Citas .Bloque .Hora .citas .usuario_datos {display:inline-block;width:65%;}
+#Lista_Citas .Bloque .Hora .citas .usuario_status {display:inline-block;width:12%;}
+#Lista_Citas .Bloque .Hora .citas .usuario_datos h5,#Lista_Citas .Bloque .Hora .citas .usuario_datos h6,#Lista_Citas .Bloque .Hora .citas .usuario_datos p {margin:0px;}
