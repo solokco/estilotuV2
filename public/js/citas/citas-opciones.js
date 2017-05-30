@@ -28,7 +28,7 @@ jQuery(function( $ ) {
 			status_payment = 0;
 		}
 		
-		jQuery("body").addClass("loading");
+		jQuery( "body" ).after( "<div class='loading'>Loading&#8230;</div>" );
 		
 		$.ajax({
 	        url: ajax_object.ajax_url,
@@ -43,13 +43,15 @@ jQuery(function( $ ) {
 	         
 	        success: function( data, textStatus, jqXHR ) { // Si todo salio bien se ejecuta esto
 				
-				jQuery("body").removeClass("loading");
+				jQuery(".loading").remove();
 			
 			}
         })
         
         .fail(function( jqXHR, textStatus, errorThrown, data ) { // Si todo salio MAL se ejecuta esto
 			alert('Ocurrio un error y no se pudo procesar su solicitud correctamente.');
+			
+			jQuery(".loading").remove();
 
         });
 

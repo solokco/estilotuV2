@@ -11,12 +11,23 @@ get_header(); ?>
 	<style>
 		
 		#titulo_servicio{background-color: #703090;border-radius: 0px 0px 40px 0px;color:#FFF !important;padding:10px 10px 10px 120px;margin-left:10px;}
+		#titulo_servicio_simple {margin-bottom:0px;}
+		#heading_direccion {margin-top:0px;}
+		#body_direccion p {margin: 0px;}
 		#conteido_servicio {background:rgba(1,1,1,0);position:relative;}
 		#conteido_servicio #avatar-author {position:absolute;left:0px;top:-10px;}
 		#conteido_servicio #avatar-author img {border-radius:100%;}
 		.dia_circulo{margin:1px;padding:5px;}
 		#lista_dias_disponibles {padding-top: 12px;}
+		#costo_servicio {margin-top: -56px;background-color: rgba(0,0,0,0.8);color:#FFF !important;padding:10px;}
 		
+		.container-contenido-servicio {padding:0px 20%;}
+		
+		#imagen_autor img {border-radius: 50%;}
+		
+		.table-condensed, .datepicker-inline {width:100%;}
+		
+		#map {height:500px;}
 	</style>
 	
 <?php include_once ( ESTILOTU_PATH . 'public/partials/servicios/cupos/page-parts/general-before-wrap-servicios.php' ) ;?>
@@ -66,71 +77,116 @@ get_header(); ?>
 	wp_localize_script ( 'bootstrap-calendar-config', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );	
 	?>
 	
+	<style>
+		.fondo_imagen_servicio {
+			background-image: url(<?php echo ( get_the_post_thumbnail_url( get_the_ID() , 'large') ); ?>) !important;
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			
+		}
+	</style>
+	
 	<article id="post-<?php the_ID(); ?>" class="servicio-single">
 		
-		<div class="article-content">
-
-			<!-- 
-				<section class="container-wrap main-color">
-					<div class="section-container container"> 
-			-->
-		
-				<div class="row">
-
-					<div class="col-sm-8">
-						<h2><?php the_title(); ?></h2>
-					</div>
-
-					<div class="col-sm-4">
-						<h2><?php echo $moneda . " " . $precio; ?></h2>
+		<section class="container-wrap  main-color ">
+			<div class="section-container container-full">
+				<div class="vc_row vc_row-fluid fondo_imagen_servicio vc_row-has-fill row">
+					<div class="wpb_column vc_column_container vc_col-sm-12">
+						<div class="vc_column-inner ">
+							<div class="wpb_wrapper">
+								<div class="vc_empty_space" style="height: 500px">
+									<span class="vc_empty_space_inner"></span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="vc_parallax-inner skrollable skrollable-between" data-bottom-top="top: -50%;" data-top-bottom="top: 0%;" style="height: 150%; background-image: url(&quot;http://wordpress.dev/wp-content/uploads/2017/05/18673307_10155103867170289_6295631514902123616_o.jpg&quot;); top: -22.3429%;"></div>
+						
 					</div>
 				</div>
-				
-				<div class="row">
-			
-					<div class="col-sm-4">
-						
-						<?php echo ( get_the_post_thumbnail( get_the_ID() , 'medium') ); ?>
+			</div>
+		</section><!-- end section -->
+		
+		<section class="container-wrap  main-color container-contenido-servicio">
+			<div class="section-container container-full">
+				<div class="vc_row vc_row-fluid row">
+					
+					<div class="wpb_column vc_column_container col-sm-8">
+						<div class="vc_column-inner ">
+							<div class="wpb_wrapper">
+								
+								<div class="row">
+									<div class="col-sm-10">
+										<h2 style="text-align: left;" class="vc_custom_heading" id="titulo_servicio_simple"><?php the_title(); ?></h2>
+										<h4 id="heading_direccion"><?php echo $ciudad . ", " . $estado . ", " . $pais; ?></h4>
+									</div>
+								
+									<div class="col-sm-2" id="imagen_autor">
+										<?php echo get_avatar( get_the_author_meta( 'ID' ), 64 ); ?>
+									</div>
+								</div>
+								
+								
+								<div class="kleo_text_column wpb_content_element ">
 
-					</div>
-					
-					<div class="col-sm-4">
-						<?php the_content(); ?>
-						
-					</div>
-					
-					<div class="col-sm-4">
-						<div class="input-group date" data-provide="datepicker">
-							<input type="text" class="form-control">
-							<div class="input-group-addon">
-								<span class="glyphicon glyphicon-th"></span>
+									<div class="wpb_wrapper">
+
+										<?php the_content(); ?>
+
+									</div> 
+									
+								</div> 
+								
+								<hr>
+								
+								<div class="kleo_text_column wpb_content_element" id="body_direccion">
+									
+									<div class="wpb_wrapper">
+										
+										<h3>Dirección</h3>
+										<p><?php echo $direccion1 . " " . $direccion2; ?></p>
+										<p><?php echo $ciudad . ", " . $estado; ?></p>
+										<p><?php echo $pais . ", " . $zip_code; ?></p>
+										
+										<?php $ubicacion_servicio->show_map( "single" , $latlon ); ?>
+							
+									</div> 
+									
+								</div> 
+		
 							</div>
+						
+						</div>
+					
+					</div>
+				
+					<div class="wpb_column vc_column_container col-sm-4">
+						<div class="vc_column-inner ">
+							<div class="wpb_wrapper">
+					
+								<div class="kleo_text_column wpb_content_element ">
+									
+									<div class="wpb_wrapper">
+										
+										<h2 id="costo_servicio"><?php echo $moneda . " " . $precio; ?></h2>
+				
+									</div> 
+									
+									<div id="datepicker"></div>
+									<div class="lista_cupos_disponibles"></div>
+									
+								</div> 
+							
+							</div>
+			
 						</div>
 					</div>
 					
-					<div class="lista_cupos_disponibles"></div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-12">
-						<h3>Dirección</h3>
-						<p><?php echo $direccion1 . ", " . $direccion2; ?></p>
-						<p><?php echo $ciudad . ", " . $estado; ?></p>
-						<p><?php echo $pais . ", " . $zip_code; ?></p>
-						
-						<?php $ubicacion_servicio->show_map( "single" , $latlon ); ?>
-						
-					</div>
-				</div>
-				
-			
-			<!-- 
-				</div> 
 			</div>
-			-->
-			
-			
-		</div>
+		</section><!-- end section --><p></p>
 	
 	</article>	
 	

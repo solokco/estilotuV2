@@ -69,7 +69,7 @@ class Estilotu {
 	public function __construct() {
 
 		$this->plugin_name = 'estilotu';
-		$this->version = "1.1.6";
+		$this->version = "1.1.15";
 
 		$this->load_dependencies();
 		$this->set_locale();

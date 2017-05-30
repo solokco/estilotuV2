@@ -15,7 +15,7 @@ jQuery(function( $ ) {
 	
 	dias_activos = diff(semana , dias_inactivos);
 	
-	jQuery('.input-group.date').datepicker({
+	jQuery('#datepicker').datepicker({
 		language: "es",
 		format: 'yyyy-mm-dd',
 		startDate: '0',
@@ -27,11 +27,13 @@ jQuery(function( $ ) {
 	    toggleActive: true,
 	    datesDisabled: []
 	})
-	.on( 'changeDate' , function( event ) {
-        
-        jQuery("body").addClass("loading");
+	
+	.on('changeDate', function( event ) {
 	    
 	    var fecha_servicio = event.format();
+	    
+	    jQuery( "body" ).after( "<div class='loading'>Loading&#8230;</div>" );
+	    
 	    		
 		jQuery.ajax({
 	        url: ajax_object.ajax_url,
@@ -48,9 +50,7 @@ jQuery(function( $ ) {
 				cupos_disponibles = mostrar_cupos( data , fecha_servicio );
 
 				jQuery(".lista_cupos_disponibles").html( cupos_disponibles );
-				jQuery("body").removeClass("loading");
-				
-				jQuery("body").removeClass("loading");
+				jQuery(".loading").remove();
 			
 			}
         })
@@ -60,9 +60,22 @@ jQuery(function( $ ) {
 			alert('Ocurrio un error y no se pudo procesar su solicitud correctamente.');
 
         });
-         
-        
-    });
+	});
+	
+	
+	jQuery('.input-group.date').datepicker({
+		language: "es",
+		format: 'yyyy-mm-dd',
+		startDate: '0',
+		endDate: '+'+fecha_tope+'d',
+		//daysOfWeekHighlighted: dias_activos,
+		daysOfWeekDisabled: dias_inactivos,
+	    autoclose: true,
+	    todayHighlight: true,
+	    toggleActive: true,
+	    datesDisabled: []
+	});
+
     
     function formatAMPM(date) {
 		var myTime = date.split(":");
