@@ -91,11 +91,11 @@ class Estilotu_Public {
 		wp_enqueue_script( 'jquery-validate' 	, plugin_dir_url( __FILE__ )		. 'js/jquery.validate.min.js'			, array( 'jquery' ), $this->version , true );
 		wp_register_script( 'additional-methods' 	, plugin_dir_url( __FILE__ )	. 'js/additional-methods.min.js'		, array( 'jquery-validate' ), $this->version , true );
 		
-		wp_register_script( 'estilotu_servicios_list_map_init', plugin_dir_url( __FILE__ ) . 'js/servicios-list-mapa-init.js', array( 'jquery' ), $this->version, true );
+		wp_register_script( 'estilotu_servicios_list_map_init', plugin_dir_url( __FILE__ ) . 'js/map/servicios-list-mapa-init.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script( 'estilotu_servicios_list_map_init', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		
-		wp_register_script( 'estilotu_servicios_add_map_init' 		, plugin_dir_url( __FILE__ )	. 'js/servicios-add-mapa-init.js'		, array( 'jquery' ), $this->version , true );
-		wp_register_script( 'estilotu_servicios_single_map_init' 	, plugin_dir_url( __FILE__ )	. 'js/servicios-single-mapa-init.js'		, array( 'jquery' ), $this->version , true );
+		wp_register_script( 'estilotu_servicios_add_map_init' 		, plugin_dir_url( __FILE__ )	. 'js/map/servicios-add-mapa-init.js'		, array( 'jquery' ), $this->version , true );
+		wp_register_script( 'estilotu_servicios_single_map_init' 	, plugin_dir_url( __FILE__ )	. 'js/map/servicios-single-mapa-init.js'		, array( 'jquery' ), $this->version , true );
 		
 		wp_register_script( 'estilotu_map_google_api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAvDBnBAIlKDWPmXIsKVx02VAt16_YkrEU&libraries=places&callback=initMap', array( 'jquery' ), $this->version, true );
 		

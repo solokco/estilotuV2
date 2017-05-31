@@ -27,6 +27,15 @@ get_header(); ?>
 		
 		.table-condensed, .datepicker-inline {width:100%;}
 		
+		.datepicker.datepicker-inline td,
+		.datepicker table tr td.new:not(.disabled) {background: #b23eb0;color:#FFF;border:1px solid #FFF;}
+		
+		.datepicker table tr td.day:hover:not(.disabled) {background: #8a1488;color:#FFF}
+		.datepicker table tr td.day.active {background: #8a1488;border:none;}
+		
+		.datepicker table tr td.today {background: #8a1488;border:none;}
+		.datepicker table tr td.today.disabled {background: #bfc1cd !important;}
+		
 		#map {height:500px;}
 	</style>
 	

@@ -8,6 +8,7 @@ var icono_original;
 var categoria = "";
 
 function initMap() {
+	
 	// inicializo el mapa
 	var map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: 10.4969672, lng: -66.8874203},
@@ -184,7 +185,7 @@ function initMap() {
 				'categoria' : categoria,
 				'servicios_repetidos' : servicios_repetidos,
 				'unit'		: 'km',
-				'radius'	: 10
+				'radius'	: 100
             },      
 	         
 	        success: function( data, textStatus, jqXHR ) { // Si todo salio bien se ejecuta esto
@@ -194,6 +195,8 @@ function initMap() {
 				var moneda;
 				var url_imangen;
 				var html_marker;
+				
+				console.log(data);
 				
 				jQuery.each( data, function( id_servicio, info_servicio ) {
 
@@ -206,7 +209,7 @@ function initMap() {
 						/* ************************************ */
 						servicio = {
 						    position : new google.maps.LatLng( info_servicio.meta_fields.et_meta_latitud[0] , info_servicio.meta_fields.et_meta_longitud[0] ),
-						    type: info_servicio.category[0].slug,
+						    //type: info_servicio.category[0].slug,
 						    info_servicio: info_servicio
 						};
 

@@ -225,6 +225,9 @@ class Estilotu {
 		$this->loader->add_action( 'wp_ajax_cargar_cupos', $servicio, 'cargar_cupos' );
 		$this->loader->add_action( 'wp_ajax_nopriv_cargar_cupos', $servicio, 'cargar_cupos' );
 		
+		$this->loader->add_action( 'wp_ajax_closest_services', $servicio, 'closest_services' );
+		$this->loader->add_action( 'wp_ajax_nopriv_closest_services', $servicio, 'closest_services' );
+		
 		// CITAS		
 		$citas = new Estilotu_Citas();
 		
