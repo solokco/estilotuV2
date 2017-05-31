@@ -209,15 +209,9 @@ jQuery(document).ready(function( $ ) {
 });
 </script>
 
-<style>
-
-	#map {height:350px;}
-
-</style>
 
 <section>
 	<form method="post" action="<?php the_permalink(); ?>" id="msform" enctype="multipart/form-data">
-		
 		<ul id="progressbar">
 			<li class="active">Datos Básicos</li>
 			<li>Opciones Reservas</li>
@@ -228,106 +222,15 @@ jQuery(document).ready(function( $ ) {
 		
 		<div class="row">
 			
-			<div class="row">	
-				
-				<div class="section col-xs-12 col-md-6 col-izquierda">
-	
-					<h2 class="fs-title">¿Dónde se ubica el servicio?</h2>			
-					
-					<h4 class="fs-subtitle">Por favor indique la ubicación de su servicio de modo que los usuarios de EstiloTú lo puedan ubicar con facilidad.</h4>
-					<input type="hidden" name="ubicacion[et_meta_usar_mapa]" id="et_meta_usar_mapa" value="1">   
-					
-					<!--
-					<div id="locationField">
-						<label for="autocomplete">Escriba la dirección para ubicarla en el mapa</label>
-						<input id="autocomplete" placeholder="Seleccione la dirección de la lista y completa luego los detalles abajo" onFocus="" type="text" name="direccion"></input>
-					</div>
-					-->
-	
-					<div class="row" id="direccion">
-						
-						<div class="space-top-2 col-sm-12">
-							
-							<label for="country"><?php _e("País" , "estilotu") ?></label>
-	
-							<select name="ubicacion[et_meta_pais]" class="field" id="country">
-	
-								<?php foreach($lista_paises as $key => $value): ?>
-									<option value="<?php echo $key ?>" <?php selected( $this->servicio_meta['et_meta_pais'][0] , $value ); ?> title="<?php echo htmlspecialchars($value) ?>"><?php echo htmlspecialchars($value) ?></option>
-								<?php endforeach; ?>
-								
-							</select>
-							
-						</div>
-						
-						<div class="space-top-2 col-sm-12">
-							
-							<label for="main_address"><?php _e("Dirección" , "estilotu") ?></label>
-							<input class="field" placeholder="Calle / Avenida" id="main_address" name="ubicacion[et_meta_direccion_1]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_1'][0] ) ? $this->servicio_meta['et_meta_direccion_1'][0] : '' ;  ?>"></input>
-							
-						</div>
-						
-						<div class="space-top-2 col-sm-12">
-							
-							<label for="main_address"><?php _e("Apt, Suite, Bldg. (optional)" , "estilotu") ?></label>
-							<input placeholder="" class="field" id="route"  name="ubicacion[et_meta_direccion_2]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_2'][0] ) ? $this->servicio_meta['et_meta_direccion_2'][0] : '' ;  ?>"></input>
-							
-						</div>
-						
-						<div class="space-top-2 col-sm-12 col-md-6">
-							
-							<label for="locality"><?php _e("Ciudad" , "estilotu") ?></label>
-							<input name="ubicacion[et_meta_ciudad]" class="field" id="locality"  value="<?php echo isset( $this->servicio_meta['et_meta_ciudad'][0] ) ? $this->servicio_meta['et_meta_ciudad'][0] : '' ;  ?>"></input>
-							
-						</div>
-						
-						<div class="space-top-2 col-sm-12 col-md-6">
-							
-							<label for="administrative_area_level_1"><?php _e("Estado" , "estilotu") ?></label>
-							<input name="ubicacion[et_meta_estado]" class="field" id="administrative_area_level_1"  value="<?php echo isset( $this->servicio_meta['et_meta_estado'][0] ) ? $this->servicio_meta['et_meta_estado'][0] : '' ;  ?>"></input>
-							
-						</div>
-						
-						<div class="space-top-2 col-sm-12 col-md-6">
-							
-							<label for="state"><?php _e("Código Postal" , "estilotu") ?></label>
-							<input name="ubicacion[et_meta_zipcode]" class="field" id="postal_code"  value="<?php echo isset( $this->servicio_meta['et_meta_zipcode'][0] ) ? $this->servicio_meta['et_meta_zipcode'][0] : '' ;  ?>"></input>
-							
-						</div>
-	
-					</div>	
-									
-					<h3>Puedes arrastrar la marca de la ubicaci&oacute;n en el mapa para mayor presici&oacute;n</h3>
-					<!-- 			<div id="map" style="height:500px;"></div> -->
-					<?php $mapa->show_map("add"); ?>
-					
-				</div>
-
-			
-				<div class="section col-xs-12 col-md-6 col-derecha">
-					fssdaf
-				</div>
-
+			<div class="section col-xs-12 col-md-6">
+			sdfasdf
 			</div>
 			
-			<div class="row">
-				<div class="section col-xs-12">
-					<input type="button" name="previous" class="previous action-button" value="Previous" />
-					<input type="button" name="next" class="next action-button" value="Next" />
-				</div>	
-			</div>
+			<div class="section col-xs-12 col-md-6">
+			fasdfs
+			</div>	
 			
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		<fieldset>
 			
@@ -546,7 +449,80 @@ jQuery(document).ready(function( $ ) {
 		</fieldset>
 		
 		<fieldset>
-						
+			<h2 class="fs-title">Ubicación</h2>
+			<h3 class="fs-subtitle">¿Cómo llegarán a tu servicio?</h3>
+			
+			
+			<h4 class="fs-subtitle">Por favor indique la ubicación de su servicio de modo que los usuarios de EstiloTú lo puedan ubicar con facilidad.</h4>
+			<input type="hidden" name="ubicacion[et_meta_usar_mapa]" id="et_meta_usar_mapa" value="1">   
+			
+			<div id="locationField">
+				<label for="autocomplete">Escriba la dirección para ubicarla en el mapa</label>
+				<input id="autocomplete" placeholder="Seleccione la dirección de la lista y completa luego los detalles abajo" onFocus="" type="text" name="direccion"></input>
+			</div>
+			
+			<hr>
+	
+		    <table id="table_address">
+
+				<tr>
+					<td class="label"><?php _e("Dirección" , "estilotu") ?></td>
+					<td class="slimField"><input class="field" placeholder="Numero Establecimiento" id="street_number" name="ubicacion[et_meta_direccion_1]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_1'][0] ) ? $this->servicio_meta['et_meta_direccion_1'][0] : '' ;  ?>"></input></td>
+					<td class="wideField" colspan="2"><input placeholder="Calle / Avenida" class="field" id="route"  name="ubicacion[et_meta_direccion_2]<<div>div</div>></div>" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_2'][0] ) ? $this->servicio_meta['et_meta_direccion_2'][0] : '' ;  ?>"></input></td>
+				</tr>
+				
+				<tr>
+					<td class="label">City</td>
+					<!-- Note: Selection of address components in this example is typical.
+					 You may need to adjust it for the locations relevant to your app. See
+					 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+					-->
+					<td class="wideField" colspan="3"><input name="ubicacion[et_meta_ciudad]" class="field" id="locality"  value="<?php echo isset( $this->servicio_meta['et_meta_ciudad'][0] ) ? $this->servicio_meta['et_meta_ciudad'][0] : '' ;  ?>"></input></td>
+				</tr>
+			      
+				<tr>
+					<td class="label"><?php _e("Estado" , "estilotu") ?></td>
+					<td class="slimField"><input name="ubicacion[et_meta_estado]" class="field" id="administrative_area_level_1"  value="<?php echo isset( $this->servicio_meta['et_meta_estado'][0] ) ? $this->servicio_meta['et_meta_estado'][0] : '' ;  ?>"></input></td>
+				
+					<td class="label"><?php _e("Código Postal" , "estilotu") ?></td>
+					<td class="wideField"><input name="ubicacion[et_meta_zipcode]" class="field" id="postal_code"  value="<?php echo isset( $this->servicio_meta['et_meta_zipcode'][0] ) ? $this->servicio_meta['et_meta_zipcode'][0] : '' ;  ?>"></input></td>
+				</tr>
+	
+				<tr>
+					<td class="label"><?php _e("País" , "estilotu") ?></td>
+					<td class="wideField" colspan="3"><input name="ubicacion[et_meta_pais]" class="field" id="country"  value="<?php echo isset( $this->servicio_meta['et_meta_pais'][0] ) ? $this->servicio_meta['et_meta_pais'][0] : '' ;  ?>"></input></td>
+				</tr>
+
+		    </table>
+							
+			<h3>Puedes arrastrar la marca de la ubicaci&oacute;n en el mapa para mayor presici&oacute;n</h3>
+			<!-- 			<div id="map" style="height:500px;"></div> -->
+			<?php 
+			$mapa = new Estilotu_Geolocation_Public(); 
+			
+			$mapa->show_map("add");	
+				
+			?>
+			
+			<table>					
+				<tr>
+					<td><label for="et_meta_latitud" class="field-label">Latitud</label></td>
+					<td><label for="et_meta_longitud" class="field-label">Longitud</label></td>
+				</tr>
+				
+				<tr>
+					<td><input type="text" name="ubicacion[et_meta_latitud]" id="et_meta_latitud" class="gui-input" placeholder="Ingrese la latitud" value="<?php echo isset( $this->servicio_meta['et_meta_latitud'][0] ) ? $this->servicio_meta['et_meta_latitud'][0] : '' ;  ?>" required></td>
+					<td><input type="text" name="ubicacion[et_meta_longitud]" id="et_meta_longitud" class="gui-input" placeholder="Ingrese la longitud" value="<?php echo isset( $this->servicio_meta['et_meta_longitud'][0] ) ? $this->servicio_meta['et_meta_longitud'][0] : '' ;  ?>" required></td>
+				</tr>
+			</table>
+			
+			<br>
+			
+			
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+			<input type="button" name="next" class="next action-button" value="Next" />
+			
+			
 		</fieldset>
 		
 		

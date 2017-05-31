@@ -41,6 +41,8 @@
 	font-family: montserrat;
 	color: #2C3E50;
 	font-size: 13px;
+	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size:16px;
 }
 
 #msform input[type=text],
@@ -248,12 +250,38 @@
     background-color: #80138e;
 }
 
+
+.col-izquierda {
+	border-right: 1px solid #CCC;	
+}
+
+.col-derecha {
+	
+}
+
 #msform select {
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: 15px !important;
     background-color:#FFF;
+    height: 52px;
+    font-size: 16px;
 }
+
+#msform select:not([multiple]) {
+/* 	background: none !important; */
+	background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(1em + 10px),
+    calc(100% - 15px) calc(1em + 10px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+}
+
 
 #contenedor_disponibilidad .frm-row {
 	margin: 10px;
@@ -281,3 +309,80 @@
 }
 
 #msform .cols_3 {width:33%;}
+
+/* RESERVA DE CUPOS */
+.cupoDisponible {margin-bottom:10px;}
+.cupoDisponible header {
+    background: var(--et-main-color);
+    color: #FFF;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.cupoDisponible .contenedor {padding: 0px 10px 10px;border: 1px solid;}
+
+.small-text {}
+.large-text {font-size: 1.5em;font-weight: bold;}
+
+/*
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    line-height: 1.43;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.btn-block {
+    display: block;
+    white-space: normal;
+    width: 100%;
+}
+
+.btn-large {
+    padding: 9px 27px;
+    font-size: 16px;
+}
+*/
+
+/*
+.btn-primary {
+	background-color: var(--et-main-color);
+	border-color: var(--et-main-color);
+}
+*/
+
+.fs-title {
+    font-weight: 700 !important;
+    color: #484848 !important;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-size: 28px !important;
+    line-height: 36px !important;
+    letter-spacing: -0.6px !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+}
+
+#direccion label {
+	display: block;
+    padding-top: 9px;
+    padding-bottom: 8px;
+    font-size: 19px;
+    text-align: left;
+    color:#000;
+    margin-top:18px;
+}

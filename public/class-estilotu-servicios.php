@@ -179,6 +179,9 @@ class Estilotu_Servicio {
 				$moneda_visibilidad = null;
 				$et_meta_close_time	= null;
 				
+				$mapa 				= new Estilotu_Geolocation_Public(); 
+				$lista_paises		= $mapa->lista_paises();
+				
 				wp_enqueue_script('estilotu_duplicar_servicios');
 				require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/servicios/cupos/add.php' ;
 			
@@ -275,6 +278,9 @@ class Estilotu_Servicio {
 					$et_meta_close_time 		= isset($this->servicio_meta['et_meta_close_time'][0]) ? $this->servicio_meta['et_meta_close_time'][0] : '' ; 
 					
 					$horarios_servicio = $this->horarios_servicio( $this->post_id );
+					
+					$mapa 				= new Estilotu_Geolocation_Public(); 
+					$lista_paises		= $mapa->lista_paises();
 					
 					wp_enqueue_script('estilotu_duplicar_servicios');
 					

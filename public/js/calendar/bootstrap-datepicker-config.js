@@ -105,7 +105,7 @@ jQuery(function( $ ) {
 		if ( cupos == 0 || cupos == null )
 			return et_html = "<h2 class='sin_cupos'>No hay cupos disponibles para el "+ dia_seleccionado +"</h2>";
 			
-		et_html = 	"<h2>Cupos disponibles para " + dia_seleccionado + "</h2>";
+		et_html = 	"<h3>Cupos disponibles para " + dia_seleccionado + "</h3>";
 			
 		$.each(cupos.bloque_seleccionado , function( key, obj ) {
         	tiene_reserva = false;
@@ -136,25 +136,27 @@ jQuery(function( $ ) {
         	
         	et_html += 		"<form class='formulario_reserva_cupo v2' id='hacer_reserva_"+ key +"' action='"+ config_vars.url_user +"' method='post' >";
         	
-        	et_html +=			"<header>"+ formatAMPM(obj.et_meta_hora_inicio) +" </header>";
-			et_html +=	       	"<p>Duracion: " + obj.et_meta_duracion +" minutos</p>";
-			et_html +=	   		"<p>Cupos Maximo: " + obj.et_meta_cupos +"</p>";
-			et_html +=	   		"<p>Cupos Disponibles: "+ disponible +"</p> ";
+        	et_html +=			"<header><span class='small-text'>Incia: </span><span class='large-text'>"+ formatAMPM(obj.et_meta_hora_inicio) +"</span></header>";
+			et_html +=			"<div class='contenedor'>";
+			et_html +=	       		"<p>Duracion: " + obj.et_meta_duracion +" minutos</p>";
+			//et_html +=	   			"<p>Cupos Maximo: " + obj.et_meta_cupos +"</p>";
+			et_html +=	   			"<p>Cupos Disponibles: "+ disponible +"</p> ";
+        							
+        							
+			et_html +=		    	"<input type='hidden' value='"+ config_vars.id_servicio +"' id='id_servicio_"+ config_vars.id_servicio +"' name='id_servicio'>";
+			et_html +=		   		"<input type='hidden' value='"+ dia_seleccionado +"' id='servicio_dia_seleccionado' class='servicio_dia_seleccionado' name='servicio_dia_seleccionado'>";
+			et_html +=		   		"<input type='hidden' value='"+ obj.et_meta_hora_inicio +"' id='et_meta_hora_inicio' name='et_meta_hora_inicio'>";
+			et_html +=		   		"<input type='hidden' value='' id='et_meta_close_time' name='et_meta_close_time'> ";
+			et_html +=		   		"<input type='hidden' value='"+ config_vars.token_id +"' id='et_meta_close_time' name='et_token'> ";
         	
-        	
-			et_html +=		    "<input type='hidden' value='"+ config_vars.id_servicio +"' id='id_servicio_"+ config_vars.id_servicio +"' name='id_servicio'>";
-			et_html +=		   	"<input type='hidden' value='"+ dia_seleccionado +"' id='servicio_dia_seleccionado' class='servicio_dia_seleccionado' name='servicio_dia_seleccionado'>";
-			et_html +=		   	"<input type='hidden' value='"+ obj.et_meta_hora_inicio +"' id='et_meta_hora_inicio' name='et_meta_hora_inicio'>";
-			et_html +=		   	"<input type='hidden' value='' id='et_meta_close_time' name='et_meta_close_time'> ";
-			et_html +=		   	"<input type='hidden' value='"+ config_vars.token_id +"' id='et_meta_close_time' name='et_token'> ";
-        	et_html +=			config_vars.nonce_field;
+        	et_html +=				config_vars.nonce_field;
         	
         	if (tiene_reserva) {
-	        	et_html +=		"<input disabled type='submit' value='Ya reservaste' class='button btn-morado servicio_reservado' id='boton_reservar' name='agotado'>"	;
+	        	et_html +=			"<input disabled type='submit' value='Ya reservaste' class='btn btn-primary btn-large btn-block btn-reservado' id='btn-reservado-"+key+"' name='agotado'>"	;
         	}
         	
         	else if (disponible < 1 ) {
-				et_html +=		"<input disabled type='submit' value='Cupos agotados' class='button btn-morado servicio_agotado' id='boton_reservar' name='agotado'>";
+				et_html +=			"<input disabled type='submit' value='Cupos agotados' class='btn btn-primary btn-large btn-block btn-agotado' id='btn-agotado-"+key+"' name='agotado'>";
 			}
 			
 			//else if ( hora_actual > hora_servicio ) {
@@ -162,8 +164,10 @@ jQuery(function( $ ) {
 			//}
 			
 			else {
-	        	et_html +=		"<input type='submit' value='reservar' class='button btn-morado' id='boton_reservar' name='is_reserve'>";
+	        	et_html +=			"<input type='submit' value='reservar' class='btn btn-primary btn-large btn-block' id='boton_reservar' name='is_reserve'>";
         	}
+        	
+        	et_html +=			"</div>"
         	
         	et_html += 		"</form>";
         	

@@ -3,6 +3,11 @@
  * included in this file.
  */
 
+/* GLOBAL VARS */
+:root {
+  --et-main-color: #703090;
+}
+
 /* Absolute Center Spinner */
 .loading {
   position: fixed;

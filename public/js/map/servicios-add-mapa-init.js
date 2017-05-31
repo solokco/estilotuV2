@@ -1,10 +1,10 @@
 var placeSearch, autocomplete;
 var componentForm = {
-	street_number: 'short_name',
-	route: 'long_name',
+	//street_number: 'short_name',
+	//route: 'long_name',
 	locality: 'long_name',
 	administrative_area_level_1: 'short_name',
-	country: 'long_name',
+	//country: 'long_name',
 	postal_code: 'short_name'
 };
   
@@ -20,6 +20,14 @@ function initMap() {
 	
 	lat = parseFloat( jQuery('#et_meta_latitud').val() );
 	lng = parseFloat( jQuery('#et_meta_longitud').val() );
+		
+	if( isNaN(lat) ) {
+        lat = 0;
+    }
+	
+	if( isNaN(lng) ) {
+        lng = 0;
+    }
 	
 	myLatLng = { lat: lat , lng: lng };
 	
@@ -29,7 +37,8 @@ function initMap() {
 		jQuery('#table_address').show();
 	}
 	
-	var input_direccion = document.getElementById('autocomplete');
+	var input_ciudad 	= document.getElementById('locality');
+	var input_pais 		= jQuery('#country').val();
 	var map_canvas 		= document.getElementById('map');
 	
 	mapOtions = {
@@ -55,23 +64,29 @@ function initMap() {
 	marker.addListener('dragend', handleEvent);
 	
 	// disable enter
-	google.maps.event.addDomListener(input_direccion, 'keydown', function(e) { 
+	google.maps.event.addDomListener(input_ciudad, 'keydown', function(e) { 
 		if (e.keyCode == 13) { 
 			e.preventDefault(); 
 		}
 	}); 
 	
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(input_direccion),
-		{types: ['geocode']}
-		//{types: ['(cities)']}
-	);
+	// cambio la limitante de la ciudad al cambiar pais
+	jQuery('#country').on('change', function() {
+		
+		input_pais = jQuery(this).val();
+		jQuery("#locality").val("");
+		jQuery("#administrative_area_level_1").val("");
+		jQuery("#postal_code").val("");
+		
+		autocomplete.setComponentRestrictions({ country: input_pais });
+		
+	});
 
+    autocomplete = new google.maps.places.Autocomplete( input_ciudad , {types: ['(cities)']} );
+	autocomplete.addListener('place_changed', fillInAddress);
+	
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
     
     //autocomplete.bindTo('bounds', map);
 }
@@ -101,23 +116,23 @@ function fillInAddress() {
 		var addressType = place.address_components[i].types[0];
 		
 		if (componentForm[addressType]) {
-			
+				
 			var val = place.address_components[i][componentForm[addressType]];
 			document.getElementById(addressType).value = val;
 			
 		}
 		
     }
+    	
+    jQuery("#country").val(place.address_components[3].short_name);
     
     var latlng = new google.maps.LatLng( place.geometry.location.lat() , place.geometry.location.lng() );
-    
-    marker.setPosition(latlng);
+
     map.setCenter(latlng);
+    marker.setPosition(latlng);
     
     document.getElementById('et_meta_latitud').value = place.geometry.location.lat();
     document.getElementById('et_meta_longitud').value = place.geometry.location.lng();
-	
-	jQuery('#table_address').show();
      
 }
 
