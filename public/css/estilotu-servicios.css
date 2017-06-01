@@ -15,12 +15,12 @@
 	background: white;
 	border: 0 none;
 	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+/* 	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4); */
 	padding: 20px 30px !important;
 	
 	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
+/* 	width: 80%; */
+/* 	margin: 0 10%; */
 	
 	/*stacking fieldsets above each other*/
 	/* 	position: absolute; */
@@ -377,7 +377,7 @@
     padding-bottom: 2px !important;
 }
 
-#direccion label {
+#msform label {
 	display: block;
     padding-top: 9px;
     padding-bottom: 8px;
