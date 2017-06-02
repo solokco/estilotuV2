@@ -328,44 +328,104 @@ jQuery(document).ready(function( $ ) {
 			<div class="row">
 				
 				<div class="row">
-
-					<div class="section col-xs-12 ">
-						<label for="nombre_servicio" class="field-label"> <h4>Nombre del servicio <em> * </em></h4> </label>
-						<input class="required" type="text" name="nombre_servicio" id="nombre_servicio" placeholder="Nombre del servicio" maxlength="65" value="<?php echo isset($this->servicio->post_title) ? $this->servicio->post_title : '' ?>">
-						<span class="small-text">El nombre no debe tener más de 50 caracteres</span>
-					</div>
-					
+				
 					<div class="section col-xs-12 col-md-6 col-izquierda">
 						
 						<h2 class="fs-title">Información del Servicio</h2>
 						
-						<label for="categoria-servicio">Categoria: <em> * </em></label>
-						<?php 
-				        $args = array(
-							'show_option_all'    => '',
-							'show_option_none'   => '',
-							'option_none_value'  => '-1',
-							'orderby'            => 'name', 
-							'order'              => 'ASC',
-							'show_count'         => 0,
-							'hide_empty'         => 0, 
-							'child_of'           => 0,
-							'exclude'            => '',
-							'echo'               => 1,
-							'selected'           => isset($this->servicios_categoria[0]->slug) ? $this->servicios_categoria[0]->slug : '0' ,
-							'hierarchical'       => 1, 
-							'name'               => 'categoria_servicio',
-							'id'                 => 'categoria-servicio',
-							'class'              => 'categorias',
-							'depth'              => 0,
-							'tab_index'          => 1,
-							'taxonomy'           => 'servicios-categoria',
-							'hide_if_empty'      => false,
-							'value_field'	     => 'slug'
-							); 
-				        wp_dropdown_categories( $args );
-						?>
+						<div class="section col-xs-12">
+							<label for="nombre_servicio">Nombre del servicio <em> * </em></label>
+							<input class="required" type="text" name="nombre_servicio" id="nombre_servicio" placeholder="Nombre del servicio" maxlength="65" value="<?php echo isset($this->servicio->post_title) ? $this->servicio->post_title : '' ?>">
+							<span class="small-text">El nombre no debe tener más de 50 caracteres</span>
+						</div>
+						
+						<div class="section col-xs-12">
+							
+							<label for="categoria-servicio">Categoria: <em> * </em></label>
+							<?php 
+					        $args = array(
+								'show_option_all'    => '',
+								'show_option_none'   => '',
+								'option_none_value'  => '-1',
+								'orderby'            => 'name', 
+								'order'              => 'ASC',
+								'show_count'         => 0,
+								'hide_empty'         => 0, 
+								'child_of'           => 0,
+								'exclude'            => '',
+								'echo'               => 1,
+								'selected'           => isset($this->servicios_categoria[0]->slug) ? $this->servicios_categoria[0]->slug : '0' ,
+								'hierarchical'       => 1, 
+								'name'               => 'categoria_servicio',
+								'id'                 => 'categoria-servicio',
+								'class'              => 'categorias',
+								'depth'              => 0,
+								'tab_index'          => 1,
+								'taxonomy'           => 'servicios-categoria',
+								'hide_if_empty'      => false,
+								'value_field'	     => 'slug'
+								); 
+					        wp_dropdown_categories( $args );
+							?>
+						</div>
+							
+					
+						<div class="section col-xs-12">
+							
+							<label for="description">Descripci&oacute;n <em> * </em></label>
+					    	<?php $content = isset($this->servicio->post_content) ? $this->servicio->post_content : '' ;
+					    	
+							$editor_id = 'description';
+							$editro_settings = array (
+								//'media_buttons' => false,
+								'quicktags'		=> false,
+								'wpautop'		=> false,
+								'teeny'			=> true
+							);
+							
+							wp_editor( $content, $editor_id, $editro_settings );
+					    	?>
+						
+						</div>
 					</div>
+					
+					<div class="section col-xs-12 col-md-6 col-derecha">
+											
+						<div class="section col-xs-12">
+						
+							<label for="description" class="field-label"><h4>Imagen: <em> * </em></h4> </label>
+		
+							<br>
+								
+							<div class="box">
+								<input type="file" name="imagen_destacada" accept=".jpg, .png" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" <?php if ( empty( $this->post_id ) ) echo "required";  ?> />
+								<label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Seleccionar portada&hellip;</span></label>
+								<span class="small-text"> Solo se permiten imágenes tipo JPG y PNG - Máximo de 1MB </span> 
+							</div>
+							
+							<?php 
+							if ( !empty( $this->post_id ) && has_post_thumbnail ( $this->post_id ) ): ?>
+								<br>
+								
+								<h4>Imagen actual</h4>
+								<div class="imagen_post">
+									<?php echo ( get_the_post_thumbnail( $this->post_id , 'medium') ); ?>
+								</div>
+							<?php 
+							endif;
+							?>
+			
+						</div>
+
+					</div>
+					
+					<div class="row">
+						<div class="section col-xs-12">
+							<input type="button" name="previous" class="previous action-button" value="Previous" />
+							<input type="button" name="next" class="next action-button" value="Next" />
+						</div>	
+					</div>
+					
 					
 				</div>
 				
@@ -376,84 +436,49 @@ jQuery(document).ready(function( $ ) {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		<fieldset>
 			
 			<div class="row">
 				
-				<div class="section col-xs-12 col-md-6">
-					
-				<h2 class="fs-title">Agregar Servicio tipo Cupos</h2>
-				<h3 class="fs-subtitle">Información del Servicio</h3>
+				<div class="row">
 				
-				
-			
-			
-				
-					
-					
-										
-				</div>
-				
-				<div class="section col-xs-12 col-md-6"></div>
-			</div>
-			
-			<br>
-			
-			<div class="row">
-				
-				<div class="section col-xs-12 col-md-8">
-					
-					<label for="description" class="field-label"><h4>Descripci&oacute;n <em> * </em> </h4></label>
-			    	<?php $content = isset($this->servicio->post_content) ? $this->servicio->post_content : '' ;
-			    	
-					$editor_id = 'description';
-					$editro_settings = array (
-						//'media_buttons' => false,
-						'quicktags'		=> false,
-						'wpautop'		=> false,
-						'teeny'			=> true
-					);
-					
-					wp_editor( $content, $editor_id, $editro_settings );
-			    	?>
-				
-				</div>
-				
-				<div class="section col-xs-12 col-md-4">
-					
-					<label for="description" class="field-label"><h4>Imagen: <em> * </em></h4> </label>
+					<div class="section col-xs-12 col-md-6 col-izquierda">
 
-					<br>
+						<h2 class="fs-title">Opciones de reserva</h2>
 						
-					<div class="box">
-						<input type="file" name="imagen_destacada" accept=".jpg, .png" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" <?php if ( empty( $this->post_id ) ) echo "required";  ?> />
-						<label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Seleccionar portada&hellip;</span></label>
-						<span class="small-text"> Solo se permiten imágenes tipo JPG y PNG - Máximo de 1MB </span> 
+						<div class="section col-xs-12">
+							<label>D&iacute;as de anticipaci&oacute;n para aceptar reservas</label>
+				        
+					        <select name="et_meta_max_time" id="et_meta_max_time">
+					            <option value="7" <?php selected( $max_time, 7 ); ?>>7 d&iacute;as</option>
+					            <option value="14" <?php selected( $max_time, 14 ); ?>>14 d&iacute;as</option>
+					            <option value="21" <?php selected( $max_time, 21 ); ?>>21 d&iacute;as</option>
+					            <option value="30" <?php selected( $max_time, 30 ); ?>>30 d&iacute;as</option>
+					            <option value="60" <?php selected( $max_time, 60 ); ?>>60 d&iacute;as</option>
+					            <option value="90" <?php selected( $max_time, 90 ); ?>>90 d&iacute;as</option>
+					            <option value="120" <?php selected( $max_time, 120 ); ?>>120 d&iacute;as</option>
+					            <option value="180" <?php selected( $max_time, 180 ); ?>>180 d&iacute;as</option>
+					        </select>
+						</div>
 					</div>
 					
-					<?php 
-					if ( !empty( $this->post_id ) && has_post_thumbnail ( $this->post_id ) ): ?>
-						<br>
-						
-						<h4>Imagen actual</h4>
-						<div class="imagen_post">
-							<?php echo ( get_the_post_thumbnail( $this->post_id , 'medium') ); ?>
+					<div class="section col-xs-12 col-md-6 col-derecha">					
+						<div class="section col-xs-12">
 						</div>
-					<?php 
-					endif;
-					?>
-	
+					</div>
+
+					<div class="row">
+						<div class="section col-xs-12">
+							<input type="button" name="previous" class="previous action-button" value="Previous" />
+							<input type="button" name="next" class="next action-button" value="Next" />
+						</div>	
+					</div>
+
 				</div>
 
 			</div>
 			
-			<input type="button" name="next" class="next action-button" value="Next" />
+			
 			
 		</fieldset>
 		
@@ -463,18 +488,7 @@ jQuery(document).ready(function( $ ) {
 			
 			<div class="row">
 				<div class="section col-xs-12 col-md-6">
-			        <label>D&iacute;as de anticipaci&oacute;n para aceptar reservas</label>
 			        
-			        <select name="et_meta_max_time" id="et_meta_max_time">
-			            <option value="7" <?php selected( $max_time, 7 ); ?>>7 d&iacute;as</option>
-			            <option value="14" <?php selected( $max_time, 14 ); ?>>14 d&iacute;as</option>
-			            <option value="21" <?php selected( $max_time, 21 ); ?>>21 d&iacute;as</option>
-			            <option value="30" <?php selected( $max_time, 30 ); ?>>30 d&iacute;as</option>
-			            <option value="60" <?php selected( $max_time, 60 ); ?>>60 d&iacute;as</option>
-			            <option value="90" <?php selected( $max_time, 90 ); ?>>90 d&iacute;as</option>
-			            <option value="120" <?php selected( $max_time, 120 ); ?>>120 d&iacute;as</option>
-			            <option value="180" <?php selected( $max_time, 180 ); ?>>180 d&iacute;as</option>
-			        </select>
 				</div>
 				
 				<div class="section col-xs-12 col-md-6">
