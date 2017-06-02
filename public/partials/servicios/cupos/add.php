@@ -417,16 +417,15 @@ jQuery(document).ready(function( $ ) {
 			
 						</div>
 
-					</div>
-					
-					<div class="row">
-						<div class="section col-xs-12">
-							<input type="button" name="previous" class="previous action-button" value="Previous" />
-							<input type="button" name="next" class="next action-button" value="Next" />
-						</div>	
-					</div>
-					
-					
+					</div>					
+									
+				</div>
+				
+				<div class="row">
+					<div class="section col-xs-12">
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					</div>	
 				</div>
 				
 			</div>
@@ -460,6 +459,62 @@ jQuery(document).ready(function( $ ) {
 					            <option value="180" <?php selected( $max_time, 180 ); ?>>180 d&iacute;as</option>
 					        </select>
 						</div>
+						
+						<div class="section col-xs-12">
+							<label>Tiempo previo para cerrar las reservas</label>
+							
+							<select name="et_meta_close_time" id="et_meta_close_time">
+					            <option value="60" <?php selected( $et_meta_close_time,  60 ); ?>>01 minuto</option>
+					            <option value="300" <?php selected( $et_meta_close_time,  300 ); ?>>05 minutos</option>
+					            <option value="600" <?php selected( $et_meta_close_time,  600 ); ?>>10 minutos</option>
+					            <option value="900" <?php selected( $et_meta_close_time,  900 ); ?>>15 minutos</option>
+					            <option value="1800" <?php selected( $et_meta_close_time,  1800 ); ?>>30 minutos</option>
+					            <option value="3600" <?php selected( $et_meta_close_time,  3600 ); ?>>1 hora</option>
+					            <option value="5400" <?php selected( $et_meta_close_time,  5400 ); ?>>1 hora 30 minutos</option>
+					            <option value="7200" <?php selected( $et_meta_close_time,  7200 ); ?>>2 horas</option>
+					            <option value="9000" <?php selected( $et_meta_close_time,  9000 ); ?> >2 horas 30 minutos</option>
+					            <option value="10800" <?php selected( $et_meta_close_time, 10800 );?>>3 horas</option>
+					            <option value="14400" <?php selected( $et_meta_close_time, 14400 ); ?>>4 horas </option>
+					            <option value="18000" <?php selected( $et_meta_close_time, 18000 ); ?>>5 horas</option>
+					            <option value="21600" <?php selected( $et_meta_close_time, 21600 ); ?>>6 horas</option>
+					            <option value="28800" <?php selected( $et_meta_close_time, 28800 ); ?>>8 horas</option>
+					            <option value="36000" <?php selected( $et_meta_close_time, 36000 ); ?>>10 horas</option>
+					            <option value="43200" <?php selected( $et_meta_close_time, 43200 ); ?>>12 horas</option>
+					            <option value="86400" <?php selected( $et_meta_close_time, 86400 ); ?>>24 horas</option>
+					            <option value="172800" <?php selected( $et_meta_close_time, 172800 ); ?>>48 horas</option>
+					            <option value="604800" <?php selected( $et_meta_close_time, 604800 ); ?>>1 semana</option>
+					        </select>
+						</div>
+						
+						<div class="section col-xs-12 col-md-6">
+			        
+					        <label>Tipo de moneda</label>
+		
+					        <select name="et_meta_precio_moneda" id="et_meta_precio_moneda">
+					            <option value="VEF" <?php selected( $moneda, "VEF" ); ?>>Bolivares</option>
+					            <option value="USD" <?php selected( $moneda, "USD" ); ?>>Dolares Americanos</option>
+					            <option value="EU" <?php selected( $moneda, "EU" ); ?>>Euros</option>
+					        </select>
+		
+						</div>
+						
+						<div class="section col-xs-12 col-md-6">
+							
+							<label>Precio</label>
+							<input type="number" min="0" name="et_meta_precio" id="et_meta_precio" aria-required="true" placeholder="Precio del servicio..." value="<?php echo isset($this->servicio_meta['et_meta_precio'][0]) ? $this->servicio_meta['et_meta_precio'][0] : '' ?>" required>
+							<input type="hidden" name="et_meta_precio_visibilidad" value="public">
+							<!--
+					    	<label>Visibilidad</label>
+					     
+					        <select name="et_meta_precio_visibilidad" id="et_meta_precio_visibilidad">
+					            <option value="public" <?php selected( $moneda_visibilidad, "public" ); ?>>Público</option>
+					            <option value="private" <?php selected( $moneda_visibilidad, "private" ); ?>>Privado</option>
+					            <option value="hidden" <?php selected( $moneda_visibilidad, "hidden" ); ?>>Oculto</option>
+					        </select>
+-->
+							
+						</div>
+						
 					</div>
 					
 					<div class="section col-xs-12 col-md-6 col-derecha">					
@@ -467,342 +522,334 @@ jQuery(document).ready(function( $ ) {
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="section col-xs-12">
-							<input type="button" name="previous" class="previous action-button" value="Previous" />
-							<input type="button" name="next" class="next action-button" value="Next" />
-						</div>	
-					</div>
-
+				</div>
+				
+				<div class="row">
+					<div class="section col-xs-12">
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					</div>	
 				</div>
 
 			</div>
-			
-			
-			
+
 		</fieldset>
-		
+				
 		<fieldset>
-			<h2 class="fs-title">Opciones de reserva</h2>
-			<h3 class="fs-subtitle">Datos para la reserva</h3>	
-			
 			<div class="row">
-				<div class="section col-xs-12 col-md-6">
-			        
-				</div>
 				
-				<div class="section col-xs-12 col-md-6">
-					
-					<label>Tiempo previo para cerrar las reservas</label>
-					
-					<select name="et_meta_close_time" id="et_meta_close_time">
-			            <option value="60" <?php selected( $et_meta_close_time,  60 ); ?>>01 minuto</option>
-			            <option value="300" <?php selected( $et_meta_close_time,  300 ); ?>>05 minutos</option>
-			            <option value="600" <?php selected( $et_meta_close_time,  600 ); ?>>10 minutos</option>
-			            <option value="900" <?php selected( $et_meta_close_time,  900 ); ?>>15 minutos</option>
-			            <option value="1800" <?php selected( $et_meta_close_time,  1800 ); ?>>30 minutos</option>
-			            <option value="3600" <?php selected( $et_meta_close_time,  3600 ); ?>>1 hora</option>
-			            <option value="5400" <?php selected( $et_meta_close_time,  5400 ); ?>>1 hora 30 minutos</option>
-			            <option value="7200" <?php selected( $et_meta_close_time,  7200 ); ?>>2 horas</option>
-			            <option value="9000" <?php selected( $et_meta_close_time,  9000 ); ?> >2 horas 30 minutos</option>
-			            <option value="10800" <?php selected( $et_meta_close_time, 10800 );?>>3 horas</option>
-			            <option value="14400" <?php selected( $et_meta_close_time, 14400 ); ?>>4 horas </option>
-			            <option value="18000" <?php selected( $et_meta_close_time, 18000 ); ?>>5 horas</option>
-			            <option value="21600" <?php selected( $et_meta_close_time, 21600 ); ?>>6 horas</option>
-			            <option value="28800" <?php selected( $et_meta_close_time, 28800 ); ?>>8 horas</option>
-			            <option value="36000" <?php selected( $et_meta_close_time, 36000 ); ?>>10 horas</option>
-			            <option value="43200" <?php selected( $et_meta_close_time, 43200 ); ?>>12 horas</option>
-			            <option value="86400" <?php selected( $et_meta_close_time, 86400 ); ?>>24 horas</option>
-			            <option value="172800" <?php selected( $et_meta_close_time, 172800 ); ?>>48 horas</option>
-			            <option value="604800" <?php selected( $et_meta_close_time, 604800 ); ?>>1 semana</option>
-			        </select>
+				<div class="row">
 				
-				</div>
+					<div class="section col-xs-12 col-md-6 col-izquierda">
 
+						<h2 class="fs-title">Comodidades del lugar</h2>
+						<h3 class="fs-subtitle">Información de interés para tus alumnos</h3>
+
+						<div class="section col-xs-12 nice-checkbox" id="facilities">
+							<input type="checkbox" name="vehicle" value="Bike"> Baños<br>
+							<input type="checkbox" name="vehicle" value="Bike"> Duchas<br>
+							<input type="checkbox" name="vehicle" value="Bike"> Estacionamiento<br>
+							<input type="checkbox" name="vehicle" value="Bike"> Area para niños <br>
+							<input type="checkbox" name="vehicle" value="Bike"> Wifi<br>
+							<input type="checkbox" name="vehicle" value="Bike"> Hidratación<br>
+							<input type="checkbox" name="vehicle" value="Bike"> Cafetin<br>
+						</div>
+						
+					
+					
+						<div class="container">
+						  <div class="check">
+						    <input id="check" type="checkbox"/>
+						    <label for="check">
+						      <div class="box"><i class="icon-ok"></i></div>
+						    </label>
+						  </div>
+						  <div class="check">
+						    <input id="check1" type="checkbox"/>
+						    <label for="check1">
+						      <div class="box"><i class="icon-ok"></i></div>
+						    </label>
+						  </div>
+						  <div class="check">
+						    <input id="check2" type="checkbox"/>
+						    <label for="check2">
+						      <div class="box"><i class="icon-ok"></i></div>
+						    </label>
+						  </div>
+						  <div class="check">
+						    <input id="check3" type="checkbox"/>
+						    <label for="check3">
+						      <div class="box"><i class="icon-ok"></i></div>
+						    </label>
+						  </div>
+						</div>						
+						
+						
+						
+						
+					</div>
+					
+					<div class="section col-xs-12 col-md-6 col-derecha">					
+						<div class="section col-xs-12">
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="section col-xs-12">
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					</div>	
+				</div>
+				
 			</div>
-
-			<br>        
-
-	        <div class="row">
-				
-				<h3 class="fs-title">Costos del servicio</h3>
-				
-				<div class="section col-xs-12 col-md-4">
-			        
-			        <label>Tipo de moneda</label>
-
-			        <select name="et_meta_precio_moneda" id="et_meta_precio_moneda">
-			            <option value="VEF" <?php selected( $moneda, "VEF" ); ?>>Bolivares</option>
-			            <option value="USD" <?php selected( $moneda, "USD" ); ?>>Dolares Americanos</option>
-			            <option value="EU" <?php selected( $moneda, "EU" ); ?>>Euros</option>
-			        </select>
-
-				</div>
-				
-				<div class="section col-xs-12 col-md-4">
-					
-					<label>Precio</label>
-					<input type="number" min="0" name="et_meta_precio" id="et_meta_precio" aria-required="true" placeholder="Precio del servicio..." value="<?php echo isset($this->servicio_meta['et_meta_precio'][0]) ? $this->servicio_meta['et_meta_precio'][0] : '' ?>" required>
-					
-				</div>
-			     
-			    <div class="section col-xs-12 col-md-4">
-			    
-			    	<label>Visibilidad</label>
-			     
-			        <select name="et_meta_precio_visibilidad" id="et_meta_precio_visibilidad">
-			            <option value="public" <?php selected( $moneda_visibilidad, "public" ); ?>>Público</option>
-			            <option value="private" <?php selected( $moneda_visibilidad, "private" ); ?>>Privado</option>
-			            <option value="hidden" <?php selected( $moneda_visibilidad, "hidden" ); ?>>Oculto</option>
-			        </select>
-			    </div>
-			    
-	        </div>
-	 
-	        <br>
-	        <input type="button" name="previous" class="previous action-button" value="Previous" />
-			<input type="button" name="next" class="next action-button" value="Next" />
-	        
-		</fieldset>
-		
-		<fieldset>
-			<h2 class="fs-title">Detalles adicionales</h2>
-			<h3 class="fs-subtitle">Información de interés para tus alumnos</h3>
-
-			<input type="checkbox" name="vehicle" value="Bike"> Baños<br>
-			<input type="checkbox" name="vehicle" value="Bike"> Duchas<br>
-			<input type="checkbox" name="vehicle" value="Bike"> Estacionamiento<br>
-			<input type="checkbox" name="vehicle" value="Bike"> Area para niños <br>
-			<input type="checkbox" name="vehicle" value="Bike"> Wifi<br>
-			<input type="checkbox" name="vehicle" value="Bike"> Hidratación<br>
-			<input type="checkbox" name="vehicle" value="Bike"> Cafetin<br>
 			
 		</fieldset>
-		
-		<fieldset>
-						
-		</fieldset>
-		
+
 		
 	    <fieldset>
-		    <h2 class="fs-title">Disponibilidad</h2>
-			<h3 class="fs-subtitle">¿Qué días estarás disponible?</h3>
-			
-		    <div class="section">
-		        <p class="small-text fine-grey">Seleccione los días que su servicio estará disponible </p>
-		    </div><!-- end section -->
 		    
-		    <div id="contenedor_disponibilidad">
-		       
-				<?php 
-				$key = 0;
-					
-				for ($dia = 0; $dia <= 6; $dia++): 
-					
-					switch ($dia) {
+		    <div class="row">
+				
+				<div class="row">
+				
+					<div class="section col-xs-12 col-md-6 col-izquierda">
+
+					    <h2 class="fs-title">Disponibilidad</h2>
+						<h3 class="fs-subtitle">¿Qué días estarás disponible?</h3>
+						<p class="small-text fine-grey">Seleccione los días que su servicio estará disponible </p>
 						
-						case 0:
-							$dia_txt = "lunes";
-							break;
-							
-						case 1:
-							$dia_txt = "martes";
-							break;
-							
-						case 2:
-							$dia_txt = "miercoles";
-							break;
-							
-						case 3:
-							$dia_txt = "jueves";
-							break;
-							
-						case 4:
-							$dia_txt = "viernes";
-							break;
-							
-						case 5:
-							$dia_txt = "sabado";
-							break;
-							
-						case 6:
-							$dia_txt = "domingo";
-							break;
-					}
+						<div class="section col-xs-12">
+		    
+						    <div id="contenedor_disponibilidad">
+						       
+								<?php 
+								$key = 0;
+									
+								for ($dia = 0; $dia <= 6; $dia++): 
+									
+									switch ($dia) {
+										
+										case 0:
+											$dia_txt = "lunes";
+											break;
+											
+										case 1:
+											$dia_txt = "martes";
+											break;
+											
+										case 2:
+											$dia_txt = "miercoles";
+											break;
+											
+										case 3:
+											$dia_txt = "jueves";
+											break;
+											
+										case 4:
+											$dia_txt = "viernes";
+											break;
+											
+										case 5:
+											$dia_txt = "sabado";
+											break;
+											
+										case 6:
+											$dia_txt = "domingo";
+											break;
+									}
+									
+									?>
+									
+									<div class='checkbox turn_switch'>
+										<label><?php echo $dia_txt ?></label>
+										<label class='checkbox__container'>
+											<input class='checkbox__toggle ShowHideReset' type='checkbox' name="disponible[<?php echo $dia_txt ?>][activo]" id="<?php echo "check_" . $dia_txt ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? "checked" : ''; ?> >
+											<span class='checkbox__checker'></span>
+											<span class='checkbox__cross'></span>
+											<span class='checkbox__ok'></span>
 					
-					?>
-					
-					<div class='checkbox turn_switch'>
-						<label><?php echo $dia_txt ?></label>
-						<label class='checkbox__container'>
-							<input class='checkbox__toggle ShowHideReset' type='checkbox' name="disponible[<?php echo $dia_txt ?>][activo]" id="<?php echo "check_" . $dia_txt ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? "checked" : ''; ?> >
-							<span class='checkbox__checker'></span>
-							<span class='checkbox__cross'></span>
-							<span class='checkbox__ok'></span>
-	
-							<svg class='checkbox__bg' space='preserve' style='enable-background:new 0 0 110 43.76;' version='1.1' viewbox='0 0 110 43.76'>
-								<path class='shape' d='M88.256,43.76c12.188,0,21.88-9.796,21.88-21.88S100.247,0,88.256,0c-15.745,0-20.67,12.281-33.257,12.281,S38.16,0,21.731,0C9.622,0-0.149,9.796-0.149,21.88s9.672,21.88,21.88,21.88c17.519,0,20.67-13.384,33.263-13.384,S72.784,43.76,88.256,43.76z'></path>
-							</svg>
-						</label>
+											<svg class='checkbox__bg' space='preserve' style='enable-background:new 0 0 110 43.76;' version='1.1' viewbox='0 0 110 43.76'>
+												<path class='shape' d='M88.256,43.76c12.188,0,21.88-9.796,21.88-21.88S100.247,0,88.256,0c-15.745,0-20.67,12.281-33.257,12.281,S38.16,0,21.731,0C9.622,0-0.149,9.796-0.149,21.88s9.672,21.88,21.88,21.88c17.519,0,20.67-13.384,33.263-13.384,S72.784,43.76,88.256,43.76z'></path>
+											</svg>
+										</label>
+									</div>
+									
+						            <div id="contenedor_<?php echo $dia_txt; ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? '' : 'style="display:none;"'; else echo 'style="display:none;"';  ?> >
+							            
+							            <?php if ( isset($horarios_servicio) && array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ):  ?>
+								            
+								            <?php foreach( $horarios_servicio["dias_activados"][$dia] as $id_bloque => $info_bloque ): ?>
+								            
+									            <table class="clone_<?php echo $dia_txt; ?> clone frm-row" id="<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
+													
+													<tr>
+														<th>Hora de inicio<em> * </em></th>
+														<th>Duración<em> * </em></th>
+														<th>Cupos <em> * </em></th>
+													</tr>
+													
+													<tr>
+														
+														<td>
+															<?php $bloque_horas = $this->crear_horario(); ?>
+				
+															<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_hora_inicio]" class="hora_inicio">
+																	
+																<?php foreach ($bloque_horas["ampm"] as $tipo => $bloque_hora): ?>		
+																
+																	<option value="<?php echo $bloque_horas["value"][$tipo]; ?>" <?php selected( $bloque_horas["value"][$tipo] , $info_bloque['et_meta_hora_inicio'] ); ?> ><?php echo $bloque_hora; ?></option>
+																
+																<?php endforeach; ?>
+				
+															</select>
+														</td>
+														
+														<td>
+															<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_duracion]" class="duracion" id="duracion_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
+														    <?php for ($i=1; $i < 21 ; $i++):
+																
+																$minutos = $i * 15;
+																$horas = floor($minutos / 60);
+																
+																if ($minutos % 60 != 0)
+																	$cuarto_hora = ($minutos % 60) + " minutos";
+																else 
+																	$cuarto_hora = ""; 
+																
+																if ($horas < 1) 
+																	$result = $minutos . " minutos" ; 
+																	
+																if ($horas == 1) 
+																	$result = $horas . " hora " . $cuarto_hora;
+															
+																else if ($horas > 1) 
+																 	$result = $horas . " horas " . $cuarto_hora;
+																?>
+																
+																<option value="<?php echo $minutos ?>" <?php selected( $minutos , $info_bloque['et_meta_duracion'] ); ?>>
+																	<?php echo $result ?>
+																</option>
+																
+															<?php endfor; ?>
+															</select>
+														</td>
+														
+														<td><input type='number' name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_cupos]" class='gui-input required et_meta_cupos' id="cupos_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>" placeholder='Cupos disponibles por evento...' min="1" max="999" value="<?php echo $info_bloque['et_meta_cupos']; ?>"></td>
+													</tr>
+													
+													<tr>
+														<td colspan="3">
+															<a href="#" class="clone button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/plus.png'; ?>"></a>
+															
+															<a href="#" class="delete button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/minus.png'; ?>"></a>
+														</td>
+													</tr>
+													
+												</table>
+								            <?php endforeach; ?>
+										
+										<?php else: 
+											
+											$id_bloque = 0; ?>
+										
+											<table class="clone_<?php echo $dia_txt; ?> clone frm-row" id="<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
+													
+													<tr>
+														<th>Hora de inicio<em> * </em></th>
+														<th>Duración<em> * </em></th>
+														<th>Cupos <em> * </em></th>
+													</tr>
+													
+													<tr>
+														
+														<td>
+															<?php $bloque_horas = $this->crear_horario(); ?>
+															<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_hora_inicio]" class="hora_inicio">
+																	
+																<?php foreach ($bloque_horas["ampm"] as $tipo => $bloque_hora): ?>		
+																
+																	<option value="<?php echo $bloque_horas["value"][$tipo]; ?>" <?php selected( $bloque_horas["value"][$tipo] , "08:00:00" ); ?>  ><?php echo $bloque_hora; ?></option>
+																
+																<?php endforeach; ?>
+																
+																
+															</select>
+														</td>
+														
+														<td>
+															<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_duracion]" class="duracion" id="duracion_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
+														    <?php for ($i=1; $i < 21 ; $i++):
+																
+																$minutos = $i * 15;
+																$horas = floor($minutos / 60);
+																
+																if ($minutos % 60 != 0)
+																	$cuarto_hora = ($minutos % 60) + " minutos";
+																else 
+																	$cuarto_hora = ""; 
+																
+																if ($horas < 1) 
+																	$result = $minutos . " minutos" ; 
+																	
+																if ($horas == 1) 
+																	$result = $horas . " hora " . $cuarto_hora;
+															
+																else if ($horas > 1) 
+																 	$result = $horas . " horas " . $cuarto_hora;
+																?>
+																
+																<option value="<?php echo $minutos ?>">
+																	<?php echo $result ?>
+																</option>
+																
+															<?php endfor; ?>
+															</select>
+														</td>
+														
+														<td><input type='number' name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_cupos]" class='gui-input required et_meta_cupos' id="cupos_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>" placeholder='Cupos disponibles por evento...' min="1" max="999" value="1"></td>
+													</tr>
+													
+													<tr>
+														<td colspan="3">
+															<a href="#" class="clone button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/plus.png'; ?>"></a>
+															
+															<a href="#" class="delete button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/minus.png'; ?>"></a>
+														</td>
+													</tr>
+													
+												</table>
+				
+										
+										<?php endif; ?>
+							            
+						            </div>
+						            
+						        <?php endfor; ?>  
+						            
+						    </div>
+						    
+						    
+						</div>
 					</div>
 					
-		            <div id="contenedor_<?php echo $dia_txt; ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? '' : 'style="display:none;"'; else echo 'style="display:none;"';  ?> >
-			            
-			            <?php if ( isset($horarios_servicio) && array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ):  ?>
-				            
-				            <?php foreach( $horarios_servicio["dias_activados"][$dia] as $id_bloque => $info_bloque ): ?>
-				            
-					            <table class="clone_<?php echo $dia_txt; ?> clone frm-row" id="<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
-									
-									<tr>
-										<th>Hora de inicio<em> * </em></th>
-										<th>Duración<em> * </em></th>
-										<th>Cupos <em> * </em></th>
-									</tr>
-									
-									<tr>
-										
-										<td>
-											<?php $bloque_horas = $this->crear_horario(); ?>
-
-											<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_hora_inicio]" class="hora_inicio">
-													
-												<?php foreach ($bloque_horas["ampm"] as $tipo => $bloque_hora): ?>		
-												
-													<option value="<?php echo $bloque_horas["value"][$tipo]; ?>" <?php selected( $bloque_horas["value"][$tipo] , $info_bloque['et_meta_hora_inicio'] ); ?> ><?php echo $bloque_hora; ?></option>
-												
-												<?php endforeach; ?>
-
-											</select>
-										</td>
-										
-										<td>
-											<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_duracion]" class="duracion" id="duracion_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
-										    <?php for ($i=1; $i < 21 ; $i++):
-												
-												$minutos = $i * 15;
-												$horas = floor($minutos / 60);
-												
-												if ($minutos % 60 != 0)
-													$cuarto_hora = ($minutos % 60) + " minutos";
-												else 
-													$cuarto_hora = ""; 
-												
-												if ($horas < 1) 
-													$result = $minutos . " minutos" ; 
-													
-												if ($horas == 1) 
-													$result = $horas . " hora " . $cuarto_hora;
-											
-												else if ($horas > 1) 
-												 	$result = $horas . " horas " . $cuarto_hora;
-												?>
-												
-												<option value="<?php echo $minutos ?>" <?php selected( $minutos , $info_bloque['et_meta_duracion'] ); ?>>
-													<?php echo $result ?>
-												</option>
-												
-											<?php endfor; ?>
-											</select>
-										</td>
-										
-										<td><input type='number' name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_cupos]" class='gui-input required et_meta_cupos' id="cupos_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>" placeholder='Cupos disponibles por evento...' min="1" max="999" value="<?php echo $info_bloque['et_meta_cupos']; ?>"></td>
-									</tr>
-									
-									<tr>
-										<td colspan="3">
-											<a href="#" class="clone button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/plus.png'; ?>"></a>
-											
-											<a href="#" class="delete button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/minus.png'; ?>"></a>
-										</td>
-									</tr>
-									
-								</table>
-				            <?php endforeach; ?>
-						
-						<?php else: 
-							
-							$id_bloque = 0; ?>
-						
-							<table class="clone_<?php echo $dia_txt; ?> clone frm-row" id="<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
-									
-									<tr>
-										<th>Hora de inicio<em> * </em></th>
-										<th>Duración<em> * </em></th>
-										<th>Cupos <em> * </em></th>
-									</tr>
-									
-									<tr>
-										
-										<td>
-											<?php $bloque_horas = $this->crear_horario(); ?>
-											<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_hora_inicio]" class="hora_inicio">
-													
-												<?php foreach ($bloque_horas["ampm"] as $tipo => $bloque_hora): ?>		
-												
-													<option value="<?php echo $bloque_horas["value"][$tipo]; ?>" <?php selected( $bloque_horas["value"][$tipo] , "08:00:00" ); ?>  ><?php echo $bloque_hora; ?></option>
-												
-												<?php endforeach; ?>
-												
-												
-											</select>
-										</td>
-										
-										<td>
-											<select name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_duracion]" class="duracion" id="duracion_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>">
-										    <?php for ($i=1; $i < 21 ; $i++):
-												
-												$minutos = $i * 15;
-												$horas = floor($minutos / 60);
-												
-												if ($minutos % 60 != 0)
-													$cuarto_hora = ($minutos % 60) + " minutos";
-												else 
-													$cuarto_hora = ""; 
-												
-												if ($horas < 1) 
-													$result = $minutos . " minutos" ; 
-													
-												if ($horas == 1) 
-													$result = $horas . " hora " . $cuarto_hora;
-											
-												else if ($horas > 1) 
-												 	$result = $horas . " horas " . $cuarto_hora;
-												?>
-												
-												<option value="<?php echo $minutos ?>">
-													<?php echo $result ?>
-												</option>
-												
-											<?php endfor; ?>
-											</select>
-										</td>
-										
-										<td><input type='number' name="disponible[<?php echo $dia_txt ?>][bloque][<?php echo $id_bloque ?>][et_meta_cupos]" class='gui-input required et_meta_cupos' id="cupos_<?php echo $dia_txt . "_" . $dia . "_" . $id_bloque ?>" placeholder='Cupos disponibles por evento...' min="1" max="999" value="1"></td>
-									</tr>
-									
-									<tr>
-										<td colspan="3">
-											<a href="#" class="clone button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/plus.png'; ?>"></a>
-											
-											<a href="#" class="delete button_action"><img src="<?php echo ESTILOTU_URL . 'public/img/minus.png'; ?>"></a>
-										</td>
-									</tr>
-									
-								</table>
-
-						
-						<?php endif; ?>
-			            
-		            </div>
-		            
-		        <?php endfor; ?>  
-		            
-		    </div><!-- end #clone-animate --> 
-		    
-			<input type="button" name="previous" class="previous action-button" value="Previous" />
-			<input type="button" name="next" class="next action-button" value="Next" />
-	    
+					<div class="section col-xs-12 col-md-6 col-derecha">					
+						<div class="section col-xs-12">
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="section col-xs-12">
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					</div>	
+				</div>
+				
+			</div>
+		    	    
 		</fieldset>                            
 		
 		
