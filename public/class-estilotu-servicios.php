@@ -32,6 +32,8 @@ class Estilotu_Servicio {
 	private	$fecha_seleccionada;
 	public	$table_name;
 	public 	$token_id;
+	private $facilities_list = array("Sanitarios" , "Duchas" , "Estacionamiento" , "Area para niños" , "Wifi" , "Hidratación" , "Cafetin");
+	private $facilities_selected = array();
 	
 	public function __construct() {
 		
@@ -178,6 +180,7 @@ class Estilotu_Servicio {
 				$moneda 			= null;
 				$moneda_visibilidad = null;
 				$et_meta_close_time	= null;
+				$intensidad			= '1' ; 
 				
 				$mapa 				= new Estilotu_Geolocation_Public(); 
 				$lista_paises		= $mapa->lista_paises();
@@ -222,6 +225,10 @@ class Estilotu_Servicio {
 			
 			// si el post es nuevo
 			else {
+				
+				echo "<pre>";
+				print_r($_POST);
+				echo "</pre>";
 				
 				$post_id = $this->guardar_servicio( );
 				
@@ -276,11 +283,14 @@ class Estilotu_Servicio {
 					$moneda_visibilidad 		= isset($this->servicio_meta['et_meta_precio_visibilidad'][0]) ? $this->servicio_meta['et_meta_precio_visibilidad'][0] : '' ;
 					$max_time 					= isset($this->servicio_meta['et_meta_max_time'][0]) ? $this->servicio_meta['et_meta_max_time'][0] : '' ;
 					$et_meta_close_time 		= isset($this->servicio_meta['et_meta_close_time'][0]) ? $this->servicio_meta['et_meta_close_time'][0] : '' ; 
+					$intensidad					= isset($this->servicio_meta['intensidad'][0]) ? $this->servicio_meta['intensidad'][0] : '1' ; 
 					
 					$horarios_servicio = $this->horarios_servicio( $this->post_id );
 					
 					$mapa 				= new Estilotu_Geolocation_Public(); 
 					$lista_paises		= $mapa->lista_paises();
+
+					$this->facilities_selected = isset($this->servicio_meta['facilities'][0]) ? unserialize($this->servicio_meta['facilities'][0]) : array() ;
 					
 					wp_enqueue_script('estilotu_duplicar_servicios');
 					
@@ -375,7 +385,10 @@ class Estilotu_Servicio {
 		$precio				= wp_strip_all_tags( $_POST['et_meta_precio']	 );
 		$precio_moneda		= wp_strip_all_tags( $_POST['et_meta_precio_moneda']  );  
 		$precio_visibilidad	= wp_strip_all_tags( $_POST['et_meta_precio_visibilidad']  );  
+		$intensidad			= wp_strip_all_tags( $_POST['intensidad']	 );
 		$max_time 			= wp_strip_all_tags( $_POST['et_meta_max_time']  );
+		$facilities		 	= $_POST['facilities'] ;
+
 		
 		//ubicacion
 		$ubicacion 		= array();
@@ -428,7 +441,8 @@ class Estilotu_Servicio {
 		update_post_meta($post_id, 'et_meta_precio',	$precio  );
 		update_post_meta($post_id, 'et_meta_precio_moneda',	$precio_moneda  );
 		update_post_meta($post_id, 'et_meta_precio_visibilidad',	$precio_visibilidad  );
-		
+		update_post_meta($post_id, 'facilities',	$facilities  );
+		update_post_meta($post_id, 'intensidad',	$intensidad  );
 		
 		foreach ($ubicacion as $key => $value):
 			

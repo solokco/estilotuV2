@@ -229,100 +229,7 @@ jQuery(document).ready(function( $ ) {
 			<li>Cupos</li>
 			<li>Publicar</li>
 		</ul>
-		
-		<fieldset>
-			<div class="row">
-				
-				<div class="row">	
-					
-					<div class="section col-xs-12 col-md-6 col-izquierda">
-		
-						<h2 class="fs-title">¿Dónde se ubica el servicio?</h2>
-						
-						<h4 class="fs-subtitle">Por favor indique la ubicación de su servicio de modo que los usuarios de EstiloTú lo puedan ubicar con facilidad.</h4>
-						<input type="hidden" name="ubicacion[et_meta_usar_mapa]" id="et_meta_usar_mapa" value="1">   
-						
-						<!--
-						<div id="locationField">
-							<label for="autocomplete">Escriba la dirección para ubicarla en el mapa</label>
-							<input id="autocomplete" placeholder="Seleccione la dirección de la lista y completa luego los detalles abajo" onFocus="" type="text" name="direccion"></input>
-						</div>
-						-->
-		
-						<div class="row" id="direccion">
-							
-							<div class="space-top-2 col-sm-12">
-								
-								<label for="country"><?php _e("País" , "estilotu") ?></label>
-		
-								<select name="ubicacion[et_meta_pais]" class="field" id="country">
-		
-									<?php foreach($lista_paises as $key => $value): ?>
-										<option value="<?php echo $key ?>" <?php selected( $this->servicio_meta['et_meta_pais'][0] , $value ); ?> title="<?php echo htmlspecialchars($value) ?>"><?php echo htmlspecialchars($value) ?></option>
-									<?php endforeach; ?>
-									
-								</select>
-								
-							</div>
-							
-							<div class="space-top-2 col-sm-12">
-								
-								<label for="main_address"><?php _e("Dirección" , "estilotu") ?></label>
-								<input class="field" placeholder="Calle / Avenida" id="main_address" name="ubicacion[et_meta_direccion_1]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_1'][0] ) ? $this->servicio_meta['et_meta_direccion_1'][0] : '' ;  ?>"></input>
-								
-							</div>
-							
-							<div class="space-top-2 col-sm-12">
-								
-								<label for="main_address"><?php _e("Apt, Suite, Bldg. (optional)" , "estilotu") ?></label>
-								<input placeholder="" class="field" id="route"  name="ubicacion[et_meta_direccion_2]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_2'][0] ) ? $this->servicio_meta['et_meta_direccion_2'][0] : '' ;  ?>"></input>
-								
-							</div>
-							
-							<div class="space-top-2 col-sm-12 col-md-6">
-								
-								<label for="locality"><?php _e("Ciudad" , "estilotu") ?></label>
-								<input name="ubicacion[et_meta_ciudad]" class="field" id="locality"  value="<?php echo isset( $this->servicio_meta['et_meta_ciudad'][0] ) ? $this->servicio_meta['et_meta_ciudad'][0] : '' ;  ?>"></input>
-								
-							</div>
-							
-							<div class="space-top-2 col-sm-12 col-md-6">
-								
-								<label for="administrative_area_level_1"><?php _e("Estado" , "estilotu") ?></label>
-								<input name="ubicacion[et_meta_estado]" class="field" id="administrative_area_level_1"  value="<?php echo isset( $this->servicio_meta['et_meta_estado'][0] ) ? $this->servicio_meta['et_meta_estado'][0] : '' ;  ?>"></input>
-								
-							</div>
-							
-							<div class="space-top-2 col-sm-12 col-md-6">
-								
-								<label for="state"><?php _e("Código Postal" , "estilotu") ?></label>
-								<input name="ubicacion[et_meta_zipcode]" class="field" id="postal_code"  value="<?php echo isset( $this->servicio_meta['et_meta_zipcode'][0] ) ? $this->servicio_meta['et_meta_zipcode'][0] : '' ;  ?>"></input>
-								
-							</div>
-		
-						</div>	
-						
-					</div>
-	
-				
-					<div class="section col-xs-12 col-md-6 col-derecha">
-						<h3>Puedes arrastrar la marca de la ubicaci&oacute;n en el mapa para mayor presici&oacute;n</h3>
-						<!-- 			<div id="map" style="height:500px;"></div> -->
-						<?php $mapa->show_map("add"); ?>
-					</div>
-	
-				</div>
-				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
-				
-			</div>
-		</fieldset>
-		
+
 		<fieldset>
 			
 			<div class="row">
@@ -368,7 +275,16 @@ jQuery(document).ready(function( $ ) {
 					        wp_dropdown_categories( $args );
 							?>
 						</div>
-							
+						
+						<div class="section col-xs-12">
+							<label for="intensidad">Intensidad <em> * </em></label>
+							<div class="rating stars" id="intensidad">
+							    <?php for ($x = 5; $x >= 1 ; $x--): ?>
+								    <input class="star star-<?php echo $x; ?> icon-droplet" id="star-<?php echo $x; ?>" type="radio" name="intensidad" value="<?php echo $x; ?>" <?php checked( $intensidad , $x ); ?> />
+								    <label class="star star-<?php echo $x; ?> icon-droplet" for="star-<?php echo $x; ?>"></label>
+							    <?php endfor; ?>
+							</div>	
+						</div>
 					
 						<div class="section col-xs-12">
 							
@@ -433,6 +349,101 @@ jQuery(document).ready(function( $ ) {
 		
 		</fieldset>
 		
+		
+		<fieldset>
+			<div class="row">
+				
+				<div class="row">	
+					
+					<div class="section col-xs-12 col-md-6 col-izquierda">
+		
+						<h2 class="fs-title">¿Dónde se ubica el servicio?</h2>
+						
+						<h4 class="fs-subtitle">Por favor indique la ubicación de su servicio de modo que los usuarios de EstiloTú lo puedan ubicar con facilidad.</h4>
+						<input type="hidden" name="ubicacion[et_meta_usar_mapa]" id="et_meta_usar_mapa" value="1">   
+						
+						<!--
+						<div id="locationField">
+							<label for="autocomplete">Escriba la dirección para ubicarla en el mapa</label>
+							<input id="autocomplete" placeholder="Seleccione la dirección de la lista y completa luego los detalles abajo" onFocus="" type="text" name="direccion"></input>
+						</div>
+						-->
+		
+						<div class="row" id="direccion">
+							
+							<div class="space-top-2 col-sm-12">
+								
+								<label for="country"><?php _e("País" , "estilotu") ?></label>
+								<select name="ubicacion[et_meta_pais]" class="field" id="country">
+		
+									<?php foreach($lista_paises as $key => $value): ?>
+										<option value="<?php echo $key ?>" <?php selected( in_array( $this->servicio_meta['et_meta_pais'][0] , array( $key , $value) ) ); ?> title="<?php echo htmlspecialchars($value) ?>"><?php echo htmlspecialchars($value) ?></option>
+									<?php endforeach; ?>
+									
+								</select>
+								
+							</div>
+							
+							<div class="space-top-2 col-sm-12">
+								
+								<label for="main_address"><?php _e("Dirección" , "estilotu") ?></label>
+								<input class="field" type="text" placeholder="Calle / Avenida" id="main_address" name="ubicacion[et_meta_direccion_1]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_1'][0] ) ? $this->servicio_meta['et_meta_direccion_1'][0] : '' ;  ?>"></input>
+								
+							</div>
+							
+							<div class="space-top-2 col-sm-12">
+								
+								<label for="main_address"><?php _e("Apt, Suite, Bldg. (optional)" , "estilotu") ?></label>
+								<input placeholder="" type="text" class="field" id="route"  name="ubicacion[et_meta_direccion_2]" value="<?php echo isset( $this->servicio_meta['et_meta_direccion_2'][0] ) ? $this->servicio_meta['et_meta_direccion_2'][0] : '' ;  ?>"></input>
+								
+							</div>
+							
+							<div class="space-top-2 col-sm-12 col-md-6">
+								
+								<label for="locality"><?php _e("Ciudad" , "estilotu") ?></label>
+								<input name="ubicacion[et_meta_ciudad]" type="text" class="field" id="locality"  value="<?php echo isset( $this->servicio_meta['et_meta_ciudad'][0] ) ? $this->servicio_meta['et_meta_ciudad'][0] : '' ;  ?>"></input>
+								
+							</div>
+							
+							<div class="space-top-2 col-sm-12 col-md-6">
+								
+								<label for="administrative_area_level_1"><?php _e("Estado" , "estilotu") ?></label>
+								<input name="ubicacion[et_meta_estado]" type="text" class="field" id="administrative_area_level_1"  value="<?php echo isset( $this->servicio_meta['et_meta_estado'][0] ) ? $this->servicio_meta['et_meta_estado'][0] : '' ;  ?>"></input>
+								
+							</div>
+							
+							<div class="space-top-2 col-sm-12 col-md-6">
+								
+								<label for="state"><?php _e("Código Postal" , "estilotu") ?></label>
+								<input name="ubicacion[et_meta_zipcode]" type="text" class="field" id="postal_code"  value="<?php echo isset( $this->servicio_meta['et_meta_zipcode'][0] ) ? $this->servicio_meta['et_meta_zipcode'][0] : '' ;  ?>"></input>
+								
+							</div>
+		
+						</div>	
+						
+					</div>
+	
+				
+					<div class="section col-xs-12 col-md-6 col-derecha">
+						<h3>Puedes arrastrar la marca de la ubicaci&oacute;n en el mapa para mayor presici&oacute;n</h3>
+						<!-- 			<div id="map" style="height:500px;"></div> -->
+						<?php $mapa->show_map("add"); ?>
+						
+						<input name="ubicacion[et_meta_latitud]" type="hidden" id="et_meta_latitud"  value="<?php echo isset( $this->servicio_meta['et_meta_latitud'][0] ) ? $this->servicio_meta['et_meta_latitud'][0] : '0' ;  ?>"></input>
+						<input name="ubicacion[et_meta_longitud]" type="hidden" id="et_meta_longitud"  value="<?php echo isset( $this->servicio_meta['et_meta_longitud'][0] ) ? $this->servicio_meta['et_meta_longitud'][0] : '0' ;  ?>"></input>
+					</div>
+	
+				</div>
+				
+				<div class="row">
+					<div class="section col-xs-12">
+						<input type="button" name="previous" class="previous action-button" value="Previous" />
+						<input type="button" name="next" class="next action-button" value="Next" />
+					</div>	
+				</div>
+				
+			</div>
+		</fieldset>
 		
 		
 		<fieldset>
@@ -544,44 +555,22 @@ jQuery(document).ready(function( $ ) {
 
 						<h2 class="fs-title">Comodidades del lugar</h2>
 						<h3 class="fs-subtitle">Información de interés para tus alumnos</h3>
-
-						<div class="section col-xs-12 nice-checkbox" id="facilities">
-							<input type="checkbox" name="vehicle" value="Bike"> Baños<br>
-							<input type="checkbox" name="vehicle" value="Bike"> Duchas<br>
-							<input type="checkbox" name="vehicle" value="Bike"> Estacionamiento<br>
-							<input type="checkbox" name="vehicle" value="Bike"> Area para niños <br>
-							<input type="checkbox" name="vehicle" value="Bike"> Wifi<br>
-							<input type="checkbox" name="vehicle" value="Bike"> Hidratación<br>
-							<input type="checkbox" name="vehicle" value="Bike"> Cafetin<br>
-						</div>
-						
 					
-					
-						<div class="container">
-						  <div class="check">
-						    <input id="check" type="checkbox"/>
-						    <label for="check">
-						      <div class="box"><i class="icon-ok"></i></div>
-						    </label>
-						  </div>
-						  <div class="check">
-						    <input id="check1" type="checkbox"/>
-						    <label for="check1">
-						      <div class="box"><i class="icon-ok"></i></div>
-						    </label>
-						  </div>
-						  <div class="check">
-						    <input id="check2" type="checkbox"/>
-						    <label for="check2">
-						      <div class="box"><i class="icon-ok"></i></div>
-						    </label>
-						  </div>
-						  <div class="check">
-						    <input id="check3" type="checkbox"/>
-						    <label for="check3">
-						      <div class="box"><i class="icon-ok"></i></div>
-						    </label>
-						  </div>
+						<div class="nice-checkbox col-xs-12" id="facilities">
+							
+							<?php foreach ($this->facilities_list as $facility): ?>
+								
+								<div class="check">
+									<input id="<?php echo $facility ?>" type="checkbox" name="facilities[]" value="<?php echo $facility ?>" <?php checked(  in_array( $facility , $this->facilities_selected ) ); ?> />
+			
+									<label for=<?php echo $facility ?>>
+										<div class="box"><i class="icon-ok"></i></div>
+										<div class="box-text"><?php echo $facility ?></div>
+									</label>
+								</div>
+								
+							<?php endforeach; ?>
+												  
 						</div>						
 						
 						

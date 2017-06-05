@@ -4,7 +4,7 @@ var componentForm = {
 	//route: 'long_name',
 	locality: 'long_name',
 	administrative_area_level_1: 'short_name',
-	//country: 'long_name',
+	country: 'short_name',
 	postal_code: 'short_name'
 };
   
@@ -38,6 +38,7 @@ function initMap() {
 	}
 	
 	var input_ciudad 	= document.getElementById('locality');
+	var input_direccion	= document.getElementById('main_address');
 	var input_pais 		= jQuery('#country').val();
 	var map_canvas 		= document.getElementById('map');
 	
@@ -64,7 +65,7 @@ function initMap() {
 	marker.addListener('dragend', handleEvent);
 	
 	// disable enter
-	google.maps.event.addDomListener(input_ciudad, 'keydown', function(e) { 
+	google.maps.event.addDomListener(input_direccion, 'keydown', function(e) { 
 		if (e.keyCode == 13) { 
 			e.preventDefault(); 
 		}
@@ -75,6 +76,7 @@ function initMap() {
 		
 		input_pais = jQuery(this).val();
 		jQuery("#locality").val("");
+		jQuery("#main_address").val("");
 		jQuery("#administrative_area_level_1").val("");
 		jQuery("#postal_code").val("");
 		
@@ -82,7 +84,7 @@ function initMap() {
 		
 	});
 
-    autocomplete = new google.maps.places.Autocomplete( input_ciudad , {types: ['(cities)']} );
+    autocomplete = new google.maps.places.Autocomplete( input_direccion , {types: ['geocode']} );
 	autocomplete.addListener('place_changed', fillInAddress);
 	
     // When the user selects an address from the dropdown, populate the address
@@ -119,15 +121,15 @@ function fillInAddress() {
 				
 			var val = place.address_components[i][componentForm[addressType]];
 			document.getElementById(addressType).value = val;
-			
+	
 		}
 		
     }
-    	
-    jQuery("#country").val(place.address_components[3].short_name);
     
     var latlng = new google.maps.LatLng( place.geometry.location.lat() , place.geometry.location.lng() );
-
+	
+	console.log(latlng);
+	
     map.setCenter(latlng);
     marker.setPosition(latlng);
     
