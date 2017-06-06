@@ -22,161 +22,213 @@ jQuery(document).ready(function( $ ) {
 	var left, opacity, scale; //fieldset properties which we will animate
 	var animating; //flag to prevent quick multi-click glitches
 	
-	jQuery("#msform").validate({
-		
-		rules: {
-			nombre_servicio: {
-				required: true, 
-				minlength: 5,
-				maxlength: 50
-			},
-			
-			et_meta_precio: {
-				required: true, 
-				number: true
-			},
-			
-			imagen_destacada: {
-				required: {
-					depends: function(element) {
-						return !jQuery(".imagen_post").length > 0 ;
-		        	}
-				},
-				
-				extension: {
-					param: "jpg|png",
-					depends: function(element) {
-						return !jQuery(".imagen_post").length > 0 ;
-		        	}
-				}
-
-			},
-			
-			disponible: {
-				required: true,
-                minlength: 1
-			},
-			
-			generalTerms: {
-				required: true
-			}
-		},
-		
-		messages: {
-			nombre_servicio: {
-				required: "Debes agregar un nombre a tu servicio",
-				minlength: jQuery.validator.format("El nombre del servicio no puede ser menor a {0} caracteres"),
-				maxlength: jQuery.validator.format("El nombre del servicio no puede ser mayor a {0} caracteres")
-			},
-			
-			et_meta_precio: {
-				required: "Por favor indique el costo de su servicio"
-			},
-			
-			imagen_destacada: {
-				required: "Debes seleccionar una imagen", 
-				extension: "Recuerda que el formato debe ser JPG o PNG"
-			},
-			
-			disponible: {
-				required: "Debes seleccionar por lo menos un día con cupos",
-                minlength: 1
-			},
-			
-			generalTerms: {
-				required: "Debes aceptar los términos y condiciones"
-			}
-			
-		}
-
-/*
-		errorPlacement: function(error, element) { 
-	      element.addClass('error');
-	    },        
-
-	    highlight: function (element) {
-	        $(element).addClass('nonvalid')
-	          .closest('.form-group').removeClass('error');
-	    }
-*/
-		
-/*
-		submitHandler: function(form) {
-			form.submit();
-		}
-*/
-		
-	});
+	var steps = jQuery('fieldset').length - 1;
+	var step = 0;
+	var current_fieldset;
 	
 	$(".next").click(function(){
+		
+		jQuery("#msform").validate( {
+		
+		//ignore: ":hidden",
+		
+			rules: {
+				nombre_servicio: {
+					required: true, 
+					minlength: 5,
+					maxlength: 50
+				},
+				
+				et_meta_precio: {
+					required: true, 
+					number: true
+				},
+				
+				imagen_destacada: {
+					required: {
+						depends: function(element) {
+							return !jQuery(".imagen_post").length > 0 ;
+			        	}
+					},
+					
+					extension: {
+						param: "jpg|png",
+						depends: function(element) {
+							return !jQuery(".imagen_post").length > 0 ;
+			        	}
+					}
+	
+				},
+				
+				disponible: {
+					required: true,
+	                minlength: 1
+				},
+				
+				generalTerms: {
+					required: true
+				}
+			},
+			
+			messages: {
+				nombre_servicio: {
+					required: "Debes agregar un nombre a tu servicio",
+					minlength: jQuery.validator.format("El nombre del servicio no puede ser menor a {0} caracteres"),
+					maxlength: jQuery.validator.format("El nombre del servicio no puede ser mayor a {0} caracteres")
+				},
+				
+				et_meta_precio: {
+					required: "Por favor indique el costo de su servicio"
+				},
+				
+				imagen_destacada: {
+					required: "Debes seleccionar una imagen", 
+					extension: "Recuerda que el formato debe ser JPG o PNG"
+				},
+				
+				disponible: {
+					required: "Debes seleccionar por lo menos un día con cupos",
+	                minlength: 1
+				},
+				
+				generalTerms: {
+					required: "Debes aceptar los términos y condiciones"
+				}
+				
+			},
+			
+			errorPlacement: function(error, element) { 
+		      element.addClass('error');
+		    },        
+	
+		    highlight: function (element) {
+		        $(element).addClass('nonvalid')
+		          .closest('.form-group').removeClass('error');
+		    }
+	
+			
+/*
+			submitHandler: function(form) {
+				form.submit();
+			}
+*/
+	
+		} );
+		
+
 		if(animating) return false;
+		if( step >= steps ) return false;
+		if ( !jQuery("#msform").valid() ) return false;
+		
+		step_next = step + 1;
+		
 		animating = true;
 		
-		current_fs = $(this).parent();
-		next_fs = $(this).parent().next();
+		current_fs = jQuery("fieldset:eq( "+step+" )");
+		next_fs = jQuery("fieldset:eq( "+step_next+" )");
 		
 		//activate next step on progressbar using the index of next_fs
 		$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 		
-		//show the next fieldset
-		next_fs.show(); 
 		//hide the current fieldset with style
 		current_fs.animate({opacity: 0}, {
 			step: function(now, mx) {
 				//as the opacity of current_fs reduces to 0 - stored in "now"
 				//1. scale current_fs down to 80%
 				scale = 1 - (1 - now) * 0.2;
+				
 				//2. bring next_fs from the right(50%)
-				left = (now * 50)+"%";
+				//left = (now * 50)+"%";
+				
 				//3. increase opacity of next_fs to 1 as it moves in
 				opacity = 1 - now;
 				current_fs.css({'transform': 'scale('+scale+')'});
-				next_fs.css({'left': left, 'opacity': opacity});
+				next_fs.css({'opacity': opacity});
 			}, 
 			duration: 800, 
 			complete: function(){
 				current_fs.hide();
+				next_fs.show();
+				step++;
+
+				validar_botones();
 				animating = false;
 			}, 
 			//this comes from the custom easing plugin
 			easing: 'easeInOutBack'
-		});
+		});	
+		
+		
 	});
 	
 	$(".previous").click(function(){
-		if(animating) return false;
-		animating = true;
 		
-		current_fs = $(this).parent();
-		previous_fs = $(this).parent().prev();
+		if(animating) return false;
+		if(step <= 0) return false;
+
+		animating = true;
+		step_prev = step - 1;
+		
+		current_fs 	= jQuery("fieldset:eq( "+step+" )");
+		previous_fs = jQuery("fieldset:eq( "+ step_prev +" )");
+		
+		
 		
 		//de-activate current step on progressbar
 		$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-		
-		//show the previous fieldset
-		previous_fs.show(); 
+
 		//hide the current fieldset with style
 		current_fs.animate({opacity: 0}, {
 			step: function(now, mx) {
 				//as the opacity of current_fs reduces to 0 - stored in "now"
 				//1. scale previous_fs from 80% to 100%
 				scale = 0.8 + (1 - now) * 0.2;
+				
 				//2. take current_fs to the right(50%) - from 0%
-				left = ((1-now) * 50)+"%";
+				//left = ((1-now) * 50)+"%";
+				
 				//3. increase opacity of previous_fs to 1 as it moves in
 				opacity = 1 - now;
-				current_fs.css({'left': left});
+				//current_fs.css({'left': left});
 				previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
 			}, 
 			duration: 800, 
 			complete: function(){
 				current_fs.hide();
+				previous_fs.show(); 		
+				step--;
+				
+				validar_botones();
 				animating = false;
 			}, 
 			//this comes from the custom easing plugin
 			easing: 'easeInOutBack'
 		});
+		
+		//show the previous fieldset
+		
 	});
+	
+	function validar_botones() {
+		
+		if ( jQuery('fieldset:last').is(':visible') ) {
+			jQuery(".submit").show().prop('disabled', false);
+			jQuery(".next").hide().prop('disabled', true);
+			jQuery(".previous").show().prop('disabled', false);
+			
+        } else if ( jQuery('fieldset:first').is(':visible') ) {
+	        
+	        jQuery(".submit").hide().prop('disabled', true);
+	        jQuery(".next").show().prop('disabled', false);
+	        jQuery(".previous").hide().prop('disabled', true);
+	        
+        } else {
+	        jQuery(".submit").hide().prop('disabled', true);
+	        jQuery(".next").show().prop('disabled', false);
+	        jQuery(".previous").show().prop('disabled', false);
+        }
+	}
+	
 	
 	( function ( document, window, index )
 	{
@@ -223,14 +275,15 @@ jQuery(document).ready(function( $ ) {
 		<input type="hidden" name="et_token" value="<?php echo $this->token_id; ?>">
 		
 		<ul id="progressbar">
-			<li class="active">Datos Básicos</li>
-			<li>Opciones Reservas</li>
+			<li class="active">Datos básicos</li>
 			<li>Ubicación</li>
+			<li>Opciones Reservas</li>
+			<li>Comodidades</li>
 			<li>Cupos</li>
 			<li>Publicar</li>
 		</ul>
 
-		<fieldset>
+		<fieldset id="datos_basicos">
 			
 			<div class="row">
 				
@@ -336,21 +389,15 @@ jQuery(document).ready(function( $ ) {
 					</div>					
 									
 				</div>
-				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
-				
+
 			</div>
 
 		
 		</fieldset>
 		
 		
-		<fieldset>
+		<fieldset id="locacion">
+			
 			<div class="row">
 				
 				<div class="row">	
@@ -435,18 +482,12 @@ jQuery(document).ready(function( $ ) {
 	
 				</div>
 				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
-				
 			</div>
+			
 		</fieldset>
 		
 		
-		<fieldset>
+		<fieldset id="opciones_reserva">
 			
 			<div class="row">
 				
@@ -534,19 +575,13 @@ jQuery(document).ready(function( $ ) {
 					</div>
 
 				</div>
-				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
 
 			</div>
 
 		</fieldset>
 				
-		<fieldset>
+		<fieldset id="comodidades_locacion">
+			
 			<div class="row">
 				
 				<div class="row">
@@ -556,14 +591,34 @@ jQuery(document).ready(function( $ ) {
 						<h2 class="fs-title">Comodidades del lugar</h2>
 						<h3 class="fs-subtitle">Información de interés para tus alumnos</h3>
 					
+						<div class="col-xs-12" id="tipo_locacion">
+							
+							<label>Tipo de Locación</label>
+							
+							
+							<select id="et_meta_tipo_locacion" name="et_meta_tipo_locacion">
+								<?php sort($this->locacion_tipo); ?>
+								<?php foreach ( $this->locacion_tipo as $key => $locacion ): ?>		
+																								
+									<option value="<?php echo $locacion; ?>" <?php selected( $locacion , $this->locacion_selected ); ?> ><?php echo $locacion; ?></option>
+								
+								<?php endforeach; ?>
+								
+								<option value="Otro" <?php selected( "Otro" , $this->locacion_selected ); ?> >Otro</option>
+							</select>
+							
+						</div>
+						
 						<div class="nice-checkbox col-xs-12" id="facilities">
 							
-							<?php foreach ($this->facilities_list as $facility): ?>
+							<label>Comodidades en la locación</label>
+							<?php sort($this->facilities_list); ?>
+							<?php foreach ($this->facilities_list as $key => $facility): ?>
 								
 								<div class="check">
-									<input id="<?php echo $facility ?>" type="checkbox" name="facilities[]" value="<?php echo $facility ?>" <?php checked(  in_array( $facility , $this->facilities_selected ) ); ?> />
+									<input id="<?php echo $key ?>" type="checkbox" name="facilities[]" value="<?php echo $facility ?>" <?php checked(  in_array( $facility , $this->facilities_selected ) ); ?> />
 			
-									<label for=<?php echo $facility ?>>
+									<label for=<?php echo $key ?>>
 										<div class="box"><i class="icon-ok"></i></div>
 										<div class="box-text"><?php echo $facility ?></div>
 									</label>
@@ -585,19 +640,12 @@ jQuery(document).ready(function( $ ) {
 					
 				</div>
 				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
-				
 			</div>
 			
 		</fieldset>
 
 		
-	    <fieldset>
+	    <fieldset id="disponibilidad" >
 		    
 		    <div class="row">
 				
@@ -830,19 +878,12 @@ jQuery(document).ready(function( $ ) {
 					
 				</div>
 				
-				<div class="row">
-					<div class="section col-xs-12">
-						<input type="button" name="previous" class="previous action-button" value="Previous" />
-						<input type="button" name="next" class="next action-button" value="Next" />
-					</div>	
-				</div>
-				
 			</div>
 		    	    
 		</fieldset>                            
 		
 		
-		<fieldset>
+		<fieldset id="terminos">
 			
 			<h3>Por favor <a href="#"> lea y acepte </a> nuestros términos y condiciones</h3>
 			
@@ -859,16 +900,19 @@ jQuery(document).ready(function( $ ) {
 					</svg>
 				</label>
 			</div>
-	
-			
-			
-			<br>
-			<input type="button" name="previous" class="previous action-button" value="Previous" />
-			<input type="submit" name="submit" class="submit action-button" value="Submit" />
 			
 		</fieldset>
 		
 		<?php wp_nonce_field( 'publicar_servicio', 'publicar_servicio_nonce' ); ?>
+		
+		<div class="" id="controles">
+			<div class="section col-xs-12">
+				<input type="button" name="previous" class="previous action-button" value="Previous" style="display: none;" disabled />
+				<input type="button" name="next" class="next action-button" value="Next" />
+				
+				<input style="display: none;" type="submit" name="submit" class="submit action-button" value="Submit" disabled />
+			</div>	
+		</div>
 		
 	</form>
 </section>

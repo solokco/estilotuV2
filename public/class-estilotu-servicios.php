@@ -32,8 +32,10 @@ class Estilotu_Servicio {
 	private	$fecha_seleccionada;
 	public	$table_name;
 	public 	$token_id;
-	private $facilities_list = array("Sanitarios" , "Duchas" , "Estacionamiento" , "Area para niños" , "Wifi" , "Hidratación" , "Cafetin");
-	private $facilities_selected = array();
+	private $facilities_selected 	= array();
+	private $facilities_list 		= array( "area_techada" => "Area Techada" , "Sanitarios" => "Sanitarios" , "Duchas" => "Duchas" , "Estacionamiento" => "Estacionamiento" , "area_infantil" => "Area para niños" , "Wifi" => "Wifi" , "Hidratacion" => "Hidratación" , "Cafetin" => "Cafetin");
+	private $locacion_tipo 			= array( "Calle" => "Calle" , "Plaza" => "Plaza" , "Piscina" => "Piscina" , "Gimnasio" => "Gimnasio" , "Parque" => "Parque" , "Cancha_deportiva" => "Cancha Deportiva" );
+	private $locacion_selected;
 	
 	public function __construct() {
 		
@@ -290,7 +292,8 @@ class Estilotu_Servicio {
 					$mapa 				= new Estilotu_Geolocation_Public(); 
 					$lista_paises		= $mapa->lista_paises();
 
-					$this->facilities_selected = isset($this->servicio_meta['facilities'][0]) ? unserialize($this->servicio_meta['facilities'][0]) : array() ;
+					$this->facilities_selected 	= isset($this->servicio_meta['facilities'][0]) ? unserialize($this->servicio_meta['facilities'][0]) : array() ;
+					$this->locacion_selected 	= isset($this->servicio_meta['et_meta_tipo_locacion'][0]) ? $this->servicio_meta['et_meta_tipo_locacion'][0] : null ;
 					
 					wp_enqueue_script('estilotu_duplicar_servicios');
 					
@@ -374,6 +377,10 @@ class Estilotu_Servicio {
 					
 		global $current_user;
 		wp_get_current_user();
+		
+		echo "<pre>";
+		print_r($_POST);
+		echo "</pre>";
 					
 		$user_id			= $current_user->ID;
 		$post_title     	= wp_strip_all_tags( $_POST['nombre_servicio'] );
@@ -388,6 +395,7 @@ class Estilotu_Servicio {
 		$intensidad			= wp_strip_all_tags( $_POST['intensidad']	 );
 		$max_time 			= wp_strip_all_tags( $_POST['et_meta_max_time']  );
 		$facilities		 	= $_POST['facilities'] ;
+		$tipo_locacion		= wp_strip_all_tags( $_POST['et_meta_tipo_locacion'] ) ;
 
 		
 		//ubicacion
@@ -443,6 +451,8 @@ class Estilotu_Servicio {
 		update_post_meta($post_id, 'et_meta_precio_visibilidad',	$precio_visibilidad  );
 		update_post_meta($post_id, 'facilities',	$facilities  );
 		update_post_meta($post_id, 'intensidad',	$intensidad  );
+		update_post_meta($post_id, 'et_meta_tipo_locacion',	$tipo_locacion  );
+		
 		
 		foreach ($ubicacion as $key => $value):
 			

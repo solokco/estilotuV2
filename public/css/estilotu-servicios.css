@@ -23,12 +23,14 @@
 /* 	margin: 0 10%; */
 	
 	/*stacking fieldsets above each other*/
-	/* 	position: absolute; */
+/* 	position: absolute; */
 }
+
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
-/* 	display: none; */
+	display: none;
 }
+
 /*inputs*/
 #msform input[type=text], 
 #msform input[type=number], 
@@ -97,7 +99,7 @@
 	color: #000;
 	text-transform: uppercase;
 	font-size: 9px;
-	width: 20%;
+	width: 16.5%;
 	float: left;
 	position: relative;
 }
@@ -435,7 +437,7 @@
 .nice-checkbox .check input:checked + label .box {
   -webkit-animation: animOn 0.6s 1 forwards;
           animation: animOn 0.6s 1 forwards;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--et-main-rgb) , 0.9);
 }
 .nice-checkbox .check input:checked + label .box i {
   -webkit-transform: translate(-50%, -50%) scale(1);
@@ -443,6 +445,7 @@
   -webkit-transition-duration: 250ms;
           transition-duration: 250ms;
   opacity: 1;
+  color: #FFF;
 }
 .nice-checkbox .check label {
   min-width: 100px;
@@ -465,7 +468,7 @@
   margin-top: 0px !important;
 }
 .nice-checkbox .check label .box {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(var(--et-main-rgb) , 0.5);
   border-radius: 5px;
   position: relative;
   width: 25px;
@@ -482,7 +485,7 @@
 }
 
 .nice-checkbox .check label .box:hover {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--et-main-rgb) , 0.4);
 }
 .nice-checkbox .check label .box i {
   position: absolute;
@@ -577,3 +580,5 @@ label.star:hover { transform: rotate(-15deg) scale(1.3); }
 label.star:before {
   content: '\E9CF';
 }
+
+#controles{position: fixed;bottom: 0px; left: 0px; width: 100%; background:#FFF;border-top:1px solid #CCC;z-index:999;}
