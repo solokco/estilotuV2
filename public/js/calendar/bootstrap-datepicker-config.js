@@ -15,6 +15,8 @@ jQuery(function( $ ) {
 	
 	dias_activos = diff(semana , dias_inactivos);
 	
+	console.log(dias_inactivos);
+	
 	jQuery('#datepicker').datepicker({
 		language: "es",
 		format: 'yyyy-mm-dd',

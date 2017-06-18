@@ -79,8 +79,8 @@ get_header(); ?>
 	
 	//envio variables a jquery
 	wp_register_script ( 'bootstrap-calendar' 			, plugin_dir_url( __FILE__ )		. 'js/calendar/bootstrap-datepicker.min.js'				, array( 'jquery' ), null , false );
-	wp_register_script ('bootstrap-calendar-espanol' 	, plugin_dir_url( __FILE__ )		. 'js/calendar/locales/bootstrap-datepicker.es.min.js'	, array( 'bootstrap-calendar' ), null , false );
-	wp_enqueue_script  ('bootstrap-calendar-config' 	, plugin_dir_url( __FILE__ )		. 'js/calendar/bootstrap-datepicker-config.js'			, array( 'bootstrap-calendar-espanol' ), null , false );
+	wp_register_script ( 'bootstrap-calendar-espanol' 	, plugin_dir_url( __FILE__ )		. 'js/calendar/locales/bootstrap-datepicker.es.min.js'	, array( 'bootstrap-calendar' ), null , false );
+	wp_enqueue_script  ( 'bootstrap-calendar-config' 	, plugin_dir_url( __FILE__ )		. 'js/calendar/bootstrap-datepicker-config.js'			, array( 'bootstrap-calendar-espanol' ), null , false );
 
 	wp_localize_script ( 'bootstrap-calendar-config', 'config_vars', $config_vars );
 	wp_localize_script ( 'bootstrap-calendar-config', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );	

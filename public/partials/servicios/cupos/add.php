@@ -26,47 +26,162 @@ jQuery(document).ready(function( $ ) {
 	var step = 0;
 	var current_fieldset;
 	
+	jQuery("#nombre_servicio").change(function(){
+		
+		value = jQuery(this).val();
+		value = value.replace(/ +(?= )/g,'');	
+		
+		jQuery(this).val(value);
+		
+	});
+	
 	$(".next").click(function(){
 		
 		jQuery("#msform").validate( {
-		
-		//ignore: ":hidden",
-		
+			
+			ignore: [],
+			
 			rules: {
+				
+				/* ****************************** 	*/
+				/* DATOS BASICOS 					*/
+				/* ****************************** 	*/
 				nombre_servicio: {
-					required: true, 
+					required: {
+						depends: function () {
+		                    return ( $('#nombre_servicio').is(':visible') );
+		                }
+					}, 
+					
+					normalizer: function(value) {
+						// Note: the value of `this` inside the `normalizer` is the corresponding
+						// DOMElement. In this example, `this` reference the `username` element.
+						// Trim the value of the input
+						return $.trim(value);
+					},
+					
 					minlength: 5,
 					maxlength: 50
 				},
 				
+				/* ****************************** 	*/
+				/* DIRECCIONA 						*/
+				/* ****************************** 	*/
+				'ubicacion[et_meta_direccion_1]': {
+					required: {
+						depends: function () {
+		                    return ( $('#locacion').is(':visible') );
+		                }
+					},
+				},
+				
+				'ubicacion[et_meta_ciudad]': {
+					required: {
+						depends: function () {
+		                    return ( $('#locacion').is(':visible') );
+		                }
+					},
+				},
+				
+				'ubicacion[et_meta_estado]': {
+					required: {
+						depends: function () {
+		                    return ( $('#locacion').is(':visible') );
+		                }
+					},
+				},
+				
+				'ubicacion[et_meta_estado]': {
+					required: {
+						depends: function () {
+		                    return ( $('#locacion').is(':visible') );
+		                }
+					},
+				},
+				
+				'ubicacion[et_meta_zipcode]': {
+					required: {
+						depends: function () {
+		                    return ( $('#locacion').is(':visible') );
+		                }
+					},
+				},
+				
+				
+				/* ****************************** 	*/
+				/* DATOS 							*/
+				/* ****************************** 	*/
 				et_meta_precio: {
-					required: true, 
+					required: {
+						depends: function () {
+		                    return ( $('#et_meta_precio').is(':visible') );
+		                }
+					}, 
 					number: true
 				},
 				
-				imagen_destacada: {
-					required: {
-						depends: function(element) {
-							return !jQuery(".imagen_post").length > 0 ;
-			        	}
-					},
-					
-					extension: {
-						param: "jpg|png",
-						depends: function(element) {
-							return !jQuery(".imagen_post").length > 0 ;
-			        	}
+				
+				/* ****************************** 	*/
+				/* CUPOS 							*/
+				/* ****************************** 	*/
+				'disponible[lunes][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
 					}
-	
 				},
 				
-				disponible: {
-					required: true,
-	                minlength: 1
+				'disponible[martes][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
 				},
 				
+				'disponible[miercoles][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
+				},
+				
+				'disponible[jueves][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
+				},
+				
+				'disponible[viernes][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
+				},
+				
+				'disponible[sabado][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
+				},
+				
+				'disponible[domingo][activo]': {
+					require_from_group: {
+						param: [1, ".disponibilidad_grupo"],
+						depends: function(element) { return ( $('#disponibilidad').is(':visible') ) }
+					}
+				},
+				
+				/* ****************************** 	*/
+				/* TERMINOS Y CONDICIONES 			*/
+				/* ****************************** 	*/
 				generalTerms: {
-					required: true
+					required: {
+						depends: function () {
+		                    return ( $('#terminos').is(':visible') );
+		                }
+					}
 				}
 			},
 			
@@ -82,13 +197,40 @@ jQuery(document).ready(function( $ ) {
 				},
 				
 				imagen_destacada: {
-					required: "Debes seleccionar una imagen", 
-					extension: "Recuerda que el formato debe ser JPG o PNG"
+					required: "Debe seleccionar una imagen para su servicio"
 				},
 				
-				disponible: {
+				'disponible[lunes][activo]': {
 					required: "Debes seleccionar por lo menos un día con cupos",
 	                minlength: 1
+				},
+				
+				'disponible[lunes][activo]': {
+					require_from_group: "Debes seleccionar un día para continuar"
+				},
+				
+				'disponible[martes][activo]': {
+					require_from_group: ""
+				},
+				
+				'disponible[miercoles][activo]': {
+					require_from_group: ""
+				},
+				
+				'disponible[jueves][activo]': {
+					require_from_group: ""
+				},
+				
+				'disponible[viernes][activo]': {
+					require_from_group: ""
+				},
+				
+				'disponible[sabado][activo]': {
+					require_from_group: ""
+				},
+				
+				'disponible[domingo][activo]': {
+					require_from_group: ""
 				},
 				
 				generalTerms: {
@@ -97,21 +239,41 @@ jQuery(document).ready(function( $ ) {
 				
 			},
 			
-			errorPlacement: function(error, element) { 
-		      element.addClass('error');
-		    },        
+			errorPlacement: 
+			
+				function(error, element) {
+				    
+				    if ( $('#disponibilidad').is(':visible') ) {
+					    
+					    error.insertAfter("#disponibilidad .col-derecha .col-xs-12");
+					    
+					} else if ( $('#terminos').is(':visible') ) {
+						
+						error.insertAfter("#terminos h3");
+						
+					} else {
+						
+						element.addClass('error');
+						error.insertBefore(element);	
+						
+					}
+			},
+			
+			errorElement: "p",
 	
 		    highlight: function (element) {
 		        $(element).addClass('nonvalid')
 		          .closest('.form-group').removeClass('error');
 		    }
-	
 			
-/*
-			submitHandler: function(form) {
-				form.submit();
+			/*
+			,submitHandler: function() {
+				alert("a enviar");
+				jQuery("#msform").submit();
 			}
-*/
+			*/
+		
+			
 	
 		} );
 		
@@ -264,6 +426,10 @@ jQuery(document).ready(function( $ ) {
 <style>
 
 	#map {height:350px;}
+	
+	.nonvalid {border: 1px solid green !important;}
+	.error:not(p) {border: 1px solid red !important;}
+	p.error {color: red;}
 
 </style>
 
@@ -280,6 +446,7 @@ jQuery(document).ready(function( $ ) {
 			<li>Opciones Reservas</li>
 			<li>Comodidades</li>
 			<li>Cupos</li>
+			<li>Términos y Condiciones</li>
 			<li>Publicar</li>
 		</ul>
 
@@ -346,7 +513,7 @@ jQuery(document).ready(function( $ ) {
 					    	
 							$editor_id = 'description';
 							$editro_settings = array (
-								//'media_buttons' => false,
+								'media_buttons' => false,
 								'quicktags'		=> false,
 								'wpautop'		=> false,
 								'teeny'			=> true
@@ -361,19 +528,26 @@ jQuery(document).ready(function( $ ) {
 					<div class="section col-xs-12 col-md-6 col-derecha">
 											
 						<div class="section col-xs-12">
-						
+							
+							<?php 
+							
+							$tiene_imagen = false;
+							
+							if ( !empty( $this->post_id ) && has_post_thumbnail ( $this->post_id ) )
+								$tiene_imagen = true;  ?>
+							
 							<label for="description" class="field-label"><h4>Imagen: <em> * </em></h4> </label>
 		
 							<br>
 								
 							<div class="box">
-								<input type="file" name="imagen_destacada" accept=".jpg, .png" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" <?php if ( empty( $this->post_id ) ) echo "required";  ?> />
-								<label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Seleccionar portada&hellip;</span></label>
+								<input type="file" name="imagen_destacada" accept="image/png , image/jpg , image/jpeg" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" <?php if ( empty( $this->post_id ) ) echo "required";  ?> />
+								<label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span><?php echo $tiene_imagen ? _e("Cambiar portada&hellip;") : _e("Seleccionar portada&hellip;"); ?></span></label>
 								<span class="small-text"> Solo se permiten imágenes tipo JPG y PNG - Máximo de 1MB </span> 
 							</div>
 							
 							<?php 
-							if ( !empty( $this->post_id ) && has_post_thumbnail ( $this->post_id ) ): ?>
+							if ( $tiene_imagen ): ?>
 								<br>
 								
 								<h4>Imagen actual</h4>
@@ -385,6 +559,27 @@ jQuery(document).ready(function( $ ) {
 							?>
 			
 						</div>
+						
+						<!--
+						<div class="section col-xs-12">
+							
+							<div class="ibenic_upload_message"></div>
+							<div id="ibenic_file_upload" class="servicio-gallery-upload">
+								<input type="file" id="ibenic_file_input" style="opacity:0;" />
+								<p class="ibenic_file_upload_text"><?php _e( 'Upload your file', 'ibenic_upload' ); ?></p>
+							</div>
+
+							<div id="ibenic_file_upload_preview" class="servicio-gallery-upload servicio-gallery-preview" style="display:none;">
+								<div class="ibenic_file_preview"></div>
+								<button data-fileurl="" class="ibenic_file_delete">
+									<?php _e( 'Delete', 'ibenic_upload' ); ?>
+								</button>
+							</div>
+							
+							
+						</div>
+						-->
+						
 
 					</div>					
 									
@@ -461,7 +656,7 @@ jQuery(document).ready(function( $ ) {
 							
 							<div class="space-top-2 col-sm-12 col-md-6">
 								
-								<label for="state"><?php _e("Código Postal" , "estilotu") ?></label>
+								<label for="postal_code"><?php _e("Código Postal" , "estilotu") ?></label>
 								<input name="ubicacion[et_meta_zipcode]" type="text" class="field" id="postal_code"  value="<?php echo isset( $this->servicio_meta['et_meta_zipcode'][0] ) ? $this->servicio_meta['et_meta_zipcode'][0] : '' ;  ?>"></input>
 								
 							</div>
@@ -513,28 +708,28 @@ jQuery(document).ready(function( $ ) {
 						</div>
 						
 						<div class="section col-xs-12">
-							<label>Tiempo previo para cerrar las reservas</label>
+							<label>Se aceptarán reservas hasta</label>
 							
 							<select name="et_meta_close_time" id="et_meta_close_time">
-					            <option value="60" <?php selected( $et_meta_close_time,  60 ); ?>>01 minuto</option>
-					            <option value="300" <?php selected( $et_meta_close_time,  300 ); ?>>05 minutos</option>
-					            <option value="600" <?php selected( $et_meta_close_time,  600 ); ?>>10 minutos</option>
-					            <option value="900" <?php selected( $et_meta_close_time,  900 ); ?>>15 minutos</option>
-					            <option value="1800" <?php selected( $et_meta_close_time,  1800 ); ?>>30 minutos</option>
-					            <option value="3600" <?php selected( $et_meta_close_time,  3600 ); ?>>1 hora</option>
-					            <option value="5400" <?php selected( $et_meta_close_time,  5400 ); ?>>1 hora 30 minutos</option>
-					            <option value="7200" <?php selected( $et_meta_close_time,  7200 ); ?>>2 horas</option>
-					            <option value="9000" <?php selected( $et_meta_close_time,  9000 ); ?> >2 horas 30 minutos</option>
-					            <option value="10800" <?php selected( $et_meta_close_time, 10800 );?>>3 horas</option>
-					            <option value="14400" <?php selected( $et_meta_close_time, 14400 ); ?>>4 horas </option>
-					            <option value="18000" <?php selected( $et_meta_close_time, 18000 ); ?>>5 horas</option>
-					            <option value="21600" <?php selected( $et_meta_close_time, 21600 ); ?>>6 horas</option>
-					            <option value="28800" <?php selected( $et_meta_close_time, 28800 ); ?>>8 horas</option>
-					            <option value="36000" <?php selected( $et_meta_close_time, 36000 ); ?>>10 horas</option>
-					            <option value="43200" <?php selected( $et_meta_close_time, 43200 ); ?>>12 horas</option>
-					            <option value="86400" <?php selected( $et_meta_close_time, 86400 ); ?>>24 horas</option>
-					            <option value="172800" <?php selected( $et_meta_close_time, 172800 ); ?>>48 horas</option>
-					            <option value="604800" <?php selected( $et_meta_close_time, 604800 ); ?>>1 semana</option>
+					            <option value="60" <?php selected( $et_meta_close_time,  60 ); ?>>01 minuto antes de comenzar</option>
+					            <option value="300" <?php selected( $et_meta_close_time,  300 ); ?>>05 minutos antes de comenzar</option>
+					            <option value="600" <?php selected( $et_meta_close_time,  600 ); ?>>10 minutos antes de comenzar</option>
+					            <option value="900" <?php selected( $et_meta_close_time,  900 ); ?>>15 minutos antes de comenzar</option>
+					            <option value="1800" <?php selected( $et_meta_close_time,  1800 ); ?>>30 minutos antes de comenzar</option>
+					            <option value="3600" <?php selected( $et_meta_close_time,  3600 ); ?>>1 hora antes de comenzar</option>
+					            <option value="5400" <?php selected( $et_meta_close_time,  5400 ); ?>>1 hora 30 minutos antes de comenzar</option>
+					            <option value="7200" <?php selected( $et_meta_close_time,  7200 ); ?>>2 horas antes de comenzar</option>
+					            <option value="9000" <?php selected( $et_meta_close_time,  9000 ); ?> >2 horas 30 minutos antes de comenzar</option>
+					            <option value="10800" <?php selected( $et_meta_close_time, 10800 );?>>3 horas antes de comenzar</option>
+					            <option value="14400" <?php selected( $et_meta_close_time, 14400 ); ?>>4 horas antes de comenzar </option>
+					            <option value="18000" <?php selected( $et_meta_close_time, 18000 ); ?>>5 horas antes de comenzar</option>
+					            <option value="21600" <?php selected( $et_meta_close_time, 21600 ); ?>>6 horas antes de comenzar</option>
+					            <option value="28800" <?php selected( $et_meta_close_time, 28800 ); ?>>8 horas antes de comenzar</option>
+					            <option value="36000" <?php selected( $et_meta_close_time, 36000 ); ?>>10 horas antes de comenzar</option>
+					            <option value="43200" <?php selected( $et_meta_close_time, 43200 ); ?>>12 horas antes de comenzar</option>
+					            <option value="86400" <?php selected( $et_meta_close_time, 86400 ); ?>>24 horas antes de comenzar</option>
+					            <option value="172800" <?php selected( $et_meta_close_time, 172800 ); ?>>48 horas antes de comenzar</option>
+					            <option value="604800" <?php selected( $et_meta_close_time, 604800 ); ?>>1 semana antes de comenzar</option>
 					        </select>
 						</div>
 						
@@ -702,7 +897,7 @@ jQuery(document).ready(function( $ ) {
 									<div class='checkbox turn_switch'>
 										<label><?php echo $dia_txt ?></label>
 										<label class='checkbox__container'>
-											<input class='checkbox__toggle ShowHideReset' type='checkbox' name="disponible[<?php echo $dia_txt ?>][activo]" id="<?php echo "check_" . $dia_txt ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? "checked" : ''; ?> >
+											<input class='checkbox__toggle ShowHideReset disponibilidad_grupo' type='checkbox' name="disponible[<?php echo $dia_txt ?>][activo]" id="<?php echo "check_" . $dia_txt ?>" <?php if (isset($horarios_servicio) ) echo array_key_exists( $dia , $horarios_servicio["dias_activados"] ) ? "checked" : ''; ?> >
 											<span class='checkbox__checker'></span>
 											<span class='checkbox__cross'></span>
 											<span class='checkbox__ok'></span>
@@ -890,7 +1085,7 @@ jQuery(document).ready(function( $ ) {
 			<div class='checkbox turn_switch'>
 				<label>Acepto</label>
 				<label class='checkbox__container'>
-					<input class='checkbox__toggle' type='checkbox' name="generalTerms" required >
+					<input class='checkbox__toggle do-not-ignore' type='checkbox' name="generalTerms" id="generalTerms" required >
 					<span class='checkbox__checker'></span>
 					<span class='checkbox__cross'></span>
 					<span class='checkbox__ok'></span>
@@ -900,6 +1095,12 @@ jQuery(document).ready(function( $ ) {
 					</svg>
 				</label>
 			</div>
+			
+		</fieldset>
+		
+		<fieldset id="terminos">
+			
+			<h2>Listos para enviar</h2>
 			
 		</fieldset>
 		

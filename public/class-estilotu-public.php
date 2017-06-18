@@ -89,7 +89,7 @@ class Estilotu_Public {
 		
 		
 		wp_enqueue_script( 'jquery-validate' 	, plugin_dir_url( __FILE__ )		. 'js/jquery.validate.min.js'			, array( 'jquery' ), $this->version , true );
-		wp_register_script( 'additional-methods' 	, plugin_dir_url( __FILE__ )	. 'js/additional-methods.min.js'		, array( 'jquery-validate' ), $this->version , true );
+		wp_enqueue_script( 'additional-methods' 	, plugin_dir_url( __FILE__ )	. 'js/additional-methods.min.js'		, array( 'jquery-validate' ), $this->version , true );
 		
 		wp_register_script( 'estilotu_servicios_list_map_init', plugin_dir_url( __FILE__ ) . 'js/map/servicios-list-mapa-init.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script( 'estilotu_servicios_list_map_init', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
@@ -109,6 +109,9 @@ class Estilotu_Public {
 		
 		wp_register_script( 'estilotu_citas_opciones' 	, plugin_dir_url( __FILE__ )	. 'js/citas/citas-opciones.js'		, array( 'jquery' ), $this->version );
 		wp_localize_script( 'estilotu_citas_opciones', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+		
+		//wp_register_script( 'estilotu-imagesuploader', plugin_dir_url( __FILE__ ) . 'js/servicios-imagesuploader.js' , array('jquery'), $this->version , true );
+		//wp_localize_script( 'estilotu-imagesuploader', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		
 		wp_enqueue_script("jquery-effects-core");
 

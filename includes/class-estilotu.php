@@ -69,7 +69,7 @@ class Estilotu {
 	public function __construct() {
 
 		$this->plugin_name = 'estilotu';
-		$this->version = "1.1.26";
+		$this->version = "1.1.3";
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -227,6 +227,9 @@ class Estilotu {
 		
 		$this->loader->add_action( 'wp_ajax_closest_services', $servicio, 'closest_services' );
 		$this->loader->add_action( 'wp_ajax_nopriv_closest_services', $servicio, 'closest_services' );
+		
+		//$this->loader->add_action( 'wp_ajax_ibenic_file_upload', $servicio, 'ibenic_file_upload' );
+		//$this->loader->add_action( 'wp_ajax_nopriv_ibenic_file_delete', $servicio , 'ibenic_file_delete');
 		
 		// CITAS		
 		$citas = new Estilotu_Citas();
