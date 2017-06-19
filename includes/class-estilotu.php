@@ -7,7 +7,7 @@
  * public-facing side of the site and the admin area.
  *
  * @link       http://estoesweb.com
- * @since      1.0.0
+ * @since      3.0.0
  *
  * @package    Estilotu
  * @subpackage Estilotu/includes
@@ -69,7 +69,7 @@ class Estilotu {
 	public function __construct() {
 
 		$this->plugin_name = 'estilotu';
-		$this->version = "1.1.3";
+		$this->version = "3.0.0";
 
 		$this->load_dependencies();
 		$this->set_locale();
