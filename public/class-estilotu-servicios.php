@@ -316,8 +316,8 @@ class Estilotu_Servicio {
 				// si el post es nuevo
 				else {
 					
-					$post_id = $this->guardar_servicio( "editar" );
-										
+					$post_id = $this->guardar_servicio( "editar" );			
+					
 					if ( $post_id ): ?>
 						
 						<h2 class='alert alert-success'> <?php _e( "Su servicio se ha editado con éxito" , "estilotu" ); ?> </h2>
@@ -684,7 +684,7 @@ class Estilotu_Servicio {
 		/* ****************************************** 		*/
 		/* BUSCO LOS DIAS LIBRES Y OCUPADOS DEL SERVICIO	*/
 		/* ******************************************		*/
-		$dias = array("lunes","martes","miercoles","jueves","viernes","sabado","domingo" );
+		$dias = array("domingo","lunes","martes","miercoles","jueves","viernes","sabado" );
 		$dias_activados = array();
 		$dias_desactivados = array();
 				

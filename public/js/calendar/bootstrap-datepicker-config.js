@@ -6,6 +6,7 @@ jQuery(function( $ ) {
 	var semana = [0, 1, 2, 3, 4, 5 , 6];
 	var dias_inactivos 	= JSON.stringify(config_vars.disponible['dias_desactivados']);
 	var dias_activos = [];
+	var dias_inactivos_modificado = [];
 	
 	function diff(A, B) {
 	    return A.filter(function (a) {
@@ -13,9 +14,8 @@ jQuery(function( $ ) {
 	    });
 	}
 	
-	dias_activos = diff(semana , dias_inactivos);
-	
-	console.log(dias_inactivos);
+	dias_activos 	= diff(semana , dias_inactivos);
+
 	
 	jQuery('#datepicker').datepicker({
 		language: "es",
@@ -36,6 +36,7 @@ jQuery(function( $ ) {
 	    
 	    jQuery( "body" ).after( "<div class='loading'>Loading&#8230;</div>" );
 	    
+	    console.log(fecha_servicio);
 	    		
 		jQuery.ajax({
 	        url: ajax_object.ajax_url,
