@@ -134,7 +134,7 @@ class Estilotu_Servicio {
 			'post_type'        => 'servicios',
 			'post_mime_type'   => '',
 			'post_parent'      => '',
-			'author'	   => '',
+			'author'			=> $id_provider,
 			'author_name'	   => '',
 			'post_status'      => 'publish',
 			'suppress_filters' => true 
