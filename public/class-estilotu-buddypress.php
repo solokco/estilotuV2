@@ -32,23 +32,14 @@ class Estilotu_Buddypress extends Estilotu_Public {
 	/* ********************************************** */
 	public static function validar_miebro( $user_id = null  ) {
 	
-		global $current_user;
-		
 		if ( !isset( $user_id ) )
-			$user_id = $current_user->ID;
+			$user_id = get_current_user_id();
 		
-		return wc_memberships_get_user_active_memberships( $user_id );
-		
-		/* ********************************************* */
-		/* REVISO SI ESTA USANDO WOOCOMMERCE MEMBERSHIP  */
-		/* ********************************************* */
-		//$plan_membresia =  wc_memberships_get_user_memberships($user_id); 
-		
-		//if ( !empty( $plan_membresia ) )
-		//	return true; 
-		/* ********************************************* */
-
-		//return false;
+		if ( wc_memberships_is_user_active_member( $user_id, 'bronce' ) || wc_memberships_is_user_active_member( $user_id, 'plata' ) || wc_memberships_is_user_active_member( $user_id, 'oro' ) || wc_memberships_is_user_active_member( $user_id, 'platinum' ) ) {
+		    return true;
+		} else {
+		    return false;
+		}
 	}
 	/* ********************************************** */
 	
@@ -92,7 +83,7 @@ class Estilotu_Buddypress extends Estilotu_Public {
 		/* ********************************************* */
 		/* SI EL USUARIO MOSTRADO ES IGUAL AL LOGEADO */
 		/* ********************************************* */
-		if ( $this->validar_miebro() ):
+		if ( $this->validar_miebro( $id_usuario_seleccionado ) ):
 			
 			bp_core_new_subnav_item( 
 				array( 
