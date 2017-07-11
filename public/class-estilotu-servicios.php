@@ -815,11 +815,11 @@ class Estilotu_Servicio {
 		
 		$servicios_repetidos = $_POST['servicios_repetidos'];
 		
-		$lat = $_POST['latitud'];
-		$lng = $_POST['longitud'];
-		$categoria = array();
-		$unit = $_POST['unit'];
-		$distancia = $_POST['radius'];;
+		$lat 		= $_POST['latitud'];
+		$lng 		= $_POST['longitud'];
+		$categoria 	= array();
+		$unit 		= $_POST['unit'];
+		$distancia 	= $_POST['radius'];;
 		
 		if ( $unit == 'km' ) { $radius_earth = 6371.009; }
 		elseif ( $unit == 'mi' ) { $radius_earth = 3958.761; }
@@ -921,6 +921,9 @@ class Estilotu_Servicio {
 		    $servicio[$serv_id]["category"] = get_the_terms($serv_id , 'servicios-categoria');
 		    $servicio[$serv_id]["service_url"] = get_post_permalink( $serv_id );
 		    $servicio[$serv_id]["thumb_url"] = wp_get_attachment_image_src( get_post_thumbnail_id( $serv_id ) , 'medium' );
+		    
+		    if ( function_exists( 'get_favorites_button' ) ) 
+			    $servicio[$serv_id]["favorite_button"] = get_favorites_button( $serv_id );
 
 		    
 		}

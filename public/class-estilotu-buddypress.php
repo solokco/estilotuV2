@@ -67,6 +67,7 @@ class Estilotu_Buddypress extends Estilotu_Public {
 			)
 		);
 		
+/*
 		bp_core_new_nav_item(
 			array(
 				'name'                => __( 'Consultas Online', 'estilotu' ),
@@ -79,6 +80,7 @@ class Estilotu_Buddypress extends Estilotu_Public {
 				'parent_slug'         => $bp->slug
 			)
 		);
+*/
 		
 		/* ********************************************* */
 		/* SI EL USUARIO MOSTRADO ES IGUAL AL LOGEADO */
