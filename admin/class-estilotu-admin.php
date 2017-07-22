@@ -39,6 +39,8 @@ class Estilotu_Admin {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+	
+	public $citas_obj;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -426,6 +428,66 @@ class Estilotu_Admin {
 		$wp_user->add_role( 'subscriber' );
 
 	}
+	
+	/* *********************************************** */
+	/* OPTIONS PAGE */ 
+	/* *********************************************** */
+	public function option_page_estilotu () { 
+	
+		add_menu_page(
+			'EstiloTu Options',
+			'EstiloTu',
+			'manage_options',
+			'estilotu',
+			array(
+				$this,
+				'option_page_estilotu_settings'
+			),
+			'dashicons-awards',
+			10
+		);
+		
+		add_submenu_page( 'estilotu' , 'Settings ' , 'Settings' , 'manage_options', 'estilotu_settings', array( $this, 'option_page_estilotu_settings' ) );
+		add_submenu_page( 'estilotu' , 'Citas ' , 'Citas' , 'manage_options', 'estilotu_citas', array( $this, 'option_page_estilotu_citas' ) );
+		
+		remove_submenu_page('estilotu','estilotu');
+	}
+
+
+	public function option_page_estilotu_settings () { 
+		
+		if ( !current_user_can('manage_options') ): 
+			wp_die( __('You do not have sufficient permissions to access this page.') );
+    	endif;
+    	
+    	require_once ESTILOTU_PATH . 'admin/partials/estitlotu-page-settings.php' ;
+    	
+	}
+	
+	public function option_page_estilotu_citas () { 
+		
+		if ( !current_user_can('manage_options') ): 
+			wp_die( __('You do not have sufficient permissions to access this page.') );
+    	endif;
+    	
+    	//$citas = new Estilotu_Citas();
+    	
+    	
+    	if (!class_exists('WP_List_Table')){
+
+		   require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+		}
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-citas.php';
+    	
+    	$wp_list_table = new Estilotu_Admin_Citas();	
+    	
+    	$wp_list_table->prepare_items();
+
+    	require_once ESTILOTU_PATH . 'admin/partials/estitlotu-page-citas.php' ;
+		
+	}
+	/* *********************************************** */	
 	
 	/* *********************************************** */
 	/* REGISTRAR VACACIONES */ 

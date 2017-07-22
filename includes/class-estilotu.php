@@ -115,6 +115,7 @@ class Estilotu {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-citas.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -187,7 +188,7 @@ class Estilotu {
 		$this->loader->add_action( 'wc_memberships_user_membership_saved', $plugin_admin, 'change_user_role_author' );
 		//$this->loader->add_action( 'wc_memberships_user_membership_status_changed', $plugin_admin, 'change_user_role_subscriber' );
 		
-		
+		$this->loader->add_action( 'admin_menu', $plugin_admin , 'option_page_estilotu' );
 		
 	}
 

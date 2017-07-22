@@ -63,31 +63,92 @@ class Estilotu_Citas extends Estilotu_Public {
 	* @since    1.0.0
 	*/
 	
-	private function obtener_citas( $user_id = null, $status = null , $fecha = null ) {  
+	public static function cantidad_citas( $user_id = null , $fecha = null , $status = "confirm" ) {
+		global $wpdb;
+		global $wp_query;
+		
+		if ( $fecha == null ):
+
+			$time_period = "appoinment_date >= CURDATE() ";
+			
+		elseif ( $fecha == "all" ): 
+			
+			$time_period = "appoinment_date >= CURDATE() OR appoinment_date <= CURDATE() ";
+		
+		else:
+		
+			$time_period = "appoinment_date = '$fecha' ";
+		
+		endif;
+		
+		$query = "SELECT COUNT(*) FROM {$wpdb->prefix}bb_appoinments WHERE ($time_period) AND appoinment_status = '$status' ";
+		
+		if ($user_id == null):
+			
+			$user_id = get_current_user_id();
+			$user_case = $wpdb->prepare(' AND appoinment_provider_id = %d ', $user_id);
+			
+			$query .= $user_case;
+		
+		elseif ($user_id != "all"):
+			
+			$user_case = $wpdb->prepare(' AND appoinment_provider_id = %d ', $user_id);
+			
+			$query .= $user_case;
+			
+		endif;
+		
+		return $wpdb->get_var( $query );
+	}
+	
+	public function obtener_citas( $user_id = null , $fecha = null , $status = "confirm" , $type = "OBJECT" , $page_number = 1 , $per_page = 200 ) {  
 		
 		global $wpdb;
 		global $wp_query;
 		global $current_user;
-		
-		// $tablename_citas = $wpdb->prefix . "bb_appoinments";
 						
-		$this->es_historial = isset($wp_query->query_vars['servicios']) && ($wp_query->query_vars['servicios'] == "historial"); 
+		//$this->es_historial = isset($wp_query->query_vars['servicios']) && ($wp_query->query_vars['servicios'] == "historial"); 
 				
-		if ($this->es_historial):
-			$time_period = "appoinment_date < CURDATE()";
+		if ( $fecha == null ):
+
+			$time_period = "appoinment_date >= CURDATE() ";
 			
-		else: 
-			$time_period = "appoinment_date >= CURDATE()";
+		elseif ( $fecha == "all" ): 
+			
+			$time_period = "appoinment_date >= CURDATE() OR appoinment_date <= CURDATE() ";
+		
+		else:
+		
+			$time_period = "appoinment_date = '$fecha' ";
 		
 		endif;
-					
-		if ($user_id == null)
-			$user_id = get_current_user_id();
-			
+		
+/*
 		if ( !isset($fecha) )	
 			$fecha = date("Y-m-d");	
+*/
 		
-		$sql = $wpdb->prepare( "SELECT * FROM $this->tablename_citas WHERE appoinment_provider_id = %d ORDER BY appoinment_date ASC, appoinment_time ASC", $user_id );
+		$query = "SELECT * FROM $this->tablename_citas WHERE ($time_period) AND appoinment_status = '$status' ";
+					
+		if ($user_id == null):
+			
+			$user_id = get_current_user_id();
+			$user_case = $wpdb->prepare('AND appoinment_provider_id = %d ', $user_id);
+			
+			$query .= $user_case;
+
+		elseif ($user_id != "all"):
+			
+			$user_case = $wpdb->prepare(' AND appoinment_provider_id = %d ', $user_id);
+			
+			$query .= $user_case;
+			
+		endif;
+		
+		$query 	.= " ORDER BY appoinment_date ASC, appoinment_time ASC ";
+		$query 	.= " LIMIT $per_page";
+		$query 	.= " OFFSET " . ( $page_number - 1 ) * $per_page;
+		
 		// es proveedor
 /*
 		if ( $this->ver_citas == "recibidas" && $this->es_proveedor ):
@@ -105,7 +166,7 @@ class Estilotu_Citas extends Estilotu_Public {
 		endif;
 */
 									
-		$result = $wpdb->get_results( $sql, OBJECT );
+		$result = $wpdb->get_results( $query , $type );
 						
 		return $result;
 	}
