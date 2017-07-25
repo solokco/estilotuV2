@@ -53,6 +53,7 @@ class Estilotu_Admin_Citas extends WP_List_Table {
             'appoinment_time' 			=> 'Hora',
             'appoinment_provider_id'	=> 'Entrenador',
             'appoinment_service_id'    	=> 'Servicio',
+            'appoinment_user_id'		=> 'Participante',
             'appoinment_status'      	=> 'Status'
         );
         return $columns;
@@ -174,6 +175,19 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 		
 	}
 	
+	public function column_appoinment_user_id( $item ) {
+		
+		$user_id = get_userdata( (int) $item[ "appoinment_user_id" ] );
+            	
+    	if ( ! $user_id  )
+    		$user_id = "Usuario no existe";
+    	else
+    		$user_id = $user_id->user_login;
+
+    	return $user_id;
+		
+	}
+	
 	public function column_appoinment_service_id( $item ) {
 
 		$titulo_servicio = get_the_title( $item[ "appoinment_service_id" ] );
@@ -282,7 +296,7 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 				<?php $providers = $wpdb->get_results( "SELECT DISTINCT appoinment_provider_id FROM $tablename_citas" );?>
 				<select name="provider-filter" class="ewc-provider-status">
 				
-					<option value=""><? _e( "Filtrar por Entrenador" , "estilotu"); ?></option>
+					<option value=""><?php _e( "Filtrar por Entrenador" , "estilotu"); ?></option>
 					<?php
 	                foreach( $providers as $provider ) { 
 						
@@ -293,7 +307,7 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 				    	else
 				    		$provider_name = $provider_info->user_login; ?>
 						
-						<option value="<?php echo $provider->appoinment_provider_id; ?>" <?php isset( $_POST['provider-filter'] ) ? selected( $_POST['provider-filter'] , $provider->appoinment_provider_id ) : ""; ?>><?php echo $provider_name; ?></option>
+						<option value="<?php echo $provider->appoinment_provider_id; ?>" <?php isset( $_POST['provider-filter'] ) ? (selected( $_POST['provider-filter'] , $provider->appoinment_provider_id )) : ""; ?>><?php echo $provider_name; ?></option>
 
 	                <?php } ?>
 	                
@@ -302,7 +316,7 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 				<?php $status = array( "confirm" => "confirm" , "cancel" => "cancel" , "on hold" => "on hold"); ?> 
 	            <select name="status-filter" class="ewc-filter-status">
 	                
-	                <option value=""><? _e( "Filtrar por Status" , "estilotu"); ?></option>
+	                <option value=""><?php _e( "Filtrar por Status" , "estilotu"); ?></option>
 	                
 	                <?php
 	                

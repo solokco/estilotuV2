@@ -331,6 +331,7 @@ class Estilotu_Citas extends Estilotu_Public {
 		
 		$args = array(
 			"user_id"	=> "all",
+			"provider_id"	=> get_current_user_id()
 		);
 		
 		$this->is_member = Estilotu_Buddypress::validar_miebro();
