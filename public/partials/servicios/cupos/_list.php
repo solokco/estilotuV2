@@ -16,6 +16,8 @@
 -->
 
 <?php 
+global $bp;
+$id_usuario_seleccionado = bp_displayed_user_id();
 	
 if ( $the_query->have_posts() ) : 
 
@@ -37,15 +39,15 @@ if ( $the_query->have_posts() ) :
 				</a>
 			</h2>
 			
-			<small><?php the_time('F jS, Y'); ?> by <?php the_author_posts_link(); ?></small>
-			
 			<div class="entry">
 				<?php the_content(); ?>
 			</div>
 			
 			<p class="postmetadata"><?php _e( 'Posted in' ); ?> <?php the_category( ', ' ); ?></p>
 			
-			<a href="<?php echo esc_url(add_query_arg( 'id_servicio' , get_the_ID() , bp_loggedin_user_domain() . "servicios/editar/" ) ); ?>">Editar</button>
+			<?php if ( $id_usuario_seleccionado == $bp->loggedin_user->id ): ?>
+				<a href="<?php echo esc_url(add_query_arg( 'id_servicio' , get_the_ID() , bp_loggedin_user_domain() . "servicios/editar/" ) ); ?>">Editar</button>
+			<?php endif;?>
 			
 		</div>
 

@@ -80,18 +80,39 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 		
 		$status_cita 	= !empty( $_REQUEST['status-filter'] ) ? $_REQUEST['status-filter'] : 'confirm';
 		$proveedor_cita = !empty( $_REQUEST['provider-filter'] ) ? $_REQUEST['provider-filter'] : 'all';
+		$user_id		= !empty( $_REQUEST['user_id-filter'] ) ? $_REQUEST['user_id-filter'] : 'all';
+		$fecha_from 	= !empty( $_REQUEST['date_from-filter'] ) ? $_REQUEST['date_from-filter'] : date("Y-m-d");
+		$fecha_to 		= !empty( $_REQUEST['date_to-filter'] ) ? $_REQUEST['date_to-filter'] : date("Y-m-d", strtotime("+1 week") );
+		
+		$fecha = array("from" => $fecha_from, "to" => $fecha_to);
 		
 		$data = new Estilotu_Citas();
 		
 		$per_page 	= 200;
 		$current_page = $this->get_pagenum();
-		$total_items = $data->cantidad_citas( $proveedor_cita , "all" , $status_cita );
+		$total_items = $data->cantidad_citas( $proveedor_cita , "" , $status_cita );
+		
+		$args = array(
+		
+			"fecha" => array(
+				"from" 	=>	$fecha_from,
+				"to" 	=> 	$fecha_to
+				
+			),
+			
+			"status" 	=> $status_cita,
+			"provider_id"	=> $proveedor_cita,
+			"user_id"	=> $user_id,
+			"per_page"	=> $per_page,
+			"type"		=> "ARRAY_A",	
+			"page_number" => $current_page
+		);
 		
 		$this->_column_headers = array($columns, $hidden, $sortable);
 		
 		$this->process_bulk_action();
 		
-		$data = $data->obtener_citas( $proveedor_cita , "all" , $status_cita , "ARRAY_A" , $current_page , $per_page );
+		$data = $data->obtener_citas( $args );
 		
 		 /**
          * This checks for sorting input and sorts the data in our array accordingly.
@@ -258,35 +279,11 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 
 	        <div class="alignleft actions bulkactions">
 
-		        <?php
-		        
-		        $status = array( "confirm" => "confirm" , "cancel" => "cancel" , "on hold" => "on hold");
-		        
-		        //$wpdb->get_results('select * from '.$tablename.' order by title asc', ARRAY_A);
-		        
-		       ?>
-		            
-	            <select name="status-filter" class="ewc-filter-status">
-	                
-	                <option value=""><? _e( "Filter by Status" , "estilotu"); ?></option>
-	                
-	                <?php
-	                
-	                foreach( $status as $value => $stat ) { ?>
-	                    
-						<option value="<?php echo $value; ?>" <?php isset( $_POST['status-filter'] ) ? selected( $_POST['status-filter'] , $stat ) : ""; ?>><?php echo $stat; ?></option>
-
-	                <?php } ?>
-
-	            </select>
-		       
-		       
 				<?php $providers = $wpdb->get_results( "SELECT DISTINCT appoinment_provider_id FROM $tablename_citas" );?>
-				
 				<select name="provider-filter" class="ewc-provider-status">
 				
+					<option value=""><? _e( "Filtrar por Entrenador" , "estilotu"); ?></option>
 					<?php
-	                
 	                foreach( $providers as $provider ) { 
 						
 						$provider_info = get_userdata( (int) $provider->appoinment_provider_id );
@@ -302,8 +299,90 @@ class Estilotu_Admin_Citas extends WP_List_Table {
 	                
 				</select>
 				
-				<?php submit_button( __( 'Filter' ), '', 'filter_action', false ,  array( 'id' => 'post-query-submit' ) ); ?>
+				<?php $status = array( "confirm" => "confirm" , "cancel" => "cancel" , "on hold" => "on hold"); ?> 
+	            <select name="status-filter" class="ewc-filter-status">
+	                
+	                <option value=""><? _e( "Filtrar por Status" , "estilotu"); ?></option>
+	                
+	                <?php
+	                
+	                foreach( $status as $value => $stat ) { ?>
+	                    
+						<option value="<?php echo $value; ?>" <?php isset( $_POST['status-filter'] ) ? selected( $_POST['status-filter'] , $stat ) : ""; ?>><?php echo $stat; ?></option>
+
+	                <?php } ?>
+
+	            </select>
+					
+				<?php 
+					wp_enqueue_script( 'jquery-ui-datepicker');
+					wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css'); ?>
+				
+				<script>
+				    jQuery(document).ready(function($) {
+
+						var date_from 	= $("#date_from-filter").val();
+						var date_to 	= $("#date_to-filter").val();
 						
+						console.log(date_from + " " + date_to);
+						
+					    var dateFormat = "yy-mm-dd",
+							
+							from = $( "#date_from-filter" ).datepicker({
+								defaultDate: "+1w",
+								changeMonth: true,
+								dateFormat: "yy-mm-dd"
+								//numberOfMonths: 3
+							})
+								.datepicker("setDate", new Date( date_from ) )
+								.on( "change", function() {
+									to.datepicker( "option", "minDate", getDate( this ) );
+								}),
+								
+									
+					      
+							to = $( "#date_to-filter" ).datepicker({
+								defaultDate: "+1w",
+								changeMonth: true,
+								dateFormat: "yy-mm-dd"
+								//numberOfMonths: 3
+							})
+								.datepicker("setDate", new Date( date_to ) )
+								.on( "change", function() {
+									from.datepicker( "option", "maxDate", getDate( this ) );
+								})
+								
+									
+					 
+						function getDate( element ) {
+							var date;
+							
+							try {
+								date = $.datepicker.parseDate( dateFormat, element.value );
+							} catch( error ) {
+								date = null;
+							}
+						
+							return date;
+				    	}
+				        
+				    });
+				</script>
+				
+				<?php
+				
+				$fecha_from 	= !empty( $_POST['date_from-filter'] ) ? $_POST['date_from-filter'] : date("Y-m-d");
+				$fecha_to 		= !empty( $_POST['date_to-filter'] ) ? $_POST['date_to-filter'] : date("Y-m-d", strtotime("+1 week") );
+					
+				?>
+				
+				<label for="date_from-filter">From</label>
+				<input type="text" id="date_from-filter" name="date_from-filter" value="<?php echo $fecha_from; ?> ">
+				<label for="date_to-filter">to</label>
+				<input type="text" id="date_to-filter" name="date_to-filter" value="<?php echo $fecha_to; ?> ">
+				
+				
+				<?php submit_button( __( 'Filter' ), '', 'filter_action', false ,  array( 'id' => 'post-query-submit' ) ); ?>		
 	        </div>
 
 	        

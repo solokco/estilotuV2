@@ -127,7 +127,7 @@ class Estilotu_Buddypress extends Estilotu_Public {
 			/* ********************************************* */
 			/* SI EL USUARIO MOSTRADO ES IGUAL AL LOGEADO */
 			/* ********************************************* */
-			if ($id_usuario_seleccionado == $bp->loggedin_user->id ):
+			if ( $id_usuario_seleccionado == $bp->loggedin_user->id ):
 				
 				bp_core_new_subnav_item( 
 					array( 
@@ -272,10 +272,6 @@ class Estilotu_Buddypress extends Estilotu_Public {
 	public function seccion_citas_recibidas_listar() {
 		
 		$citas = new EstiloTu_Citas( );
-		
-		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/servicios/class-servicios-public.php'; 
-		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/citas/class-citas-public.php'; //extends Estilotu_Servicios
-				
 		
 		add_action( 'bp_template_content', array ($citas , 'citas_recibidas_listar' ) );
 		bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );

@@ -101,98 +101,175 @@ class Estilotu_Citas extends Estilotu_Public {
 		return $wpdb->get_var( $query );
 	}
 	
-	public function obtener_citas( $user_id = null , $fecha = null , $status = "confirm" , $type = "OBJECT" , $page_number = 1 , $per_page = 200 ) {  
+	
+	/* **************************************** */
+	/* OBTENER CITAS							*/
+	/* **************************************** */
+	public function obtener_citas( $args = array() ) {  
 		
 		global $wpdb;
 		global $wp_query;
 		global $current_user;
-						
-		//$this->es_historial = isset($wp_query->query_vars['servicios']) && ($wp_query->query_vars['servicios'] == "historial"); 
-				
-		if ( $fecha == null ):
+		
+		/* **************************************** */
+		/* FILTRO POR FECHA							*/
+		/* **************************************** */
+		if ( !isset( $args['fecha'] ) ):
 
-			$time_period = "appoinment_date >= CURDATE() ";
+			$from_date 	= "appoinment_date >= CURDATE() ";
+			$to_date 	= "AND appoinment_date <= '" . date("Y-m-d", strtotime("+1 week") ) . "' "  ;
 			
-		elseif ( $fecha == "all" ): 
-			
-			$time_period = "appoinment_date >= CURDATE() OR appoinment_date <= CURDATE() ";
+		elseif ( $args['fecha'] == "all" ):
+
+			$from_date 	= "appoinment_date >= CURDATE() ";
+			$to_date 	= "OR appoinment_date <= CURDATE() ";
 		
 		else:
 		
-			$time_period = "appoinment_date = '$fecha' ";
+			if ( !isset( $args['fecha']['from'] ) ) :
+
+				$from_date = "appoinment_date >= CURDATE() ";
+				
+			else:
+
+				$from_date = "appoinment_date >= '" . $args['fecha']['from'] . "' " ;
+			
+			endif;
+			
+			if ( !isset( $args['fecha']['to'] ) ):
+			
+				$to_date 	= "AND appoinment_date <= '" . date("Y-m-d", strtotime("+1 week") ) . "' "  ;
+			
+			else:
+
+				$to_date 	= "AND appoinment_date <= '". $args['fecha']['to'] . "' ";
+			
+			endif;
 		
 		endif;
 		
-/*
-		if ( !isset($fecha) )	
-			$fecha = date("Y-m-d");	
-*/
+		$time_period = $from_date . $to_date;		
+		/* **************************************** */
+		
+		/* **************************************** */
+		/* FILTRO POR STATUS						*/
+		/* **************************************** */
+		if ( !isset( $args['status'] ) ):
+			$status = "confirm";
+		
+		else:
+			
+			$status = $args['status'];
+			
+		endif; 
+		/* **************************************** */
+		
+		
+		/* **************************************** */
+		/* TIPO DE RETORNO 							*/
+		/* **************************************** */
+		if ( !isset( $args['type'] ) ):
+			$type = "OBJECT";
+		
+		else:
+			
+			$type = $args['type'];
+			
+		endif;
+		/* **************************************** */
+		
+		/* **************************************** */
+		/* PAGINA ACTUAL							*/
+		/* **************************************** */
+		if ( !isset( $args['page_number'] ) ):
+			
+			$page_number = 1 ;
+		
+		else:
+			
+			$page_number = $args['page_number'];
+			
+		endif;
+		/* **************************************** */
+		
+		/* **************************************** */
+		/* CANTIDAD POR PAGINA						*/
+		/* **************************************** */
+		if ( !isset( $args['per_page'] ) ):
+			
+			$per_page = 200 ;
+		
+		else:
+			
+			$per_page = $args['per_page'];
+			
+		endif;
+		/* **************************************** */
 		
 		$query = "SELECT * FROM $this->tablename_citas WHERE ($time_period) AND appoinment_status = '$status' ";
-					
-		if ($user_id == null):
+		
+		
+		/* **************************************** */
+		/* USUARIO A BUSCAR							*/
+		/* **************************************** */			
+		if ( ! isset( $args['user_id'] ) ):
 			
-			$user_id = get_current_user_id();
-			$user_case = $wpdb->prepare('AND appoinment_provider_id = %d ', $user_id);
+			$user_id 	= get_current_user_id();
+			$user_case 	= $wpdb->prepare('AND appoinment_user_id = %d ', $user_id);
 			
 			$query .= $user_case;
-
-		elseif ($user_id != "all"):
+		
+		elseif ( $args['user_id'] == "all" ) :
+		
+		else:
 			
-			$user_case = $wpdb->prepare(' AND appoinment_provider_id = %d ', $user_id);
+			$user_id	= $args['user_id'];
+			$user_case 	= $wpdb->prepare(' AND appoinment_user_id = %d ', $user_id);
 			
 			$query .= $user_case;
 			
 		endif;
+		/* **************************************** */
+		
+		/* **************************************** */
+		/* PROVIDER A BUSCAR						*/
+		/* **************************************** */			
+		if ( isset( $args['provider_id'] ) && $args['provider_id'] != "all"):
+			
+			$provider_id 	= $args['provider_id'];
+			$provider_case 	= $wpdb->prepare('AND appoinment_provider_id = %d ', $provider_id);
+			
+			$query .= $provider_case;
+			
+		endif;
+		/* **************************************** */			
 		
 		$query 	.= " ORDER BY appoinment_date ASC, appoinment_time ASC ";
 		$query 	.= " LIMIT $per_page";
 		$query 	.= " OFFSET " . ( $page_number - 1 ) * $per_page;
-		
-		// es proveedor
-/*
-		if ( $this->ver_citas == "recibidas" && $this->es_proveedor ):
-			if ($status == null)	
-				$sql = $wpdb->prepare( "SELECT * FROM $this->tablename_citas WHERE appoinment_provider_id = %d AND $time_period  ORDER BY appoinment_date ASC, appoinment_time ASC", $user_id );
-			else 
-				$sql = $wpdb->prepare( "SELECT * FROM $this->tablename_citas WHERE appoinment_provider_id = %d AND appoinment_status = %s AND $time_period ORDER BY appoinment_date ASC, appoinment_time ASC", $user_id , $status );
-
-		//es usuario 
-		else:
-			if ($status == null)	
-				$sql = $wpdb->prepare( "SELECT * FROM $this->tablename_citas WHERE appoinment_user_id = %d AND $time_period  ORDER BY appoinment_date ASC, appoinment_time ASC", $user_id );
-			else 
-				$sql = $wpdb->prepare( "SELECT * FROM $this->tablename_citas WHERE appoinment_user_id = %d AND appoinment_status = %s AND $time_period ORDER BY appoinment_date ASC, appoinment_time ASC", $user_id , $status);
-		endif;
-*/
-									
+						
 		$result = $wpdb->get_results( $query , $type );
 						
 		return $result;
 	}
 	/* *********************************************** */
-	 
-	public function citas_recibidas_listar(){
-		global $bp;	
-		global $wp_query;
-		global $current_user;
-		
-		$this->is_member = Estilotu_Buddypress::validar_miebro();
+	
+	public function validar_accion ( $args ) {
 		
 		// si viene con los datos para guardar
-		if ( isset( $_POST['guardar_cita_nonce'] ) ): 
+		if ( isset( $args['guardar_cita_nonce'] ) ): 
 		
-			if (wp_verify_nonce( $_POST['guardar_cita_nonce'] , 'guardar_cita' ) ): 
+			if (wp_verify_nonce( $args['guardar_cita_nonce'] , 'guardar_cita' ) ): 
 			
 				$user_id 		= get_current_user_id();
-				$id_servicio 	= $_POST['id_servicio'];
-				$fecha_servicio	= $_POST['servicio_dia_seleccionado'];
-				$hora_servicio	= $_POST['et_meta_hora_inicio'];
+				$id_servicio 	= $args['id_servicio'];
+				$fecha_servicio	= $args['servicio_dia_seleccionado'];
+				$hora_servicio	= $args['et_meta_hora_inicio'];
 				
 				$servicio		= get_post( $id_servicio );
 				$id_provider 	= $servicio->post_author;
 	
-				$token_id = stripslashes( $_POST['et_token'] );
+				$token_id = stripslashes( $args['et_token'] );
 				
 				// si ya existe un token que indica que se guardo el post
 				if ( get_transient( 'token_' . $token_id ) ) {
@@ -218,13 +295,79 @@ class Estilotu_Citas extends Estilotu_Public {
 				}
 				
 			endif;
+		
+		elseif ( isset( $args['cancelar_cita_nonce'] ) ):
+		
+			if (wp_verify_nonce( $args['cancelar_cita_nonce'] , 'cancelar_cita' ) ):
+				
+				if ( isset( $args["fecha"] ) )
+					$fecha = $args["fecha"];
+				
+				if ( isset( $args["hora"] ) )	
+					$hora = $args["hora"];
+				else	
+					$hora = null;
+				
+				if ( $this->cambiar_status_cita( $args["status"] , $fecha , $hora  ) ):
+				
+					echo "<h2>";
+						_e("La citas se modificaron con éxito");
+					echo "</h2>";
+					
+				endif;
+				
+			endif;
 			
 		endif;
 		
-		$citas_recibidas = $this->obtener_citas();
+		return ;
+	
+	} 
+	
+	public function citas_recibidas_listar(){
+		global $bp;	
+		global $wp_query;
+		global $current_user;
+		
+		$args = array(
+			"user_id"	=> "all",
+		);
+		
+		$this->is_member = Estilotu_Buddypress::validar_miebro();
+		
+		$this->validar_accion($_POST);
+		
+		if ( isset( $_POST['filtros_citas_nonce'] ) ): 
+		
+			if (wp_verify_nonce( $_POST['filtros_citas_nonce'] , 'filtros_citas' ) ): 
+				
+				if ( isset($_POST['date_from-filter'] ) )
+					$args['fecha']["from"] = $_POST['date_from-filter'] ;
+				
+				if ( isset($_POST['date_to-filter'] ) ) 
+					$args['fecha']["to"] = $_POST['date_to-filter'] ;
+				
+				if ( isset($_POST['status-filter'] ) ) 
+					$args['status'] = $_POST['status-filter'] ;
+				
+			endif;
+
+		endif;
+
+		$fecha_from 	= !empty( $_POST['date_from-filter'] ) 	? $_POST['date_from-filter'] : date("Y-m-d");
+		$fecha_to 		= !empty( $_POST['date_to-filter'] ) 	? $_POST['date_to-filter'] : date("Y-m-d", strtotime("+1 month") );
+		$selected 		= !empty( $_POST['status-filter'] ) 	? $_POST['status-filter'] : "confirm";
+		
+		$args['fecha']['from'] = $fecha_from;
+		$args['fecha']['to'] = $fecha_to;
+		
+		$citas_recibidas = $this->obtener_citas( $args );
 
 		wp_enqueue_style( 'estilotu-citas' );
 		wp_enqueue_script( 'estilotu_citas_opciones' );
+		wp_enqueue_script( 'jquery-ui-datepicker');
+		wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
+		
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/citas/recibidas_listar.php' ;
 		
@@ -235,8 +378,43 @@ class Estilotu_Citas extends Estilotu_Public {
 		global $bp;	
 		global $wp_query;
 		global $current_user;
+
+		$args = array();
 		
-		$id_provider = $bp->displayed_user->id;
+		$this->validar_accion($_POST);
+		
+		if ( isset( $_POST['filtros_citas_nonce'] ) ): 
+		
+			if (wp_verify_nonce( $_POST['filtros_citas_nonce'] , 'filtros_citas' ) ): 
+				
+				if ( isset($_POST['date_from-filter'] ) )
+					$args['fecha']["from"] = $_POST['date_from-filter'] ;
+				
+				if ( isset($_POST['date_to-filter'] ) ) 
+					$args['fecha']["to"] = $_POST['date_to-filter'] ;
+				
+				if ( isset($_POST['status-filter'] ) ) 
+					$args['status'] = $_POST['status-filter'] ;
+				
+			endif;
+
+		endif;
+		
+		$fecha_from 	= !empty( $_POST['date_from-filter'] ) 	? $_POST['date_from-filter'] : date("Y-m-d");
+		$fecha_to 		= !empty( $_POST['date_to-filter'] ) 	? $_POST['date_to-filter'] : date("Y-m-d", strtotime("+1 month") );
+		$selected 		= !empty( $_POST['status-filter'] ) 	? $_POST['status-filter'] : "confirm";
+		
+		$args['fecha']['from'] = $fecha_from;
+		$args['fecha']['to'] = $fecha_to;
+		
+		$citas_recibidas = $this->obtener_citas( $args );
+
+		wp_enqueue_style( 'estilotu-citas' );
+		wp_enqueue_script( 'estilotu_citas_opciones' );
+		wp_enqueue_script( 'jquery-ui-datepicker');
+		wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
+		
+		
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/citas/realizadas_listar.php' ;
 		
@@ -274,6 +452,63 @@ class Estilotu_Citas extends Estilotu_Public {
 		return false;
 		
 	}
+	
+	/* ************************************************* */ 
+	/* CANCELAR CITA AJAX								 */
+	/* ************************************************* */ 
+	public function cambiar_status_cita_ajax() {
+		
+		global $wpdb;
+		
+		$id_cita = $_POST['id_cita'];
+		
+		if ( $_POST['status'] == "Confirmar" )
+			$status_cita = "confirm";			
+		
+		elseif ($_POST['status'] == "Cancelar" )
+			$status_cita = "cancel";	
+		
+		else
+			$status_cita = "on hold";
+		
+		$data = array(
+			'appoinment_status' => $status_cita
+		);
+		
+		$where = array(
+			'appoinment_id' => $id_cita
+		);
+
+		wp_send_json( $wpdb->update( $this->tablename_citas , $data, $where ) );
+	
+	}
+	/* ************************************************* */ 
+	
+	/* ************************************************* */ 
+	/* CANCELAR CITA								 */
+	/* ************************************************* */ 
+	public function cambiar_status_cita( $status_cita = null , $fecha = null , $hora = null ) {
+		
+		global $wpdb;
+		//$tablename = $wpdb->prefix . "bb_appoinments";
+		$data = array();
+		$where = array();
+		
+		$data = array(
+			'appoinment_status' => $status_cita
+		);
+		
+		if ( $fecha != null )
+			$where['appoinment_date'] = $fecha;
+		
+		if ( $hora != null )
+			$where['appoinment_time'] = $hora ;
+
+		
+		return $wpdb->update( $this->tablename_citas , $data, $where ) ;
+	
+	}
+	/* ************************************************* */ 
 	
 	/* ************************************************* */ 
 	/* REGISTRAR ASISTENCIA DE PARTICIPANTE */

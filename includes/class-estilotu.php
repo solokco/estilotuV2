@@ -69,7 +69,7 @@ class Estilotu {
 	public function __construct() {
 
 		$this->plugin_name = 'estilotu';
-		$this->version = "3.0.0";
+		$this->version = "3.1.2";
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -229,6 +229,7 @@ class Estilotu {
 		$this->loader->add_action( 'wp_ajax_closest_services', $servicio, 'closest_services' );
 		$this->loader->add_action( 'wp_ajax_nopriv_closest_services', $servicio, 'closest_services' );
 		
+		
 		//$this->loader->add_action( 'wp_ajax_ibenic_file_upload', $servicio, 'ibenic_file_upload' );
 		//$this->loader->add_action( 'wp_ajax_nopriv_ibenic_file_delete', $servicio , 'ibenic_file_delete');
 		
@@ -236,6 +237,7 @@ class Estilotu {
 		$citas = new Estilotu_Citas();
 		
 		$this->loader->add_action( 'wp_ajax_registrar_asistencia_y_pago_participante', $citas, 'registrar_asistencia_y_pago_participante' );
+		$this->loader->add_action( 'wp_ajax_cambiar_status_cita_ajax', $citas, 'cambiar_status_cita_ajax' );
 	}
 
 	/**

@@ -18,5 +18,6 @@
 
 #Lista_Citas .Bloque .Hora .citas .section {margin:0px;}
 #Lista_Citas .Bloque .Hora .citas .usuario_datos {display:inline-block;width:65%;}
-#Lista_Citas .Bloque .Hora .citas .usuario_status {display:inline-block;width:12%;}
+#Lista_Citas .Bloque .Hora .citas .usuario_status {display:inline-block;width:100%;}
+#Lista_Citas .Bloque .Hora .citas .usuario_status input {width: 100%;}
 #Lista_Citas .Bloque .Hora .citas .usuario_datos h5,#Lista_Citas .Bloque .Hora .citas .usuario_datos h6,#Lista_Citas .Bloque .Hora .citas .usuario_datos p {margin:0px;}
