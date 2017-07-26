@@ -30,7 +30,7 @@
 		
 		<div class="frm-row" id="servicios_seleccionar_tipo">
 			
-			<div class="section colm colm4">
+			<div class="section colm colm12">
 				<a href="<?php echo add_query_arg('tipo_servicio' , 'cupos' ) ?>">
 					<div class="tipo_servicio" id="cupos">
 						<h3>Cupos</h3>
@@ -40,6 +40,7 @@
 				</a>
 			</div>
 			
+<!--
 			<div class="section colm colm4">	
 				<a href="<?php echo add_query_arg('tipo_servicio' , 'evento' ) ?>">
 					<div class="tipo_servicio" id="evento">
@@ -59,6 +60,7 @@
 					</div>
 				</a>
 			</div>
+-->
 						
 			<div style="clear:both"></div>
 		</div>

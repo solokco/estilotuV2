@@ -76,7 +76,7 @@
 								
 								<header class="header_hora">
 									
-									<h3><?php echo date('H:i A', strtotime($key_hora)); ?></h3>
+									<h3><?php echo date('h:i A', strtotime($key_hora)); ?></h3>
 									
 									<?php if ( $this->is_member && $selected != "cancel" && ( strtotime( date("Y-m-d H:i:s") ) < strtotime($key_bloque . " " . $key_hora ) ) ): ?>
 							
@@ -86,7 +86,7 @@
 											<input type="hidden" name="status" value="cancel">
 											<?php wp_nonce_field( 'cancelar_cita', 'cancelar_cita_nonce' ); ?>
 											
-											<input type="submit" class="button btn-purple" value="Cancelar la clase de las <?php echo date('H:i A', strtotime($key_hora)); ?>">
+											<input type="submit" class="button btn-purple" value="Cancelar la clase de las <?php echo date('h:i A', strtotime($key_hora)); ?>">
 										</form>
 										
 									<?php endif; ?>

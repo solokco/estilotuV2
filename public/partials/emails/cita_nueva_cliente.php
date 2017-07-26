@@ -81,11 +81,11 @@
 			div[eqID="EQMST-4BE05DEA-C931-4F35-8028-665F865FB3A5"] [class~="layout-block-content-cell"] { width: 290px !important; }
 			td[eqID="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC"] { width: 290px !important; height: 71px !important; background-size: 290px 71px !important; background-repeat: no-repeat !important; } /* image-8.png */
 			td[id="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC"] { width: 290px !important; height: 71px !important; background-size: 290px 71px !important; background-repeat: no-repeat !important; } /* image-8.png */
-			table[eqID="340E5963-FA38-4A16-9DBC-C330F1230E54-TABLE"] { width: 290px !important; height: 71px !important; padding: 0 !important; } /* image-8-animated.gif */
-			tr[eqID="A63E2B67-A49E-4537-A7E6-20AD727E1112-TR"] { height: 17px !important; } /* image-8-animated.gif */
-			td[eqID="8BCC2B42-5878-443B-9365-2B7CA1547472-CELL10"] { width: 78px !important; } /* image-8-animated.gif */
-			td[eqID="5F248ABA-39FE-45CE-AD33-82E37A8FCEC3-CELL11"] { height: 39px !important; } /* image-8-animated.gif */
-			img[eqID="3EC0FED4-F772-48BD-81B1-FCEFC7F65B39"] { width: 39px !important; height: 39px !important; padding: 0px !important; } /* image-8-animated.gif */
+			table[eqID="14516317-B335-4491-A598-5C66980E743F-TABLE"] { width: 290px !important; height: 71px !important; padding: 0 !important; } /* image-8-animated.gif */
+			tr[eqID="0BCF8F62-E673-4BD1-A0A1-1EB545CAB878-TR"] { height: 17px !important; } /* image-8-animated.gif */
+			td[eqID="A1BB6866-5F2E-40C4-ABCE-048A7FFCABD2-CELL10"] { width: 78px !important; } /* image-8-animated.gif */
+			td[eqID="2E9F1419-1A05-4802-913B-7D7DD71691FA-CELL11"] { height: 39px !important; } /* image-8-animated.gif */
+			img[eqID="E7B77640-6EB8-4D82-82FB-F5C1147F9BB9"] { width: 39px !important; height: 39px !important; padding: 0px !important; } /* image-8-animated.gif */
 			
 			div[eqID="EQMST-59963E56-6E75-4CDA-A361-4F0F4D3855FA"] [class~="layout-block-content-cell"] { width: 320px !important; }
 			img[eqID="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A"] { width: 320px !important; height: 10px !important; } /* image-5.png */
@@ -117,14 +117,14 @@
 		}
 	</style>
 	<![endif]-->
-<link href="http://fonts.googleapis.com/css?family=Roboto:regular,italic" rel="stylesheet" type="text/css" class="EQWebFont"><link href="http://fonts.googleapis.com/css?family=Droid+Sans:regular" rel="stylesheet" type="text/css" class="EQWebFont"><link href="http://fonts.googleapis.com/css?family=Pacifico:regular" rel="stylesheet" type="text/css" class="EQWebFont"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
-<body style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; " background="{{url}}public/partials/emails/img/cita_nueva_proveedor/page-bg.jpg" eqid="EQMST-5B629705-2068-4643-A1B4-1BA752D88F04"><!--[if gte mso 9]>
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:regular" rel="stylesheet" type="text/css" class="EQWebFont"><link href="http://fonts.googleapis.com/css?family=Pacifico:regular" rel="stylesheet" type="text/css" class="EQWebFont"><link href="http://fonts.googleapis.com/css?family=Roboto:regular,italic" rel="stylesheet" type="text/css" class="EQWebFont"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; " background ="{{url}}public/partials/emails/img/cita_nueva_cliente/page-bg.jpg" eqid="EQMST-5B629705-2068-4643-A1B4-1BA752D88F04"><!--[if gte mso 9]>
 <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
-<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/page-bg.jpg" />
+<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_cliente/page-bg.jpg" />
 </v:background>
 <![endif]--> 
 
-<table width="100%" cellspacing="0" cellpadding="0" id="page-wrap" align="center" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/page-bg.jpg">
+<table width="100%" cellspacing="0" cellpadding="0" id="page-wrap" align="center" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/page-bg.jpg">
 <tbody><tr>
 	<td>
 
@@ -144,7 +144,7 @@
 								<tbody><tr>
 									<td width="640" style="min-width: 640px; ">
 										<div class="layout-block-image" style="position: relative; ">
-											<img width="640" height="270" alt="" eqid="EQMST-A3DFEC46-51FA-451A-ACDD-D6ABFF7CCE7F" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-1.png" border="0" style="width: 640px; height: 270px; display: block; ">
+											<img width="640" height="270" alt="" eqid="EQMST-A3DFEC46-51FA-451A-ACDD-D6ABFF7CCE7F" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-1.png" border="0" style="width: 640px; height: 270px; display: block; ">
 										</div>
 									</td>
 								</tr>
@@ -162,7 +162,7 @@
 								<tbody><tr>
 									<td width="320" style="min-width: 320px; ">
 										<div class="layout-block-image hide" style="position: relative; display: none; max-height: 0px; overflow: hidden; ">
-											<img width="320" height="203" alt="" eqid="EQMST-F280B724-FC13-4ACE-AF5B-34881844385D" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-6.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 203px; " class="hide">
+											<img width="320" height="203" alt="" eqid="EQMST-F280B724-FC13-4ACE-AF5B-34881844385D" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-6.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 203px; " class="hide">
 										</div>
 									</td>
 								</tr>
@@ -176,9 +176,9 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="29" class="layout-block-padding-left" style="font-size: 1px; min-width: 29px; ">&nbsp;</td>
-						<td height="50" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-7FC5D3D0-8C6D-4FEE-9CF1-3545D1D19E3E" style="min-width: 582px; "><!--[if gte mso 9]>
+						<td height="50" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-7FC5D3D0-8C6D-4FEE-9CF1-3545D1D19E3E" style="min-width: 582px; "><!--[if gte mso 9]>
 <v:rect style="width:582px;height:50px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -193,9 +193,9 @@
 				<table width="320" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table hide" style="display: none; max-height: 0px; overflow: hidden; min-width: 320px; ">
 					<tbody><tr>
 						<td width="15" class="layout-block-padding-left" style="font-size: 1px; min-width: 15px; ">&nbsp;</td>
-						<td height="43" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-AD771819-4C17-4A5F-9E71-8358EC9D9421" style="min-width: 290px; "><!--[if gte mso 9]>
+						<td height="43" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-AD771819-4C17-4A5F-9E71-8358EC9D9421" style="min-width: 290px; "><!--[if gte mso 9]>
 <v:rect style="width:290px;height:43px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -213,11 +213,11 @@
 						<td valign="top" align="left" class="layout-block-content-cell" width="582" style="min-width: 582px; ">
 							<table cellspacing="0" cellpadding="0" align="left" class="layout-block-column" width="582" style="min-width: 582px; ">
 								<tbody><tr>
-									<td width="562" valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" style="padding-left: 10px; padding-right: 10px; min-width: 562px; " bgcolor="#ffffff" eqid="EQMST-832D1D65-C6DF-4E58-8BEC-3E50F3BC55F4">
+									<td width="562" valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" style="padding-left: 10px; padding-right: 10px; min-width: 562px; " bgcolor="#ffffff" eqid="EQMST-832D1D65-C6DF-4E58-8BEC-3E50F3BC55F4">
 										<table cellspacing="0" cellpadding="0" class="layout-block-box-padding" width="562" style="min-width: 562px; ">
 											<tbody><tr>
 												<td align="left" class="layout-block-column" width="562" style="min-width: 562px; ">
-													<div class="heading" eqid="EQMST-5D3E8BB4-426D-4955-9639-2A3F9445ED32" style="font-size: 40px; font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; color: rgb(117, 14, 154); font-style: normal; font-weight: bold; line-height: 100%; text-align: center; text-decoration: none; ">¡Has recibido una cita!
+													<div class="heading" eqid="EQMST-5D3E8BB4-426D-4955-9639-2A3F9445ED32" style="font-size: 40px; font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; color: rgb(117, 14, 154); font-style: normal; font-weight: bold; line-height: 100%; text-align: center; text-decoration: none; ">¡Has realizado una cita!
 														</div>
 												</td>
 											</tr>
@@ -235,9 +235,9 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="29" class="layout-block-padding-left" style="font-size: 1px; min-width: 29px; ">&nbsp;</td>
-						<td height="30" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-F18C5A49-EA8A-46F7-BCDD-C539B2D93C40" style="min-width: 582px; "><!--[if gte mso 9]>
+						<td height="30" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-F18C5A49-EA8A-46F7-BCDD-C539B2D93C40" style="min-width: 582px; "><!--[if gte mso 9]>
 <v:rect style="width:582px;height:30px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -252,9 +252,9 @@
 				<table width="320" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table hide" style="display: none; max-height: 0px; overflow: hidden; min-width: 320px; ">
 					<tbody><tr>
 						<td width="15" class="layout-block-padding-left" style="font-size: 1px; min-width: 15px; ">&nbsp;</td>
-						<td height="26" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F937088C-DFAE-4F5D-B530-3C6FA5E55D66" style="min-width: 290px; "><!--[if gte mso 9]>
+						<td height="26" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F937088C-DFAE-4F5D-B530-3C6FA5E55D66" style="min-width: 290px; "><!--[if gte mso 9]>
 <v:rect style="width:290px;height:26px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -272,11 +272,11 @@
 						<td class="layout-block-content-cell" width="582" style="min-width: 582px; ">
 							<table cellspacing="0" cellpadding="0" align="left" class="layout-block-column" width="582" style="min-width: 582px; ">
 								<tbody><tr>
-									<td width="562" valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" style="padding-left: 10px; padding-right: 10px; min-width: 562px; " bgcolor="#ffffff" eqid="EQMST-E4036403-27B5-4698-AE55-A8AADC0E9C19">
+									<td width="562" valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" style="padding-left: 10px; padding-right: 10px; min-width: 562px; " bgcolor="#ffffff" eqid="EQMST-E4036403-27B5-4698-AE55-A8AADC0E9C19">
 										<table cellspacing="0" cellpadding="0" class="layout-block-box-padding" width="562" style="min-width: 562px; ">
 											<tbody><tr>
 												<td align="left" class="layout-block-column" width="562" style="min-width: 562px; ">
-													<div class="text" eqid="EQMST-5C203A85-C3B0-4228-8F8A-3601DC7AA248" style="font-size: 14px; font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; color: rgb(0, 0, 0); font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Felicidades, has recibido una nueva cita.  A continuación la información</div>
+													<div class="text" eqid="EQMST-5C203A85-C3B0-4228-8F8A-3601DC7AA248" style="font-size: 14px; font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; color: rgb(0, 0, 0); font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Felicidades, has realizado una nueva cita.  A continuación la información</div>
 												</td>
 											</tr>
 										</tbody></table>
@@ -293,9 +293,9 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="29" class="layout-block-padding-left" style="font-size: 1px; min-width: 29px; ">&nbsp;</td>
-						<td height="20" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-4BF26532-F0A5-4C2E-86DD-8CCB7BC71355" style="min-width: 582px; "><!--[if gte mso 9]>
+						<td height="20" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="582" eqid="EQMST-4BF26532-F0A5-4C2E-86DD-8CCB7BC71355" style="min-width: 582px; "><!--[if gte mso 9]>
 <v:rect style="width:582px;height:20px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -314,7 +314,7 @@
 								<tbody><tr>
 									<td width="640" style="min-width: 640px; ">
 										<div class="layout-block-image">
-											<img width="640" height="20" alt="" eqid="EQMST-A077F7DE-E9E9-48DF-AF38-BE47AF9E1960" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-2.png" border="0" style="width: 640px; height: 20px; display: block; ">
+											<img width="640" height="20" alt="" eqid="EQMST-A077F7DE-E9E9-48DF-AF38-BE47AF9E1960" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-2.png" border="0" style="width: 640px; height: 20px; display: block; ">
 										</div>
 									</td>
 								</tr>
@@ -332,7 +332,7 @@
 								<tbody><tr>
 									<td width="320" style="min-width: 320px; ">
 										<div class="layout-block-image hide" style="display: none; max-height: 0px; overflow: hidden; ">
-											<img width="320" height="20" alt="" eqid="EQMST-1AFAE4E9-3D62-47EF-9539-A9B4D1C9D404" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-7.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 20px; " class="hide">
+											<img width="320" height="20" alt="" eqid="EQMST-1AFAE4E9-3D62-47EF-9539-A9B4D1C9D404" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-7.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 20px; " class="hide">
 										</div>
 									</td>
 								</tr>
@@ -346,11 +346,11 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="30" class="layout-block-padding-left" style="min-width: 30px; ">&nbsp;</td>
-						<td class="layout-block-content-cell" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg-2.jpg" width="580" eqid="EQMST-286B68CB-0E78-46E0-9D26-DA9EAE001EA2" style="min-width: 580px; " bgcolor="#ffffff"><!--[if mso]><table width="580" border="0" cellpadding="0" cellspacing="0" align="center"><tr><![endif]-->
+						<td class="layout-block-content-cell" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg-2.jpg" width="580" eqid="EQMST-286B68CB-0E78-46E0-9D26-DA9EAE001EA2" bgcolor="#ffffff" style="min-width: 580px; "><!--[if mso]><table width="580" border="0" cellpadding="0" cellspacing="0" align="center"><tr><![endif]-->
 							<!--[if mso]><td width="285" valign="top"><![endif]--><table width="285" cellspacing="0" cellpadding="0" align="left" class="layout-block-column" style="min-width: 285px; ">
 								<tbody><tr>
 									<td valign="top" align="left" class="layout-block-column" width="285" style="min-width: 285px; ">
-										<div class="heading" align="left" eqid="EQMST-B413AA02-6925-4B80-A174-FE9C3C0830C0" style="text-align: center; font-size: 16px; font-family: 'Lucida Grande'; "><br><span style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; ">Usuario</span></div>
+										<div class="heading" align="left" eqid="EQMST-B413AA02-6925-4B80-A174-FE9C3C0830C0" style="text-align: center; font-size: 16px; font-family: 'Lucida Grande'; "><span style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; ">Entrenador</span></div>
 									</td>
 								</tr>
 								<tr class="layout-block-vertical-spacer" style="display:block; height:8px; ">
@@ -358,7 +358,7 @@
 								</tr>
 								<tr>
 									<td align="left" class="layout-block-column" width="285" style="min-width: 285px; ">
-										<div class="text" eqid="EQMST-DD3EA543-93BD-4D97-83E6-9604CDABED16" style="font-size: 16px; font-family: 'Lucida Grande'; "><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; "><br></span></div><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; ">Nombre: {{name_user}}</span></div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Email: {{email_user}}</div><div><br></div></div>
+										<div class="text" eqid="EQMST-DD3EA543-93BD-4D97-83E6-9604CDABED16" style="font-size: 16px; font-family: 'Lucida Grande'; "><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; "><br></span></div><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><font color="#000000" face="Helvetica, Arial, Roboto, Droid Sans, sans-serif" style="font-size: 13px; ">Nombre: {{name_provider}}</font></div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Email: {{email_provider}}</div><div><br></div></div>
 									</td>
 								</tr>
 							</tbody></table>
@@ -374,11 +374,11 @@
 								</tr>
 								<!--<![endif]-->
 								<tr>
-									<td valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg-3.jpg" class="layout-block-column" bgcolor="#c6cbcb" width="271" eqid="EQMST-89FB76F2-7539-49A2-963F-31EA20D85166" style="min-width: 271px; ">
+									<td valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg-3.jpg" class="layout-block-column" bgcolor="#c6cbcb" width="271" eqid="EQMST-89FB76F2-7539-49A2-963F-31EA20D85166" style="min-width: 271px; ">
 										<table cellspacing="0" cellpadding="0" style="padding-left: 10px; padding-right: 10px; min-width: 271px; " class="layout-block-box-padding" width="271">
 											<tbody><tr>
 												<td width="251" align="left" class="layout-block-padded-column" style="min-width: 251px; ">
-													<div><div class="text" eqid="EQMST-092C89FE-463A-4648-9E7B-C136A73326DD" style="font-size: 16px; font-family: 'Lucida Grande'; "><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; ">Servicio</div><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><span style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; ">Nombre: {{servicio}}</span></div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Fecha: {{fecha}}</div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Hora: {{hora}}</div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; "><br></div></div></div>
+													<div><div class="text" eqid="EQMST-092C89FE-463A-4648-9E7B-C136A73326DD" style="font-size: 16px; font-family: 'Lucida Grande'; "><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; ">Servicio</div><div style="color: rgb(117, 14, 154); font-family: Pacifico, 'Brush Script', 'Georgia Italic', Arial; font-size: 30px; font-style: normal; font-weight: normal; line-height: 2; text-align: center; text-decoration: none; "><font color="#000000" face="Helvetica, Arial, Roboto, Droid Sans, sans-serif" style="font-size: 13px; ">Nombre: {{servicio}}</font></div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Fecha: {{fecha}}</div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; ">Hora: {{hora}}</div><div style="color: rgb(0, 0, 0); font-family: Helvetica, Arial, Roboto, 'Droid Sans', sans-serif; font-size: 13px; font-style: normal; font-weight: normal; line-height: 24px; text-align: center; text-decoration: none; "><br></div></div></div>
 												</td>
 											</tr>
 										</tbody></table>
@@ -395,9 +395,9 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="30" class="layout-block-padding-left" style="font-size: 1px; min-width: 30px; ">&nbsp;</td>
-						<td height="20" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="580" eqid="EQMST-F2362A0E-548B-4AD9-A8BE-C22DF20B911C" style="min-width: 580px; "><!--[if gte mso 9]>
+						<td height="20" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="580" eqid="EQMST-F2362A0E-548B-4AD9-A8BE-C22DF20B911C" style="min-width: 580px; "><!--[if gte mso 9]>
 <v:rect style="width:580px;height:20px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -412,9 +412,9 @@
 				<table width="320" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table hide" style="display: none; max-height: 0px; overflow: hidden; min-width: 320px; ">
 					<tbody><tr>
 						<td width="15" class="layout-block-padding-left" style="font-size: 1px; min-width: 15px; ">&nbsp;</td>
-						<td height="20" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F2362A0E-548B-4AD9-A8BE-C22DF20B911C" style="min-width: 290px; "><!--[if gte mso 9]>
+						<td height="20" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F2362A0E-548B-4AD9-A8BE-C22DF20B911C" style="min-width: 290px; "><!--[if gte mso 9]>
 <v:rect style="width:290px;height:20px;" strokecolor="none">
-<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg"></v:fill>
+<v:fill type="tile" color="#ffffff" src="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg"></v:fill>
 </v:rect><![endif]-->
 							<div class="spacer">
 						</div><!--[if gte mso 9]>
@@ -433,7 +433,7 @@
 								<tbody><tr>
 									<td width="640" style="min-width: 640px; ">
 										<div class="layout-block-image">
-											<img width="640" height="20" alt="" eqid="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-2.png" border="0" style="width: 640px; height: 20px; display: block; ">
+											<img width="640" height="20" alt="" eqid="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-2.png" border="0" style="width: 640px; height: 20px; display: block; ">
 										</div>
 									</td>
 								</tr>
@@ -451,7 +451,7 @@
 								<tbody><tr>
 									<td width="320" style="min-width: 320px; ">
 										<div class="layout-block-image hide" style="display: none; max-height: 0px; overflow: hidden; ">
-											<img width="320" height="20" alt="" eqid="EQMST-9CB760E5-8E12-4FD0-853C-B5E6134990E5" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-9.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 20px; " class="hide">
+											<img width="320" height="20" alt="" eqid="EQMST-9CB760E5-8E12-4FD0-853C-B5E6134990E5" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-9.png" border="0" style="display: none; max-height: 0px; overflow: hidden; width: 320px; height: 20px; " class="hide">
 										</div>
 									</td>
 								</tr>
@@ -465,22 +465,22 @@
 				<table width="640" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table" style="min-width: 640px; ">
 					<tbody><tr>
 						<td width="30" class="layout-block-padding-left" style="min-width: 30px; ">&nbsp;</td>
-						<td background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="580" eqid="EQMST-F9BD4EAF-D258-43D1-B545-4F37F1737672" style="min-width: 580px; ">
+						<td background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="580" eqid="EQMST-F9BD4EAF-D258-43D1-B545-4F37F1737672" style="min-width: 580px; ">
 							<table cellspacing="0" cellpadding="0" align="left" style="padding-left: 10px; padding-right: 10px; min-width: 580px; " class="layout-block-box-padding" width="580">
 								<tbody><tr>
-									<td width="560" height="66" valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-4.png" border="0" class="EQAnimatedImageCell" eqid="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC" style="min-width: 560px; "><!--[if gte mso 9]>
+									<td width="560" height="66" valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/image-4.png" border="0" class="EQAnimatedImageCell" eqid="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC" style="min-width: 560px; "><!--[if gte mso 9]>
 <v:rect style="width:560px;height:66px;" strokecolor="none">
-<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-4.png"></v:fill>
+<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-4.png"></v:fill>
 </v:rect><![endif]-->
 										<div class="layout-block-image"><!--[if gte mso 9]>
 											<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:560px;height:66px;">
-											<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-4.png" />
+											<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-4.png" />
 											<v:textbox inset="0,0,0,0">
 											</v:textbox>
 											</v:rect>
 											<![endif]-->
 											<!--[if !gte mso 9]>
---><table cellspacing="0" cellpadding="0" width="560" height="66" class="layout-block-full-width EQAnimatedImage EQAnimatedImageTable" eqid="4EED039D-2D54-4C14-A71E-91D8B2034616-TABLE" style="min-width: 560px; "><tbody><tr height="14" valign="top" class="EQAnimatedImage EQAnimatedImageTopRow" eqid="825435CB-3529-42C0-9B98-5F5FB20C8485-TR"><td></td><td></td></tr><tr valign="top"><td valign="top" align="left" width="195" class="EQAnimatedImage EQAnimatedImageTopCell10" eqid="D65C5A88-FF77-4EBA-972E-8288E7766A6E-CELL10" style="min-width: 195px; "></td><td valign="top" align="left" height="38" class="EQAnimatedImage EQAnimatedImageTopCell11" eqid="10C0165D-0CB4-4AAD-B22F-E3BDB2F7F4CC-CELL11"><img src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-4-animated.gif" width="38" height="38" alt="" class="EQAnimatedImage EQAnimatedImageOverlay" style="display: block; "></td></tr><tr><td></td><td></td></tr></tbody></table><!--<![endif]
+--><table cellspacing="0" cellpadding="0" width="560" height="66" class="layout-block-full-width EQAnimatedImage EQAnimatedImageTable" eqid="C6C94C49-DECE-4482-A600-85DF4FCF5FEF-TABLE" style="min-width: 560px; "><tbody><tr height="14" valign="top" class="EQAnimatedImage EQAnimatedImageTopRow" eqid="A1D20065-CA32-430F-8789-6E67AB1930EA-TR"><td></td><td></td></tr><tr valign="top"><td valign="top" align="left" width="195" class="EQAnimatedImage EQAnimatedImageTopCell10" eqid="ED29781B-6CA0-4C05-9562-284A8A94D621-CELL10" style="min-width: 195px; "></td><td valign="top" align="left" height="38" class="EQAnimatedImage EQAnimatedImageTopCell11" eqid="C45765EE-268B-43D4-A1DB-7A14458F6929-CELL11"><img src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-4-animated.gif" width="38" height="38" alt="" class="EQAnimatedImage EQAnimatedImageOverlay" style="display: block; "></td></tr><tr><td></td><td></td></tr></tbody></table><!--<![endif]
 --></div>
 									<!--[if gte mso 9]>
 </v:rect>
@@ -497,14 +497,14 @@
 				<table width="320" cellspacing="0" cellpadding="0" class="layout-block-wrapping-table hide" style="display: none; max-height: 0px; overflow: hidden; min-width: 320px; ">
 					<tbody><tr>
 						<td width="15" class="layout-block-padding-left" style="min-width: 15px; ">&nbsp;</td>
-						<td background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F9BD4EAF-D258-43D1-B545-4F37F1737672" style="min-width: 290px; ">
+						<td background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.jpg" class="layout-block-content-cell" bgcolor="#ffffff" width="290" eqid="EQMST-F9BD4EAF-D258-43D1-B545-4F37F1737672" style="min-width: 290px; ">
 							<table cellspacing="0" cellpadding="0" align="left" style="padding-left: 10px; padding-right: 10px; display: none; max-height: 0px; overflow: hidden; min-width: 290px; " class="layout-block-box-padding hide" width="290">
 								<tbody><tr>
-									<td width="270" height="66" valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-8.png" border="0" class="EQAnimatedImageCell" eqid="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC" style="min-width: 270px; "><!--[if gte mso 9]>
+									<td width="270" height="66" valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/image-8.png" border="0" class="EQAnimatedImageCell" eqid="EQMST-5DA5708E-65F1-49F8-963B-0D610549EECC" style="min-width: 270px; "><!--[if gte mso 9]>
 <v:rect style="width:270px;height:66px;" strokecolor="none">
-<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-8.png"></v:fill>
+<v:fill type="tile" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-8.png"></v:fill>
 </v:rect><![endif]-->
-										<div class="layout-block-image"><table cellspacing="0" cellpadding="0" width="270" height="66" class="layout-block-full-width EQAnimatedImage EQAnimatedImageTable hide" eqid="340E5963-FA38-4A16-9DBC-C330F1230E54-TABLE" style="display: none; max-height: 0px; overflow: hidden; min-width: 270px; "><tbody><tr height="16" valign="top" class="EQAnimatedImage EQAnimatedImageTopRow" eqid="A63E2B67-A49E-4537-A7E6-20AD727E1112-TR"><td></td><td></td></tr><tr valign="top"><td valign="top" align="left" width="73" class="EQAnimatedImage EQAnimatedImageTopCell10" eqid="8BCC2B42-5878-443B-9365-2B7CA1547472-CELL10" style="min-width: 73px; "></td><td valign="top" align="left" height="36" class="EQAnimatedImage EQAnimatedImageTopCell11" eqid="5F248ABA-39FE-45CE-AD33-82E37A8FCEC3-CELL11"><img src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-8-animated.gif" width="36" height="36" alt="" class="EQAnimatedImage EQAnimatedImageOverlay hide" eqid="3EC0FED4-F772-48BD-81B1-FCEFC7F65B39" id="3EC0FED4-F772-48BD-81B1-FCEFC7F65B39" style="display: none; max-height: 0px; overflow: hidden; "></td></tr><tr><td></td><td></td></tr></tbody></table><!--<![endif]
+										<div class="layout-block-image"><table cellspacing="0" cellpadding="0" width="270" height="66" class="layout-block-full-width EQAnimatedImage EQAnimatedImageTable hide" eqid="14516317-B335-4491-A598-5C66980E743F-TABLE" style="display: none; max-height: 0px; overflow: hidden; min-width: 270px; "><tbody><tr height="16" valign="top" class="EQAnimatedImage EQAnimatedImageTopRow" eqid="0BCF8F62-E673-4BD1-A0A1-1EB545CAB878-TR"><td></td><td></td></tr><tr valign="top"><td valign="top" align="left" width="73" class="EQAnimatedImage EQAnimatedImageTopCell10" eqid="A1BB6866-5F2E-40C4-ABCE-048A7FFCABD2-CELL10" style="min-width: 73px; "></td><td valign="top" align="left" height="36" class="EQAnimatedImage EQAnimatedImageTopCell11" eqid="2E9F1419-1A05-4802-913B-7D7DD71691FA-CELL11"><img src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-8-animated.gif" width="36" height="36" alt="" class="EQAnimatedImage EQAnimatedImageOverlay hide" eqid="E7B77640-6EB8-4D82-82FB-F5C1147F9BB9" id="E7B77640-6EB8-4D82-82FB-F5C1147F9BB9" style="display: none; max-height: 0px; overflow: hidden; "></td></tr><tr><td></td><td></td></tr></tbody></table><!--<![endif]
 --></div>
 									<!--[if gte mso 9]>
 </v:rect>
@@ -525,7 +525,7 @@
 								<tbody><tr>
 									<td width="640" style="min-width: 640px; ">
 										<div class="layout-block-image">
-											<img width="640" height="20" alt="" eqid="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A" src="{{url}}public/partials/emails/img/cita_nueva_proveedor/image-5.png" border="0" style="width: 640px; height: 20px; display: block; " id="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A">
+											<img width="640" height="20" alt="" eqid="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A" src="{{url}}public/partials/emails/img/cita_nueva_cliente/image-5.png" border="0" style="width: 640px; height: 20px; display: block; " id="EQMST-E5E32335-DB2B-4EB9-AABA-0A30FC069F1A">
 										</div>
 									</td>
 								</tr>
@@ -542,7 +542,7 @@
 						<td class="layout-block-content-cell" width="592" style="min-width: 592px; ">
 							<table cellspacing="0" cellpadding="0" align="left" class="layout-block-column" width="592" style="min-width: 592px; ">
 								<tbody><tr>
-									<td width="572" valign="top" align="left" background="{{url}}public/partials/emails/img/cita_nueva_proveedor/box-bg.png" style="padding-left: 10px; padding-right: 10px; min-width: 572px; " eqid="EQMST-14C5C21C-7E37-4AC1-856A-0123D8FCE763">
+									<td width="572" valign="top" align="left" background ="{{url}}public/partials/emails/img/cita_nueva_cliente/box-bg.png" style="padding-left: 10px; padding-right: 10px; min-width: 572px; " eqid="EQMST-14C5C21C-7E37-4AC1-856A-0123D8FCE763">
 										<table cellspacing="0" cellpadding="0" class="layout-block-box-padding" width="572" style="min-width: 572px; ">
 											<tbody><tr>
 												<td align="left" class="layout-block-column" width="572" style="min-width: 572px; ">

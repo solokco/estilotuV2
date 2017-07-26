@@ -69,7 +69,7 @@ class Estilotu {
 	public function __construct() {
 
 		$this->plugin_name = 'estilotu';
-		$this->version = "3.1.2";
+		$this->version = "3.1.4";
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -239,6 +239,8 @@ class Estilotu {
 		
 		$this->loader->add_action( 'wp_ajax_registrar_asistencia_y_pago_participante', $citas, 'registrar_asistencia_y_pago_participante' );
 		$this->loader->add_action( 'wp_ajax_cambiar_status_cita_ajax', $citas, 'cambiar_status_cita_ajax' );
+		
+		$this->loader->add_shortcode( 'listar_citas', $citas, 'listar_citas_func' );
 	}
 
 	/**

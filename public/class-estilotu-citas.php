@@ -292,14 +292,30 @@ class Estilotu_Citas extends Estilotu_Public {
 						
 						$email_proveedor = (new Estilotu_Email)
 						    ->to($provider_info->user_email)
-						    ->subject("Nueva cita el $fecha_servicio a las $hora_servicio")
+						    ->subject("Nueva cita el $fecha_servicio a las $hora_servicio de $user_info->first_name")
 						    ->template( 'cita_nueva_proveedor.php' , [
 						        'name_provider' 	=> $provider_info->first_name,
 						        'servicio'  		=> $servicio->post_title,
 						        'fecha'				=> $fecha_servicio,
 						        'hora'				=> $hora_servicio,
-						        'name_user' 		=> $user_info->first_name
-						        'email_user' 		=> $user_info->user_email
+						        'name_user' 		=> $user_info->first_name,
+						        'email_user' 		=> $user_info->user_email,
+						        'url'				=> ESTILOTU_URL
+						    ] )
+						    ->send();
+						
+						$email_cliente = (new Estilotu_Email)
+						    ->to($user_info->user_email)
+						    ->subject("$user_info->first_name, has realizado una nueva cita el $fecha_servicio a las $hora_servicio")
+						    ->template( 'cita_nueva_cliente.php' , [
+						        'name_provider' 	=> $provider_info->first_name,
+						        'email_provider' 	=> $provider_info->user_email,
+						        'servicio'  		=> $servicio->post_title,
+						        'fecha'				=> $fecha_servicio,
+						        'hora'				=> $hora_servicio,
+						        'name_user' 		=> $user_info->first_name,
+						        'email_user' 		=> $user_info->user_email,
+						        'url'				=> ESTILOTU_URL
 						    ] )
 						    ->send();
 						
@@ -560,5 +576,61 @@ class Estilotu_Citas extends Estilotu_Public {
 		
 	}
 	/* ************************************************* */ 
+	
+	/* ************************************************* */ 
+	/* SHORTCODE */
+	/* ************************************************* */
+	public function listar_citas_func( $atts ) {
 
+		$cita_atts = shortcode_atts( array(
+        	'type'	=> 'OBJECT',
+        	'desde'	=> date("Y-m-d"),
+        	'hasta'	=> date("Y-m-d", strtotime("+1 month") ),
+        	'size'	=> "size0_75x",
+        	'class_lista'	=> "shortcode_citas lista_citas",
+        	'class_fecha'	=> "date-as-calendar inline-flex"
+               	
+	    ) , $atts );
+
+		$cita_atts["fecha"]["from"] = $cita_atts['desde']; 
+		$cita_atts["fecha"]["to"] 	= $cita_atts['hasta']; 
+				
+		$citas = $this->obtener_citas( $cita_atts );
+		
+		if ( empty( $citas) )
+			return _e("No hay citas cercanas" , "estilotu");
+
+		
+			
+		$html = "";
+		
+		foreach ( $citas as $cita ):
+			
+			$servicio = get_post( $cita->appoinment_service_id );
+			
+			$html .= "<div class='row'>";
+			$html .= 	"<div class='col-sm-2 wpb_column column_container'>";
+			$html .= 		"<time datetime='" . $cita->appoinment_date . " " . $cita->appoinment_time . "' class='" . $cita_atts['class_fecha'] . " " . $cita_atts['size'] . "'>";
+			$html .= 			"<span class='weekday'>" . date( 'l', strtotime($cita->appoinment_date ) ) . "</span>";
+			$html .= 			"<span class='day'>" . date( 'd', strtotime($cita->appoinment_date ) ) . "</span>";
+			$html .= 			"<span class='month'>" . date( 'F', strtotime($cita->appoinment_date ) ) . "</span>";
+			$html .= 			"<span class='year'>" . date( 'Y', strtotime($cita->appoinment_date ) ) . "</span>";
+			$html .= 		"</time>";
+			$html .= 	"</div>";
+					 	
+			$html .= 	"<div class='col-sm-10 wpb_column column_container'>";
+			$html .= 		"<ul class='" . $cita_atts['class_lista'] . "'>";
+			$html .= 			"<li class='servicio'><a href='" . esc_url( get_permalink( $cita->appoinment_service_id ) ) . "'>$servicio->post_title</a></li>";
+			$html .= 			"<li class='hora'>" . date( 'h:i A', strtotime($cita->appoinment_time ) ) . "</li>";
+			$html .= 		"</ul>";
+			$html .= 	"</div>";
+			$html .= "</div>";
+			
+			$html .= "<br>";
+		endforeach;
+
+		return $html;
+	
+	}
+	
 }
