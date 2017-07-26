@@ -260,15 +260,7 @@ class Estilotu_Citas extends Estilotu_Public {
 		if ( isset( $args['guardar_cita_nonce'] ) ): 
 		
 			if (wp_verify_nonce( $args['guardar_cita_nonce'] , 'guardar_cita' ) ): 
-			
-				$user_id 		= get_current_user_id();
-				$id_servicio 	= $args['id_servicio'];
-				$fecha_servicio	= $args['servicio_dia_seleccionado'];
-				$hora_servicio	= $args['et_meta_hora_inicio'];
-				
-				$servicio		= get_post( $id_servicio );
-				$id_provider 	= $servicio->post_author;
-	
+
 				$token_id = stripslashes( $args['et_token'] );
 				
 				// si ya existe un token que indica que se guardo el post
@@ -282,11 +274,35 @@ class Estilotu_Citas extends Estilotu_Public {
 				// si el post es nuevo
 				else {				
 					
+					$user_id 		= get_current_user_id();
+					$id_servicio 	= $args['id_servicio'];
+					$fecha_servicio	= $args['servicio_dia_seleccionado'];
+					$hora_servicio	= $args['et_meta_hora_inicio'];
+					
+					$servicio		= get_post( $id_servicio );
+					$id_provider 	= $servicio->post_author;
+					
+					$provider_info 	= get_userdata( $id_provider );
+					$user_info 		= get_userdata( $user_id );
+					
 					if ( $this->guardar_cita( $id_servicio , $id_provider , $fecha_servicio , $hora_servicio ) ):
 					
 						_e("Su cita se ha guardado con éxito");
 						set_transient( 'token_' . $token_id , 'cita-guardada', 86400 );
-					
+						
+						$email_proveedor = (new Estilotu_Email)
+						    ->to($provider_info->user_email)
+						    ->subject("Nueva cita el $fecha_servicio a las $hora_servicio")
+						    ->template( 'cita_nueva_proveedor.php' , [
+						        'name_provider' 	=> $provider_info->first_name,
+						        'servicio'  		=> $servicio->post_title,
+						        'fecha'				=> $fecha_servicio,
+						        'hora'				=> $hora_servicio,
+						        'name_user' 		=> $user_info->first_name
+						        'email_user' 		=> $user_info->user_email
+						    ] )
+						    ->send();
+						
 					else:
 					
 						_e("Ocurrió un error al editar su servicio");

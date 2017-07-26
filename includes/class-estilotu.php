@@ -127,6 +127,7 @@ class Estilotu {
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-servicios.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-citas.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-email.php';
 		
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/servicios/class-servicios-public.php'; 
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/citas/class-citas-public.php'; 
