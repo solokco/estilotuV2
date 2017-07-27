@@ -176,7 +176,7 @@ function initMap() {
 	    jQuery.ajax({
 	        url: ajax_object.ajax_url,
 	        type: "POST",
-	        //dataType: "JSON",
+	        dataType: "JSON",
 	        
 	        data: { 
 				'action'	: 'closest_services',
@@ -185,7 +185,7 @@ function initMap() {
 				'categoria' : categoria,
 				'servicios_repetidos' : servicios_repetidos,
 				'unit'		: 'km',
-				'radius'	: 100
+				'radius'	: 15
             },      
 	         
 	        success: function( data, textStatus, jqXHR ) { // Si todo salio bien se ejecuta esto
@@ -234,6 +234,13 @@ function initMap() {
 							url_imangen ='https://www.estilotu.com/wp-content/uploads/2016/11/estilotu-imageplaceholder-2.png';
 						}
 						
+						if ( info_servicio.category != false) {
+							category_name = info_servicio.category[0]['name'];
+						} else {	
+							category_name = "";
+						}
+						
+						
 						html =  "<div class='listing-card-wrapper small-12 medium-6 large-6 columns' id='card_"+ id_servicio +"'>";
 						html += 	"<div class='listing' itemscope='' itemtype='http://schema.org/Enumeration'>";
 						
@@ -280,9 +287,9 @@ function initMap() {
 						html +=						"</a>";
 						html +=					"</h3>";
 						
-						html +=					"<h6 title='"+ info_servicio.category[0]['name'] +"' class='h6 listing-name text-truncate space-top-1'>";
+						html +=					"<h6 title='"+ category_name +"' class='h6 listing-name text-truncate space-top-1'>";
 						html +=						"<a href='"+ info_servicio.service_url +"' target='_blank' class='text-normal'>";
-						html +=							"<span class='listing-category--display'>"+ info_servicio.category[0]['name'] +"</span>";
+						html +=							"<span class='listing-category--display'>"+ category_name +"</span>";
 						html +=						"</a>";
 						html +=					"</h6>";
 						
@@ -337,7 +344,7 @@ function initMap() {
 					
 					icono_original = markers[i].icon;
 					
-					markers[i].setIcon('http://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png');
+					markers[i].setIcon('https://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png');
 					
 					var latLng = markers[i].getPosition();
 					map.panTo(latLng);
@@ -491,8 +498,8 @@ function initMap() {
 			
 			default:
 				//mapicon = '/wp-content/uploads/2016/10/Marker_ET_32.png'
-				mapicon = '/wp-content/uploads/2015/03/Marker_ET_64.png';
-				//mapicon = 'http://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png';
+				//mapicon = '/wp-content/uploads/2015/03/Marker_ET_64.png';
+				mapicon = 'https://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png';
 		}			
 							
 		var marker = new google.maps.Marker({
