@@ -822,8 +822,9 @@ class Estilotu_Servicio {
 		$categoria 	= array();
 		$unit 		= $_POST['unit'];
 		$distancia 	= $_POST['radius'];
+		$converter  = 1;
 		
-		if ( $unit == 'km' ) { $earth_radius = 6371.009 / 1.609344 ; }
+		if ( $unit == 'km' ) { $earth_radius = 6371.009 / 1.609344 ; $converter = 1.609; }
 		elseif ( $unit == 'mi' ) { $earth_radius = 3958.761; }
 		
 		$sql = $wpdb->prepare( "
@@ -848,7 +849,7 @@ class Estilotu_Servicio {
 	        AND map_lat.meta_key = 'et_meta_latitud'
 	        AND map_lng.meta_key = 'et_meta_longitud'
 	        HAVING distance <= %d
-	        ORDER BY distance ASC",
+	        ORDER BY distance DESC",
 	        $earth_radius,
 	        $lat,
 	        $lat,
@@ -868,9 +869,10 @@ class Estilotu_Servicio {
 			$servicio[$single_service->service_ID]["service_author_url"] 	= bp_core_get_user_domain( $single_service->service_ID );			
 			$servicio[$single_service->service_ID]["category"] 				= get_the_terms( $single_service->service_ID , 'servicios-categoria');
 			$servicio[$single_service->service_ID]["service_title"]			= $single_service->service_title;
-			
+			$servicio[$single_service->service_ID]["service_url"] 			= get_post_permalink( $single_service->service_ID );
 			$servicio[$single_service->service_ID]["thumb_url"] 			= wp_get_attachment_image_src( get_post_thumbnail_id( $single_service->service_ID ) , 'medium' );
-		  
+			$servicio[$single_service->service_ID]["distancia"]				= round( $single_service->distance * $converter , 2 ) . " " . $unit;
+			
 			$servicio[$single_service->service_ID]["precio_servicio_visibilidad"] = get_post_meta( $single_service->service_ID , 'et_meta_precio_visibilidad' , true);
 			
 			if ( function_exists( 'get_favorites_button' ) ) 
@@ -878,6 +880,7 @@ class Estilotu_Servicio {
 
 		endforeach;
 		
+		//print_r($servicio);
 		wp_send_json($servicio);
 		
 	}

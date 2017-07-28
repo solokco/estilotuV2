@@ -191,16 +191,32 @@ function initMap() {
             },      
 	         
 	        success: function( data, textStatus, jqXHR ) { // Si todo salio bien se ejecuta esto
-				
+
 				var servicios = [];
 				var precio;
 				var moneda;
 				var url_imangen;
 				var html_marker;
 				
-				jQuery.each( data, function( id_servicio, info_servicio ) {
-
-					servicios_repetidos.push(id_servicio);
+				/* ********************** */
+				// ordeno por distancia
+				/* ********************** */
+				var arr = jQuery.map(data, function(value, key){
+				    return value
+				});
+				
+				function SortByName(a, b){
+					var aName = a.distancia;
+					var bName = b.distancia; 
+					return ((aName > bName) ? -1 : ((aName < bName) ? 1 : 0));
+				}
+				
+				arr.sort(SortByName);
+				/* ********************** */
+				
+				jQuery.each( arr, function( key , info_servicio ) {
+					
+					servicios_repetidos.push(info_servicio.service_ID);
 					
 					if( jQuery("#lista_servicios_geolocation").length != 0) { 
 						
@@ -241,7 +257,7 @@ function initMap() {
 						}
 						
 						
-						html =  "<div class='listing-card-wrapper small-12 medium-6 large-6 columns' id='card_"+ id_servicio +"'>";
+						html =  "<div class='listing-card-wrapper small-12 medium-6 large-6 columns' id='card_"+ info_servicio.service_ID +"'>";
 						html += 	"<div class='listing' itemscope='' itemtype='http://schema.org/Enumeration'>";
 						
 						html +=			"<div class='panel-image listing-img listing-img--hide-carousel-controls'>";
@@ -293,6 +309,10 @@ function initMap() {
 						html +=						"</a>";
 						html +=					"</h6>";
 						
+						html +=					"<h6 title='distancia' class='h6 listing-name text-truncate space-top-1'>";
+						html +=						"<span class='listing-distance--display'>"+ info_servicio.distancia +"</span>";
+						html +=					"</h6>";
+						
 						
 						html += 			"</div>";
 
@@ -314,7 +334,7 @@ function initMap() {
         .fail(function( jqXHR, textStatus, errorThrown, data ) { // Si todo salio MAL se ejecuta esto
 			console.log('Ocurrio un error y no se pudo procesar su solicitud correctamente.');
 			
-			html = "<h2>Tuvimos problema encontrando servicios cerca de ti</h2>";
+			html = "<h4>Tuvimos problema encontrando servicios cerca de ti</h4>";
 			
 			jQuery("#lista_servicios_geolocation").append(html);
 			
