@@ -456,7 +456,9 @@ class Estilotu_Citas extends Estilotu_Public {
 	private function guardar_cita( $id_servicio , $id_provider , $fecha_servicio , $hora_servicio ) {
 		
 		global $wpdb;
-
+		
+		do_action( 'notificar_cita' , $id_servicio );
+		
 		$data = array( 
 					'appoinment_date' 			=> $fecha_servicio, 
 					'appoinment_time' 			=> $hora_servicio, 

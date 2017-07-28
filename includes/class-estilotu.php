@@ -128,6 +128,7 @@ class Estilotu {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-servicios.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-citas.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-email.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-notifications.php';
 		
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/servicios/class-servicios-public.php'; 
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/citas/class-citas-public.php'; 
@@ -241,6 +242,12 @@ class Estilotu {
 		$this->loader->add_action( 'wp_ajax_cambiar_status_cita_ajax', $citas, 'cambiar_status_cita_ajax' );
 		
 		$this->loader->add_shortcode( 'listar_citas', $citas, 'listar_citas_func' );
+		
+		// NOTIFICACIONES		
+		$notificaciones = new Estilotu_Notificaciones();
+		$this->loader->add_filter( 'bp_notifications_get_registered_components', $notificaciones , 'custom_filter_notifications_get_registered_components' );
+		$this->loader->add_filter( 'bp_notifications_get_notifications_for_user', $notificaciones , 'custom_format_buddypress_notifications', 10, 5 );
+		$this->loader->add_action( 'notificar_cita', $notificaciones , 'notificar_cita_func', 99, 2 );
 	}
 
 	/**
