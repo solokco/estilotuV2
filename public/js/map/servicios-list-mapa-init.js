@@ -172,6 +172,8 @@ function initMap() {
 			
 		latitud 	= center.lat();
 		longitud 	= center.lng();
+		
+		jQuery( "body" ).after( "<div class='loading'>Loading&#8230;</div>" );
 												    
 	    jQuery.ajax({
 	        url: ajax_object.ajax_url,
@@ -195,8 +197,6 @@ function initMap() {
 				var moneda;
 				var url_imangen;
 				var html_marker;
-				
-				console.log(data);
 				
 				jQuery.each( data, function( id_servicio, info_servicio ) {
 
@@ -305,16 +305,20 @@ function initMap() {
 					}
 						
 				});
-											
+
+				jQuery(".loading").remove();							
+				
 			}
         })
         
         .fail(function( jqXHR, textStatus, errorThrown, data ) { // Si todo salio MAL se ejecuta esto
 			console.log('Ocurrio un error y no se pudo procesar su solicitud correctamente.');
 			
-			html = "<h2>Algo no salió bien.</h2>";
+			html = "<h2>Tuvimos problema encontrando servicios cerca de ti</h2>";
 			
 			jQuery("#lista_servicios_geolocation").append(html);
+			
+			jQuery(".loading").remove();
 
         });
     }
@@ -499,7 +503,8 @@ function initMap() {
 			default:
 				//mapicon = '/wp-content/uploads/2016/10/Marker_ET_32.png'
 				//mapicon = '/wp-content/uploads/2015/03/Marker_ET_64.png';
-				mapicon = 'https://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png';
+				mapicon = new google.maps.MarkerImage("https://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png" , null, null, null, new google.maps.Size(64, 64) );
+				
 		}			
 							
 		var marker = new google.maps.Marker({
