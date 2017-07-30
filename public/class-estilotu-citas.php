@@ -264,9 +264,11 @@ class Estilotu_Citas extends Estilotu_Public {
 				$token_id = stripslashes( $args['et_token'] );
 				
 				// si ya existe un token que indica que se guardo el post
-				if ( get_transient( 'token_' . $token_id ) ) {
-	
-				    _e("Usted ya guardo esta cita");
+				if ( get_transient( 'token_' . $token_id ) ) { ?>
+
+				    <h2 class='alert alert-danger'> <?php _e("Usted ya guardo esta cita" , "estilotu") ?> </h2>;
+
+				    <?php
 				    return;
 				
 				} 
@@ -285,9 +287,11 @@ class Estilotu_Citas extends Estilotu_Public {
 					$provider_info 	= get_userdata( $id_provider );
 					$user_info 		= get_userdata( $user_id );
 					
-					if ( $this->guardar_cita( $id_servicio , $id_provider , $fecha_servicio , $hora_servicio ) ):
+					if ( $this->guardar_cita( $id_servicio , $id_provider , $fecha_servicio , $hora_servicio ) ): ?>
 					
-						_e("Su cita se ha guardado con éxito");
+						<h2 class='alert alert-success'> <?php _e("Su cita se ha guardado con éxito" , "estilotu"); ?> </h2>
+
+						<?php
 						set_transient( 'token_' . $token_id , 'cita-guardada', 86400 );
 						
 						$email_proveedor = (new Estilotu_Email)
@@ -341,9 +345,9 @@ class Estilotu_Citas extends Estilotu_Public {
 					$hora = null;
 				
 				if ( $this->cambiar_status_cita( $args["status"] , $fecha , $hora  ) ):
-				
-					echo "<h2>";
-						_e("La citas se modificaron con éxito");
+					
+					echo "<h2 class='alert alert-success'>";
+						_e("La citas se modificaron con éxito" , "esitlotu");
 					echo "</h2>";
 					
 				endif;
@@ -458,6 +462,9 @@ class Estilotu_Citas extends Estilotu_Public {
 		global $wpdb;
 		
 		do_action( 'notificar_cita' , $id_servicio );
+
+		$price 		= get_post_meta( $id_servicio, 'et_meta_precio', true );
+		$currency 	= get_post_meta( $id_servicio, 'et_meta_precio_moneda', true );
 		
 		$data = array( 
 					'appoinment_date' 			=> $fecha_servicio, 
@@ -466,6 +473,8 @@ class Estilotu_Citas extends Estilotu_Public {
 					'appoinment_user_id' 		=> get_current_user_id(), 
 					'appoinment_service_id'		=> $id_servicio, 
 					'appoinment_status'			=> "confirm",
+					'appoinment_price'			=> $price,
+					'appoinment_currency'		=> $currency,
 					'update_time'	 			=> current_time("Y-m-d H:i:s")
 				);
 

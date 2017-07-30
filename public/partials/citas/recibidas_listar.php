@@ -11,9 +11,8 @@
 		$fecha_from 	= !empty( $_POST['date_from-filter'] ) ? $_POST['date_from-filter'] : date("Y-m-d");
 		$fecha_to 		= !empty( $_POST['date_to-filter'] ) ? $_POST['date_to-filter'] : date("Y-m-d", strtotime("+1 week") );
 		$selected 		= !empty( $_POST['status-filter'] ) ? $_POST['status-filter'] : "confirm";
-	
-		?>
 		
+		?>
 		<form action="" method="post">
 			<label for="date_from-filter">Desde</label>
 			<input type="text" id="date_from-filter" name="date_from-filter" value="<?php echo $fecha_from; ?> ">

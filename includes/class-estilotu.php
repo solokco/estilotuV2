@@ -116,6 +116,7 @@ class Estilotu {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-citas.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-pagos.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -129,6 +130,7 @@ class Estilotu {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-citas.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-email.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-notifications.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-estilotu-pagos.php';
 		
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/servicios/class-servicios-public.php'; 
 		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/citas/class-citas-public.php'; 

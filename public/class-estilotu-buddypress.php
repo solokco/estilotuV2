@@ -124,6 +124,19 @@ class Estilotu_Buddypress extends Estilotu_Public {
 				)
 			);
 			
+			bp_core_new_nav_item(
+				array(
+					'name'                => __( 'Pagos', 'estilotu' ),
+					'slug'                => 'pagos',
+					'position'            => 10,
+					'screen_function'     => array( $this, 'seccion_pagos_listar'),
+					'default_subnav_slug' => 'pagos',
+					'parent_url'          => $bp->loggedin_user->domain . $bp->slug . '/',
+					'show_for_displayed_user' => true,
+					'parent_slug'         => $bp->slug
+				)
+			);
+			
 			/* ********************************************* */
 			/* SI EL USUARIO MOSTRADO ES IGUAL AL LOGEADO */
 			/* ********************************************* */
@@ -279,6 +292,19 @@ class Estilotu_Buddypress extends Estilotu_Public {
 	}
 	/* ******************************************************************* */	
 	
+	/* ******************************************************************* */
+	/* PREPARA LA SECCION PARA LISTAR PAGOS */
+	/* ******************************************************************* */
+	public function seccion_pagos_listar() {
+		
+		// Funciones en archivo /public/class-servicios.php
+		$servicio = new Estilotu_Pagos();
+
+		add_action( 'bp_template_content', array ($servicio , 'listar_pagos_profesional' ) );
+		bp_core_load_template( apply_filters( 'bp_core_template_plugin', 'members/single/plugins' ) );
+
+	}
+	/* ******************************************************************* */
 	
 	/* *********************************************** */
 	/* LISTAR SERVICIOS DEL PROVEEDOR */

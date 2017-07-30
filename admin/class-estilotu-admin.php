@@ -449,6 +449,7 @@ class Estilotu_Admin {
 		
 		add_submenu_page( 'estilotu' , 'Settings ' , 'Settings' , 'manage_options', 'estilotu_settings', array( $this, 'option_page_estilotu_settings' ) );
 		add_submenu_page( 'estilotu' , 'Citas ' , 'Citas' , 'manage_options', 'estilotu_citas', array( $this, 'option_page_estilotu_citas' ) );
+		add_submenu_page( 'estilotu' , 'Pagos ' , 'Pagos' , 'manage_options', 'estilotu_pagos', array( $this, 'option_page_estilotu_pagos' ) );
 		
 		remove_submenu_page('estilotu','estilotu');
 	}
@@ -469,6 +470,25 @@ class Estilotu_Admin {
 		if ( !current_user_can('manage_options') ): 
 			wp_die( __('You do not have sufficient permissions to access this page.') );
     	endif;
+
+    	if (!class_exists('WP_List_Table')){
+
+		   require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+		}
+    	
+    	$wp_list_table = new Estilotu_Admin_Citas();	
+    	$wp_list_table->prepare_items();
+
+    	require_once ESTILOTU_PATH . 'admin/partials/estitlotu-page-citas.php' ;
+		
+	}
+	/* *********************************************** */	
+	
+	public function option_page_estilotu_pagos () { 
+		
+		if ( !current_user_can('manage_options') ): 
+			wp_die( __('You do not have sufficient permissions to access this page.') );
+    	endif;
     	
     	//$citas = new Estilotu_Citas();
     	
@@ -478,16 +498,16 @@ class Estilotu_Admin {
 		   require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 		}
 		
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-citas.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-estilotu-admin-pagos.php';
     	
-    	$wp_list_table = new Estilotu_Admin_Citas();	
+    	$wp_list_table = new Estilotu_Admin_Pagos();	
     	
     	$wp_list_table->prepare_items();
 
-    	require_once ESTILOTU_PATH . 'admin/partials/estitlotu-page-citas.php' ;
+    	require_once ESTILOTU_PATH . 'admin/partials/estitlotu-page-pagos.php' ;
 		
 	}
-	/* *********************************************** */	
+	/* *********************************************** */
 	
 	/* *********************************************** */
 	/* REGISTRAR VACACIONES */ 
