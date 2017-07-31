@@ -62,6 +62,53 @@ class Estilotu_Pagos extends Estilotu_Public {
 	*
 	* @since    1.0.0
 	*/
+	/* **************************************** */
+	/* OBTENER CITAS							*/
+	/* **************************************** */
+	public function total_pagos( $status_pago = true , $proveedor_id = null ) { 
+		
+		global $wpdb;
+		
+		if ( $proveedor_id == null || !is_int($proveedor_id) )
+			$proveedor_id = get_current_user_id();
+		
+		if ( $status_pago ):
+		
+			$status = " AND appoinment_user_paid = %d ";
+		
+		else:
+		
+			$status = " AND (appoinment_user_paid = %d OR appoinment_user_paid is NULL) ";
+		
+		endif;
+		
+		$query = $wpdb->prepare(" 
+			
+			SELECT 
+			appoinment_currency AS currency, 
+			SUM(appoinment_price) AS monto_pendiente
+			
+			FROM 
+			$this->tablename_citas 
+			
+			WHERE 
+			appoinment_provider_id = %d
+			$status
+			AND appoinment_price > %d 
+			
+			GROUP BY appoinment_currency" ,
+
+			$proveedor_id,
+			$status_pago,
+			0
+		);
+
+		$result = $wpdb->get_results( $query );
+		
+		return $result;
+		
+	}
+	
 	
 	/* **************************************** */
 	/* OBTENER CITAS							*/
@@ -256,6 +303,9 @@ class Estilotu_Pagos extends Estilotu_Public {
 	
 	public function listar_pagos_profesional() {
 		
+		$total_generado = $this->total_pagos();
+		$total_pendiente = $this->total_pagos( false );
+		
 		$args = array(
 			"fecha" => array(
 				"from" => '2016-01-01',
@@ -265,9 +315,7 @@ class Estilotu_Pagos extends Estilotu_Public {
 		
 		$pagos = $this->obtener_pagos($args);
 		
-		echo "<pre>";
-		print_r($pagos);
-		echo "</pre>";
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/pagos/list.php' ;
 	}
 	
 }
