@@ -402,7 +402,7 @@ class Estilotu_Citas extends Estilotu_Public {
 
 		wp_enqueue_style( 'estilotu-citas' );
 		wp_enqueue_script( 'estilotu_citas_opciones' );
-		wp_enqueue_script( 'jquery-ui-datepicker');
+		wp_enqueue_script( 'estilotu_filters');
 		wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
 		
 		
@@ -448,10 +448,8 @@ class Estilotu_Citas extends Estilotu_Public {
 
 		wp_enqueue_style( 'estilotu-citas' );
 		wp_enqueue_script( 'estilotu_citas_opciones' );
-		wp_enqueue_script( 'jquery-ui-datepicker');
+		wp_enqueue_script( 'estilotu_filters');
 		wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
-		
-		
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/citas/realizadas_listar.php' ;
 		

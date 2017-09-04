@@ -313,7 +313,14 @@ class Estilotu_Pagos extends Estilotu_Public {
 			)
 		);
 		
+		$fecha_from 	= !empty( $_POST['date_from-filter'] ) 	? $_POST['date_from-filter'] : "";
+		$fecha_to 		= !empty( $_POST['date_to-filter'] ) 	? $_POST['date_to-filter'] : "";
+		$selected 		= !empty( $_POST['status-filter'] ) 	? $_POST['status-filter'] : "confirm";
+		
 		$pagos = $this->obtener_pagos($args);
+		
+		wp_enqueue_script( 'estilotu_filters' );
+		wp_enqueue_style( 'jquery-ui-datepicker-style' , '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css');
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/pagos/list.php' ;
 	}

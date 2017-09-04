@@ -1,6 +1,12 @@
 <div class="row" id="Lista_Citas">
 	
-	<div class="col-sm-8 wpb_column column_container">
+	<div class="col-sm-2 wpb_column column_container">
+		
+		<?php require_once plugin_dir_path( dirname( __FILE__ ) ) . 'pagos/_filter.php' ; ?>
+
+	</div>
+	
+	<div class="col-sm-6 wpb_column column_container">
 		<table>
 			
 			<thead>

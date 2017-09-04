@@ -110,6 +110,8 @@ class Estilotu_Public {
 		wp_register_script( 'estilotu_citas_opciones' 	, plugin_dir_url( __FILE__ )	. 'js/citas/citas-opciones.js'		, array( 'jquery' ), $this->version );
 		wp_localize_script( 'estilotu_citas_opciones', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		
+		wp_register_script( 'estilotu_filters' 	, plugin_dir_url( __FILE__ )	. 'js/filters.js'		, array( 'jquery' , 'jquery-ui-datepicker' ), $this->version );
+		
 		//wp_register_script( 'estilotu-imagesuploader', plugin_dir_url( __FILE__ ) . 'js/servicios-imagesuploader.js' , array('jquery'), $this->version , true );
 		//wp_localize_script( 'estilotu-imagesuploader', 'ajax_object', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 		
